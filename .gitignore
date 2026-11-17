@@ -1,0 +1,15 @@
+node_modules/
+frontend/dist/
+.env
+*.log
+
+# Runtime data (quizzes, attempts, results, admin hash). Back it up, never commit it.
+backend/data/*
+!backend/data/.gitkeep
+!backend/data/questions/
+!backend/data/attempts/
+!backend/data/results/
+backend/data/questions/*
+backend/data/attempts/*
+backend/data/results/*
+!backend/data/**/.gitkeep
