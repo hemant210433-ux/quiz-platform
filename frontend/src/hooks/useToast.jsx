@@ -1,9 +1,10 @@
+'use client';
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 
 const ToastContext = createContext(null);
 
 const STYLES = {
-  success: 'bg-brand-800 text-white',
+  success: 'bg-good-700 text-white',
   error: 'bg-red-700 text-white',
   info: 'bg-ink-900 text-white',
 };

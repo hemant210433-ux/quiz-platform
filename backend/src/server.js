@@ -2,6 +2,7 @@ import config from './config/index.js';
 import { createApp } from './app.js';
 import { initStorage, closeStorage, describeStorage } from './storage/jsonStorage.js';
 import { bootstrapAdminFromEnv, getAdmin } from './services/authService.js';
+import { startKeepAlive } from './services/keepAlive.js';
 import logger from './utils/logger.js';
 
 async function main() {
@@ -16,6 +17,10 @@ async function main() {
   const server = app.listen(config.port, () => {
     logger.info(`Quiz Platform API listening on http://localhost:${config.port} (${config.env})`);
     logger.info(`Storage: ${describeStorage()}`);
+    if (config.isProd && config.keepAliveUrl) {
+      startKeepAlive({ url: config.keepAliveUrl, intervalMs: config.keepAliveIntervalMs, log: (m) => logger.debug?.(m) });
+      logger.info(`Keep-alive enabled: pinging ${config.keepAliveUrl}/api/health every ${config.keepAliveIntervalMs / 60000} min.`);
+    }
     if (config.serveFrontend) logger.info(`Serving frontend from ${config.frontendDist}`);
   });
 

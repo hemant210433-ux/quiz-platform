@@ -1,5 +1,6 @@
+'use client';
 import { useState } from 'react';
-import { NavLink, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, useLocation, useNavigate } from '@/lib/router.jsx';
 import { useAuth } from '../../hooks/useAuth.jsx';
 import { PageLoader } from '../common/ui.jsx';
 
@@ -72,13 +73,13 @@ function Sidebar({ onNavigate }) {
   );
 }
 
-export default function AdminLayout() {
+export default function AdminLayout({ children }) {
   const { admin, checking } = useAuth();
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
   if (checking) return <PageLoader label="Checking your session…" />;
-  if (!admin) return <Navigate to="/admin/login" replace state={{ from: location.pathname }} />;
+  if (!admin) return <Navigate to={`/admin/login?from=${encodeURIComponent(location.pathname)}`} replace />;
 
   return (
     <div className="min-h-screen lg:pl-60">
@@ -106,7 +107,7 @@ export default function AdminLayout() {
       )}
 
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <Outlet />
+        {children}
       </main>
     </div>
   );

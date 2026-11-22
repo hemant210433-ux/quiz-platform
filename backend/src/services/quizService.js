@@ -7,6 +7,19 @@ import { validateQuestions, toStoredQuestion, strictQuestionSchema } from './que
 export const QUIZ_STATUSES = ['draft', 'published', 'closed', 'archived'];
 export const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const QUIZ_ID_RE = /^[a-z0-9]{6,20}$/;
+/** O Level module codes a quiz can be tagged with (optional). */
+export const QUIZ_MODULES = ['m1-r5', 'm2-r5', 'm3-r5', 'm4-r5'];
+
+const optText = (max) =>
+  z.union([z.string().trim().max(max), z.null()]).optional().transform((v) => (v === undefined ? undefined : v || null));
+const optModule = z
+  .union([z.enum(QUIZ_MODULES), z.literal(''), z.null()])
+  .optional()
+  .transform((v) => (v === undefined ? undefined : v || null));
+const optYear = z
+  .union([z.coerce.number().int().min(2000).max(2100), z.literal(''), z.null()])
+  .optional()
+  .transform((v) => (v === undefined ? undefined : v === '' ? null : v));
 
 const isoOrNull = z
   .union([z.string().datetime({ offset: true }), z.null()])
@@ -26,6 +39,11 @@ export const quizInputSchema = z
     maxAttempts: z.union([z.coerce.number().int().min(1).max(1000), z.null()]).optional().default(null),
     startAt: isoOrNull,
     endAt: isoOrNull,
+    module: optModule,
+    topic: optText(120),
+    year: optYear,
+    seoTitle: optText(120),
+    seoDescription: optText(300),
     slug: z
       .string()
       .trim()
@@ -62,6 +80,12 @@ export const quizMetaSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   publishedAt: z.string().nullable(),
+  // Optional public-site fields (older quizzes do not have them).
+  module: z.enum(QUIZ_MODULES).nullable().optional(),
+  topic: z.string().nullable().optional(),
+  year: z.number().int().nullable().optional(),
+  seoTitle: z.string().nullable().optional(),
+  seoDescription: z.string().nullable().optional(),
 });
 const quizListSchema = z.array(quizMetaSchema);
 
@@ -118,6 +142,11 @@ export async function createQuiz(input) {
       maxAttempts: data.maxAttempts,
       startAt: data.startAt,
       endAt: data.endAt,
+      module: data.module ?? null,
+      topic: data.topic ?? null,
+      year: data.year ?? null,
+      seoTitle: data.seoTitle ?? null,
+      seoDescription: data.seoDescription ?? null,
       status: 'draft',
       questionCount: 0,
       invalidCount: 0,
@@ -154,6 +183,10 @@ export async function updateQuiz(id, input) {
       maxAttempts: data.maxAttempts,
       startAt: data.startAt,
       endAt: data.endAt,
+      // New optional fields: only touched when the client actually sent them.
+      ...Object.fromEntries(
+        ['module', 'topic', 'year', 'seoTitle', 'seoDescription'].filter((k) => data[k] !== undefined).map((k) => [k, data[k]]),
+      ),
       updatedAt: nowIso(),
     });
     ctx.result = quiz;
@@ -216,6 +249,11 @@ export async function duplicateQuiz(id) {
     maxAttempts: src.maxAttempts,
     startAt: src.startAt,
     endAt: src.endAt,
+    module: src.module ?? null,
+    topic: src.topic ?? null,
+    year: src.year ?? null,
+    seoTitle: src.seoTitle ?? null,
+    seoDescription: src.seoDescription ?? null,
   });
   await replaceQuestions(copy.id, questions.map((q) => ({ ...q, id: undefined })));
   return getQuiz(copy.id);
@@ -318,7 +356,34 @@ export function publicQuizView(quiz) {
     maxAttempts: quiz.maxAttempts,
     startAt: quiz.startAt,
     endAt: quiz.endAt,
+    module: quiz.module ?? null,
+    topic: quiz.topic ?? null,
+    year: quiz.year ?? null,
+    seoTitle: quiz.seoTitle ?? null,
+    seoDescription: quiz.seoDescription ?? null,
   };
+}
+
+/** Published quizzes for the public website list. Never includes drafts, answers or admin data. */
+export async function listPublicQuizzes({ module } = {}) {
+  const all = await listQuizzes();
+  return all
+    // Only quizzes the admin explicitly tagged with a module go on the public site.
+    // Untagged quizzes (e.g. institute / private-link quizzes) are never listed.
+    .filter((q) => q.status === 'published' && q.questionCount > 0 && q.module)
+    .filter((q) => !module || q.module === module)
+    .sort((a, b) => String(b.publishedAt || '').localeCompare(String(a.publishedAt || '')))
+    .map((q) => ({
+      slug: q.slug,
+      title: q.title,
+      description: q.description || '',
+      module: q.module ?? null,
+      topic: q.topic ?? null,
+      year: q.year ?? null,
+      questionCount: q.questionCount,
+      durationMinutes: q.durationMinutes,
+      publishedAt: q.publishedAt,
+    }));
 }
 
 /** Is the quiz open for students right now? Returns { open, reason }. */

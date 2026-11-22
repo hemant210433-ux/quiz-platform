@@ -1,5 +1,7 @@
+'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { Pagination, Tabs } from '../common/ui.jsx';
+import WeakTopics from './WeakTopics.jsx';
 import { formatDateTime, humanDuration, num } from '../../utils/format.js';
 
 const PAGE = 20;
@@ -8,15 +10,15 @@ function ScoreRing({ pct }) {
   const r = 52;
   const c = 2 * Math.PI * r;
   const clamped = Math.max(0, Math.min(100, pct));
-  const color = pct >= 60 ? '#348271' : pct >= 33 ? '#d4900b' : '#dc2626';
+  const color = pct >= 60 ? '#12a150' : pct >= 33 ? '#d4900b' : '#dc2626';
   return (
     <svg viewBox="0 0 120 120" className="h-36 w-36" role="img" aria-label={`${pct}%`}>
       <circle cx="60" cy="60" r={r} fill="none" stroke="#eceef2" strokeWidth="10" />
       <circle cx="60" cy="60" r={r} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(clamped / 100) * c} ${c}`} transform="rotate(-90 60 60)" />
-      <text x="60" y="58" textAnchor="middle" className="fill-ink-900" style={{ font: '600 24px "Plus Jakarta Sans", sans-serif' }}>
+      <text x="60" y="58" textAnchor="middle" className="fill-ink-900" style={{ font: '600 24px Mukta, sans-serif' }}>
         {num(pct)}%
       </text>
-      <text x="60" y="78" textAnchor="middle" className="fill-ink-500" style={{ font: '500 11px "Plus Jakarta Sans", sans-serif' }}>
+      <text x="60" y="78" textAnchor="middle" className="fill-ink-500" style={{ font: '500 11px Mukta, sans-serif' }}>
         score
       </text>
     </svg>
@@ -25,7 +27,7 @@ function ScoreRing({ pct }) {
 
 function ReviewItem({ item }) {
   const tone = {
-    correct: { badge: 'bg-brand-100 text-brand-800', label: 'Correct' },
+    correct: { badge: 'bg-good-100 text-good-800', label: 'Correct' },
     incorrect: { badge: 'bg-red-100 text-red-700', label: 'Incorrect' },
     unattempted: { badge: 'bg-ink-100 text-ink-600', label: 'Not answered' },
   }[item.status];
@@ -42,7 +44,7 @@ function ReviewItem({ item }) {
             const isCorrect = item.correct === k;
             const isSelected = item.selected === k;
             const cls = isCorrect
-              ? 'bg-brand-50 ring-brand-300 text-brand-900'
+              ? 'bg-good-50 ring-good-300 text-good-900'
               : isSelected
                 ? 'bg-red-50 ring-red-300 text-red-900'
                 : 'bg-white ring-ink-100 text-ink-700';
@@ -95,7 +97,7 @@ export default function ResultView({ result, heading }) {
         <dl className="grid grid-cols-2 divide-x divide-y divide-ink-100 border-t border-ink-100 sm:grid-cols-3 sm:divide-y-0 lg:grid-cols-6">
           {[
             ['Questions', s.totalQuestions],
-            ['Correct', s.correct, 'text-brand-700'],
+            ['Correct', s.correct, 'text-good-700'],
             ['Incorrect', s.incorrect, 'text-red-600'],
             ['Not answered', s.unattempted],
             ['Negative marks', s.negativeMarks ? `−${num(s.negativeMarks)}` : '0'],
@@ -108,6 +110,8 @@ export default function ResultView({ result, heading }) {
           ))}
         </dl>
       </section>
+
+      <WeakTopics review={result.review} />
 
       <section className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">

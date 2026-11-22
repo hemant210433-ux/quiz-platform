@@ -4,8 +4,8 @@
 Student / Admin browser
         │
         ▼
-  Vercel  (React frontend)          ← frontend/ folder
-        │   /api/*  (vercel.json rewrite)
+  Vercel  (Next.js frontend)         ← frontend/ folder
+        │   /api/*  (next.config.js rewrite, BACKEND_URL)
         ▼
   Render  (Express backend)         ← backend/ folder
         │
@@ -18,6 +18,44 @@ Student / Admin browser
 Tumhe 4 free accounts chahiye: **GitHub, MongoDB Atlas, Render, Vercel.** (Sab par "Sign up with GitHub" se jaldi ban jata hai.)
 
 > Note: In websites ke buttons/menu ke naam kabhi-kabhi thode badal jate hain. Agar koi naam bilkul same na mile to usse milta-julta option chuno.
+
+---
+
+## Pehle se deploy hai? Purane React project ko isi Render + Vercel par upgrade karo
+
+Agar tumne purana quiz platform (React/Vite) pehle se Render aur Vercel par chalaya hua hai, to **naya account/project banane ki zaroorat nahi.** Wahi GitHub repo, wahi Render service, wahi Vercel project, wahi Atlas database (tumhara purana data aur admin login safe rehta hai).
+
+**1. Code replace karo (apne computer par)**
+```bash
+cd apna-repo-folder
+git rm -r --quiet frontend          # purana Vite frontend hatao (zaroori!)
+# naya zip extract karo, phir uske andar ke backend/ frontend/ docs/ render.yaml README.md DEPLOYMENT.md
+# ... in sabko apne repo mein copy kar do (backend ka .env / data mat copy karna)
+git add -A
+git commit -m "Next.js frontend + O Level public site"
+git push
+```
+Agar `frontend/vercel.json`, `index.html`, `vite.config.js` repo mein reh gaye to Vercel confuse hoga — ye sab nayi `frontend/` mein hain hi nahi, isliye `git rm -r frontend` pehle karna zaroori hai.
+
+**2. Vercel (sabse zaroori step — yahan purani settings ruk jati hain)**
+Project → **Settings → Build & Development Settings**:
+- **Framework Preset:** `Next.js` (pehle `Vite` tha)
+- **Build Command / Output Directory / Install Command:** teeno ke saamne **Override band** rakho (khaali/default). Purana `dist` Output Directory ho to hata do, warna deploy fail hoga.
+- **Root Directory:** `frontend` (pehle se hoga)
+
+**Settings → Environment Variables** mein add karo (purane `VITE_...` variables hata sakte ho):
+| Name | Value |
+|---|---|
+| `BACKEND_URL` | tumhara Render URL, jaise `https://quiz-platform-api-xxxx.onrender.com` (aakhir mein `/` nahi) |
+| `NEXT_PUBLIC_SITE_URL` | `https://olevelmocktest.in` (ya abhi ke liye Vercel ka link) |
+
+Phir **Deployments → ⋯ → Redeploy** karo aur **"Use existing Build Cache" ka tick hata do.**
+
+**3. Render**
+Kuch badalne ki zaroorat nahi: `git push` se backend khud redeploy ho jata hai (Auto-Deploy on). `MONGODB_URI` waise hi rehta hai. Deploy ke baad `https://TUMHARA-RENDER-URL/api/health` kholkar `"status":"ok"` dekho.
+> Naya backend purana data waise hi padhta hai. Naye fields (module/topic) optional hain, isliye purane quizzes bina badlaav ke chalte hain.
+
+**4. Check:** Vercel link kholo → naya home page dikhna chahiye. `/admin/login` se login karo, aur purane quiz links (`/quiz/...`) pehle jaise khulne chahiye.
 
 ---
 
@@ -142,46 +180,32 @@ Ye dikhna chahiye: `{"status":"ok", ...}`. **Jab tak ye na dikhe, aage mat badho
 
 ## Step 5 — Vercel (frontend)
 
-### 5a. `vercel.json` mein Render ka URL daalo (sabse zaroori step)
+### 5a. Vercel par project banao
 
-`frontend/vercel.json` kholo aur `YOUR-RENDER-SERVICE.onrender.com` ki jagah apna **Render URL** likho (https ke saath, aakhir mein `/` ya `/api` **nahi**):
-
-```json
-{
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://quiz-platform-api-x1y2.onrender.com/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
-}
-```
-
-Save karke GitHub par push karo:
-
-```bash
-git add frontend/vercel.json
-git commit -m "set backend url"
-git push
-```
-
-### 5b. Vercel par project banao
-
-1. <https://vercel.com> → login → **Add New… → Project** → apna repo `quiz-platform` **Import** karo.
+1. <https://vercel.com> → login → **Add New… → Project** → apna repo **Import** karo.
 2. **Root Directory** → **Edit** → `frontend` chuno. (Ye bhoolna mat!)
-3. **Framework Preset:** `Vite` (automatic mil jata hai). Build Command `npm run build`, Output Directory `dist` (default).
-4. **Environment Variables:** kuch bhi nahi daalna. (`VITE_API_BASE_URL` khaali chhodo.)
-5. **Deploy** dabao. 1–2 minute mein tumhe link milega, jaise `https://quiz-platform-abc.vercel.app`.
+3. **Framework Preset:** `Next.js` (automatic mil jata hai). Build/Output settings default rehne do. (Pehle `Vite` tha — ab nahi.)
+4. **Environment Variables** (dono daalo):
+
+| Name | Value | Kyun |
+|---|---|---|
+| `BACKEND_URL` | `https://TUMHARA-RENDER-URL.onrender.com` (https ke saath, aakhir mein `/` ya `/api` **nahi**) | Vercel `/api/*` ko yahan bhejta hai (proxy). **Ye na ho to build hi fail ho jata hai, saaf message ke saath.** |
+| `NEXT_PUBLIC_SITE_URL` | `https://olevelmocktest.in` (ya abhi ke liye Vercel link) | Sitemap, robots, canonical links ke liye |
+| `NEXT_PUBLIC_CONTACT_EMAIL` (optional) | tumhara email | Contact page par dikhega |
+
+5. **Deploy** dabao. 1–2 minute mein link milega, jaise `https://quiz-platform-abc.vercel.app`.
+
+> Ab `frontend/vercel.json` nahi hai — proxy `frontend/next.config.js` mein hai aur `BACKEND_URL` se chalta hai. Render URL badla to sirf Vercel env `BACKEND_URL` badlo aur **Redeploy** karo.
+
+### 5b. Custom domain (olevelmocktest.in)
+
+Vercel → Project → Settings → Domains → domain add karo, aur registrar mein jo DNS record Vercel batata hai wahi daalo. Domain chalne ke baad `NEXT_PUBLIC_SITE_URL` ko `https://olevelmocktest.in` karke **Redeploy** karo, phir Google Search Console mein `https://olevelmocktest.in/sitemap.xml` submit karo.
 
 ---
 
 ## Step 6 — Sab kuch test karo
 
-1. Vercel link kholo → `https://quiz-platform-abc.vercel.app/admin/login` par jao.
+1. Vercel link kholo → pehle home page (`/`) dikhega; admin ke liye `/admin/login` par jao.
    *(Agar pehli baar page der se khule to Render so raha tha — 1 minute ruko, phir refresh karo.)*
 2. Admin login karo (Step 3 wala purana ya `ADMIN_USERNAME/ADMIN_PASSWORD`).
 3. Naya quiz banao → MCQs import karo → Publish karo.
@@ -196,9 +220,13 @@ Quiz link hamesha **Vercel wala link** share karo, Render wala nahi.
 
 ## Step 7 — Exam wale din ke liye zaroori baatein
 
-- **Render Free sleep:** 15 minute koi request na aaye to free service so jati hai, aur agli request par jagne mein ~1 minute lagta hai (is dauran students ko error/delay dikh sakta hai). Isse bachne ke liye:
-  - **Pakka solution:** Render par Instance Type ko **Starter ($7/month)** kar do — ye kabhi sota nahi.
-  - **Free solution:** <https://cron-job.org> ya UptimeRobot jaisi free service se `https://TUMHARA-RENDER-URL/api/health` ko har 10 minute mein ping karwao. Ye kaafi had tak kaam karta hai par guarantee nahi hai. Free plan mein mahine ke 750 instance-hours milte hain; ek service 24×7 chalane par ~744 hours lagte hain, to isi account par dusri free service mat chalao.
+- **Render Free sleep (server baar-baar so jana):** Render free service 15 minute koi request na aaye to so jati hai, aur jagne mein ~1 minute lagta hai. Is project mein ab iske **3 layers** hain:
+  1. **Khud ko jagaye rakhna (code mein, kuch setup nahi):** backend har 10 minute mein apne hi public URL (`RENDER_EXTERNAL_URL`, Render khud set karta hai) ko ping karta hai, to jagne ke baad wo so nahi pata. Band karna ho (jaise Starter plan par) to Render env mein `KEEP_ALIVE=false`.
+  2. **Bahari monitor (zaroori backup):** upar wali self-ping sirf *jage hue* server ko jagaye rakhti hai; deploy/crash ke baad agar server so gaya to wo use utha nahi sakti. Isliye free **UptimeRobot** (<https://uptimerobot.com>) lagao: *Add New Monitor → HTTP(s) → URL* `https://TUMHARA-RENDER-URL/api/health` → *interval 5 minutes* → Create. Ye har 5 minute mein ping karke kabhi sone nahi deta (aur server down hone par email bhi bhejta hai).
+  3. **Website khud intezaar karti hai:** agar phir bhi server so gaya ho, to ab student ko error nahi dikhta. Page khulte hi site server ko jagana shuru kar deti hai, aur "सर्वर चालू हो रहा है…" ka peela banner dikhakar jagne ka intezaar karti hai, phir request khud dobara bhejti hai.
+  - **Public pages (home, module pages) Vercel se serve hote hain**, isliye Render sote hue bhi khulte hain; sirf quiz shuru/submit aur admin ko backend chahiye.
+  - **100% pakka solution:** Render par Instance Type **Starter ($7/month)** kar do — wo kabhi nahi sota. Exam season mein ya zyada students hon to yahi lo. Free plan mein mahine ke 750 instance-hours milte hain; ek service 24×7 chalane par ~744 lagte hain, to isi account par dusri free service mat chalao.
+  - Ye free tarike *koshish* hain, Render ki guarantee nahi — Render kabhi bhi free tier ke rules badal sakta hai.
   - Exam se 5 minute pehle khud ek baar site khol lo taaki server jaag jaye.
 - **Backup:** Atlas free (M0) mein automatic backup nahi hota. Exam ke baad **Settings → Download backup** se ek file apne computer par rakh lo.
 - **Free limit:** Atlas M0 mein 512 MB milta hai. Hazaron students ke results bhi isme aaram se aa jate hain.
@@ -214,14 +242,16 @@ Quiz link hamesha **Vercel wala link** share karo, Render wala nahi.
 | Render logs: `bad auth` / `Authentication failed` | Password galat ya URI mein `<password>` waise hi likha hai / special character | Atlas → Database Access → user ka password reset karo (sirf letters+numbers), URI update karke Render env mein save karo |
 | Render logs: `Invalid scheme` ya `URI malformed` | `MONGODB_URI` mein space/quote ya galat copy | Render env value mein sirf `mongodb+srv://...` rakho, quotes mat lagao |
 | `/api/health` par `503 Storage unavailable` | Database se connect nahi ho paa raha | Upar wale 3 Mongo errors check karo |
-| Site khulti hai par login/data par "Could not reach the server" ya `/api/...` par 404 | `vercel.json` mein URL placeholder hi hai ya galat hai | `frontend/vercel.json` mein sahi Render URL (https ke saath, aakhir mein slash nahi) daalo, push karo, Vercel redeploy hone do |
-| Subpage (jaise `/admin/quizzes`) refresh karne par 404 | `vercel.json` Vercel tak nahi pahunchi, ya Root Directory `frontend` nahi hai | Vercel → Settings → Root Directory = `frontend`, redeploy |
+| Site khulti hai par login/data par "Could not reach the server" ya `/api/...` par 404 | Vercel env `BACKEND_URL` galat/khaali hai ya Render so raha hai | Vercel → Settings → Environment Variables mein sahi `BACKEND_URL` daalo (https ke saath, aakhir mein slash nahi), **Redeploy** karo |
+| Vercel build fail: `[BACKEND_URL missing]` | Env var set nahi kiya | Step 5a ka `BACKEND_URL` daalo, redeploy |
+| Subpage (jaise `/admin/quizzes`) par 404 | Root Directory `frontend` nahi hai ya Framework Preset `Next.js` nahi | Vercel → Settings → Root Directory = `frontend`, Framework = Next.js, redeploy |
+| Home / module pages par "abhi koi test nahi" dikhta hai jabki quiz publish hai | Build ke samay Render so raha tha; pages har 5 min mein refresh hote hain | 5–10 minute ruko ya Vercel se Redeploy karo. Render ko Starter plan par rakhne se ye dikkat nahi aati |
 | Pehli request par 504 / lamba loading | Render free sleep se jag raha hai | 1 minute ruk kar refresh. Step 7 ke upay dekho |
 | Login `Invalid username or password` | Admin pehle se bana tha aur `ADMIN_*` env sirf tab kaam karta hai jab admin na ho | Atlas → **Browse Collections** → `quizplatform` → `kv` → document `_id: "admin.json"` delete karo → Render **Restart** → admin env wale credentials se dobara ban jayega |
 | `Too many failed login attempts` | 10 galat login ke baad 15 min ka block | 15 minute ruk kar sahi password daalo |
 | Login ho jata hai par turant wapas login page | Browser cookie save nahi kar raha (aksar tab hota hai jab site Vercel link ki jagah Render link se khuli ho) | Hamesha Vercel link se kholo. Network tab mein `/api/auth/login` Vercel domain par jana chahiye |
 | `429 Too many requests` | Rate limit | Render env mein `PUBLIC_RATE_MAX_PER_MIN` / `START_RATE_MAX_PER_10MIN` aur badhao |
-| Backend URL badal gaya | Naya Render service banaya | `frontend/vercel.json` mein URL update karke push karo |
+| Backend URL badal gaya | Naya Render service banaya | Vercel env `BACKEND_URL` update karke Redeploy |
 
 ---
 
@@ -229,7 +259,7 @@ Quiz link hamesha **Vercel wala link** share karo, Render wala nahi.
 
 Browser seedha Render API ko call kare, ye bhi possible hai, lekin **Safari/iPhone aur Brave mein admin login cookie block ho sakti hai**, isliye recommend nahi karte.
 
-- Vercel env: `VITE_API_BASE_URL=https://TUMHARA-RENDER-URL` (aur `vercel.json` se `/api` wala rewrite hata do)
+- Vercel env: `NEXT_PUBLIC_API_BASE_URL=https://TUMHARA-RENDER-URL`
 - Render env: `CORS_ORIGIN=https://TUMHARA-VERCEL-URL`, `COOKIE_SAMESITE=none`, `COOKIE_SECURE=true`, `TRUST_PROXY=1`
 
 ---
@@ -243,7 +273,7 @@ Browser seedha Render API ko call kare, ye bhi possible hai, lekin **Safari/iPho
 npm run install:all
 npm run setup-admin        # admin banao
 npm run dev:backend        # terminal 1
-npm run dev:frontend       # terminal 2  → http://localhost:5173
+npm run dev:frontend       # terminal 2  → http://localhost:3000  (frontend/.env.local mein BACKEND_URL=http://localhost:4000)
 ```
 
 Tests: `npm test` (file mode). Real MongoDB par storage test: `MONGODB_URI=... npm --prefix backend run test:mongo`.

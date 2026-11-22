@@ -1,5 +1,6 @@
+'use client';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { SiteFooter, SiteHeader } from '../site/SiteChrome.jsx';
 import { publicApi } from '../../services/api.js';
 
 export function useSiteName() {
@@ -10,17 +11,12 @@ export function useSiteName() {
   return name;
 }
 
-export default function PublicLayout() {
-  const siteName = useSiteName();
+export default function PublicLayout({ children }) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_#eef6f4,_#f6f7f9_55%)]">
-      <header className="no-print mx-auto flex max-w-4xl items-center gap-2.5 px-4 py-5">
-        <img src="/favicon.svg" alt="" className="h-7 w-7" />
-        <span className="font-display text-lg font-semibold text-ink-900">{siteName}</span>
-      </header>
-      <main className="mx-auto max-w-4xl px-4 pb-16">
-        <Outlet />
-      </main>
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-blush-100 via-ink-50 to-ink-50">
+      <SiteHeader />
+      <main className="mx-auto w-full max-w-4xl flex-1 px-4 pb-8 pt-8 sm:pt-12">{children}</main>
+      <SiteFooter />
     </div>
   );
 }

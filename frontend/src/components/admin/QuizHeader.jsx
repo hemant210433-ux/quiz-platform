@@ -1,4 +1,5 @@
-import { Link, NavLink } from 'react-router-dom';
+'use client';
+import { Link, NavLink } from '@/lib/router.jsx';
 import { StatusBadge } from '../common/ui.jsx';
 
 /** Title + sub-navigation shared by every page of a single quiz. */

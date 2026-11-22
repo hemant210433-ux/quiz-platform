@@ -1,3 +1,4 @@
+'use client';
 import { memo, useState } from 'react';
 
 const KEYS = ['A', 'B', 'C', 'D'];
@@ -70,7 +71,7 @@ function QuestionCard({ item, position, total, editing, readOnly, onEdit, onAppl
         <span className="font-semibold text-ink-800">#{position}</span>
         <span className="text-ink-500">Q{item.question_no ?? '?'}</span>
         {item.source_line ? <span className="text-ink-400">line {item.source_line}</span> : null}
-        {invalid ? <span className="badge bg-red-100 text-red-700">Invalid</span> : <span className="badge bg-brand-100 text-brand-800">Valid</span>}
+        {invalid ? <span className="badge bg-red-100 text-red-700">Invalid</span> : <span className="badge bg-good-100 text-good-800">Valid</span>}
         <div className="ml-auto flex items-center gap-0.5">
           {!readOnly && !editing && (
             <>
@@ -95,10 +96,10 @@ function QuestionCard({ item, position, total, editing, readOnly, onEdit, onAppl
                 const correct = item.correct_answer === k;
                 const text = item.options?.[k];
                 return (
-                  <li key={k} className={`flex gap-2 rounded-lg px-3 py-2 text-sm ${correct ? 'bg-brand-50 text-brand-900 ring-1 ring-inset ring-brand-200' : 'bg-ink-50 text-ink-700'}`}>
-                    <span className={`font-semibold ${correct ? 'text-brand-700' : 'text-ink-500'}`}>{k}.</span>
+                  <li key={k} className={`flex gap-2 rounded-lg px-3 py-2 text-sm ${correct ? 'bg-good-50 text-good-900 ring-1 ring-inset ring-good-200' : 'bg-ink-50 text-ink-700'}`}>
+                    <span className={`font-semibold ${correct ? 'text-good-700' : 'text-ink-500'}`}>{k}.</span>
                     <span className={`prewrap ${text ? '' : 'italic text-ink-400'}`}>{text || 'empty'}</span>
-                    {correct && <span className="ml-auto text-brand-700" aria-label="Correct answer">✓</span>}
+                    {correct && <span className="ml-auto text-good-700" aria-label="Correct answer">✓</span>}
                   </li>
                 );
               })}

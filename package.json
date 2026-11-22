@@ -2,7 +2,7 @@
   "name": "quiz-platform",
   "private": true,
   "version": "1.0.0",
-  "description": "Google Forms-like quiz platform with bulk MCQ import (React + Express + MongoDB Atlas)",
+  "description": "Google Forms-like quiz platform with bulk MCQ import (Next.js + Express + MongoDB Atlas)",
   "scripts": {
     "install:all": "npm --prefix backend install && npm --prefix frontend install",
     "dev:backend": "npm --prefix backend run dev",

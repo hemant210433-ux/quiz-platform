@@ -9,6 +9,8 @@ services:
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/health
+    # Free plan sleeps after 15 min idle. The app pings its own RENDER_EXTERNAL_URL every 10 min to stay awake
+    # (set KEEP_ALIVE=false on a paid plan). Add an UptimeRobot monitor on /api/health as a backup.
     autoDeploy: true
     envVars:
       - key: NODE_VERSION

@@ -365,6 +365,7 @@ async function buildDetailedResult(attempt, { forAdmin = false } = {}) {
       correct,
       status: !selected ? 'unattempted' : selected === correct ? 'correct' : 'incorrect',
       explanation: q?.explanation || '',
+      topic: q?.topic || '',
     };
   });
   const out = {

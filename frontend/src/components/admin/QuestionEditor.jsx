@@ -1,3 +1,4 @@
+'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { adminApi } from '../../services/api.js';
 import QuestionCard from './QuestionCard.jsx';

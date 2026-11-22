@@ -1,3 +1,4 @@
+'use client';
 /* Small shared UI pieces. */
 
 export function Spinner({ className = 'h-5 w-5' }) {
@@ -42,7 +43,7 @@ export function EmptyState({ icon = '◇', title, message, action }) {
 
 const STATUS = {
   draft: 'bg-ink-100 text-ink-700',
-  published: 'bg-brand-100 text-brand-800',
+  published: 'bg-good-100 text-good-800',
   closed: 'bg-amberish-100 text-amberish-700',
   archived: 'bg-ink-200 text-ink-600',
 };
@@ -50,7 +51,7 @@ const STATUS = {
 export function StatusBadge({ status }) {
   return (
     <span className={`badge capitalize ${STATUS[status] || STATUS.draft}`}>
-      {status === 'published' && <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />}
+      {status === 'published' && <span className="h-1.5 w-1.5 rounded-full bg-good-500" />}
       {status}
     </span>
   );
@@ -59,7 +60,7 @@ export function StatusBadge({ status }) {
 export function StatCard({ label, value, sub, tone = 'default' }) {
   const tones = {
     default: 'text-ink-900',
-    good: 'text-brand-700',
+    good: 'text-good-700',
     bad: 'text-red-600',
     warn: 'text-amberish-700',
   };
@@ -113,7 +114,7 @@ export function Alert({ tone = 'info', title, children }) {
     info: 'bg-ink-50 ring-ink-200 text-ink-700',
     warn: 'bg-amberish-100/60 ring-amber-200 text-amberish-700',
     error: 'bg-red-50 ring-red-200 text-red-800',
-    success: 'bg-brand-50 ring-brand-200 text-brand-800',
+    success: 'bg-good-50 ring-good-200 text-good-800',
   };
   return (
     <div className={`rounded-lg px-4 py-3 text-sm ring-1 ring-inset ${tones[tone]}`} role={tone === 'error' ? 'alert' : undefined}>

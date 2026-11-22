@@ -13,6 +13,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/site', a(publicSite));
+router.get('/quizzes', a(pub.listQuizzes));
 router.get('/quizzes/:slug', a(pub.getQuiz));
 router.post('/quizzes/:slug/start', startLimiter, a(pub.start));
 router.get('/attempts/:attemptId', a(pub.getAttempt));

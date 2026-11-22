@@ -1,4 +1,4 @@
-import { getQuizBySlug, availability, publicQuizView } from '../services/quizService.js';
+import { getQuizBySlug, availability, publicQuizView, listPublicQuizzes, QUIZ_MODULES } from '../services/quizService.js';
 import * as results from '../services/resultService.js';
 import { parseOrThrow, notFound } from '../utils/helpers.js';
 
@@ -12,6 +12,13 @@ export async function getQuiz(req, res) {
     quiz: publicQuizView(quiz),
     availability: av.open ? { open: true } : { open: false, reason: av.reason, message: av.message },
   });
+}
+
+export async function listQuizzes(req, res) {
+  const m = String(req.query.module || '').toLowerCase();
+  const module = QUIZ_MODULES.includes(m) ? m : undefined;
+  res.setHeader('Cache-Control', 'public, max-age=30, stale-while-revalidate=120');
+  res.json({ quizzes: await listPublicQuizzes({ module }) });
 }
 
 export async function start(req, res) {

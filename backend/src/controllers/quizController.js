@@ -92,6 +92,7 @@ const questionPatchSchema = z
     options: z.object({ A: z.string().max(10000), B: z.string().max(10000), C: z.string().max(10000), D: z.string().max(10000) }).partial().optional(),
     correct_answer: z.string().max(5).optional(),
     explanation: z.string().max(10000).optional(),
+    topic: z.string().trim().max(120).optional(),
   })
   .strict();
 

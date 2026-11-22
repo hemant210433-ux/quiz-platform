@@ -18,6 +18,7 @@
  *                    Several options on one line separated by 2+ spaces or a tab.
  *   Answer         : "Answer: A", "Ans - (b)", "Correct Answer: B. Windows", "उत्तर: ग",
  *                    "Answer B", or the exact option text ("Answer: Windows").
+ *   Topic          : "Topic: Number System", "विषय: संख्या पद्धति" (optional, one line, any position after the question)
  *   Explanation    : "Explanation:", "Expl.", "Solution:", "Sol:", "Reason:", "व्याख्या:", "स्पष्टीकरण:", "हल:"
  *
  * Blank lines, extra spaces, CRLF/LF/CR line endings and a leading BOM are handled.
@@ -37,6 +38,7 @@ const ANSWER_SEP_RE = new RegExp(`^${ANSWER_LABEL}\\s*[.:：\\-–—=]+\\s*(.*)
 const ANSWER_BARE_RE = new RegExp(`^${ANSWER_LABEL}\\s+(\\(?\\s*(?:[A-Ea-e]|क|ख|ग|घ)\\s*\\)?)\\s*$`, 'iu');
 const EXPLANATION_RE =
   /^(?:Explanation|Explain|Expl|Solution|Sol|Reason|व्याख्या|स्पष्टीकरण|हल)\s*[.:：\-–—]+\s*(.*)$/iu;
+const TOPIC_RE = /^(?:Topic|Chapter|विषय|टॉपिक)\s*[.:：\-–—]+\s*(.+)$/iu;
 // Splits "A. foo   B. bar\tC. baz" into separate option chunks.
 const INLINE_OPTION_SPLIT_RE = /(?:\s{2,}|\t+)(?=[([]?\s*(?:[B-Eb-e]|ख|ग|घ)\s*[.)\]:：]\s*)/u;
 
@@ -79,6 +81,7 @@ function newBlock(questionNo, text, lineNo) {
     options: {},
     correct_answer: '',
     explanation: '',
+    topic: '',
     source_line: lineNo,
     parse_errors: [],
     warnings: [],
@@ -180,6 +183,13 @@ export function parseMcqText(text) {
         cur._answerRaw = (am[1] || '').trim();
       }
       cur._state = cur._answerRaw ? 'answer-done' : 'answer-pending';
+      continue;
+    }
+
+    // 2b) Topic line (optional)
+    const tm = line.match(TOPIC_RE);
+    if (tm && cur._state !== 'explanation') {
+      cur.topic = tm[1].trim().slice(0, 120);
       continue;
     }
 

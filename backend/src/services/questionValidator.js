@@ -31,6 +31,7 @@ export const importedQuestionSchema = z
       .nullable(),
     correct_answer: z.union([z.string().max(200), z.null()]).optional(),
     explanation: z.union([z.string().max(MAX_TEXT), z.null()]).optional(),
+    topic: z.union([z.string().max(120), z.null()]).optional(),
   })
   .passthrough();
 
@@ -47,6 +48,7 @@ export const strictQuestionSchema = z.object({
   }),
   correct_answer: z.enum(['A', 'B', 'C', 'D']),
   explanation: z.string().max(MAX_TEXT).optional().default(''),
+  topic: z.string().max(120).optional().default(''),
 });
 
 const str = (v) => (v === null || v === undefined ? '' : String(v));
@@ -85,6 +87,7 @@ export function normalizeQuestion(input, index = 0) {
     },
     correct_answer: str(q.correct_answer).trim().toUpperCase(),
     explanation: str(q.explanation),
+    topic: str(q.topic).trim().slice(0, 120),
     _missingOptions: q._missingOptions ?? missingOptions,
     _extraOptions: extraOptions,
     // Parse problems travel either as raw parser output (parse_errors) or as the
@@ -166,6 +169,7 @@ export function validateQuestions(list, { assignIds } = {}) {
       options: q.options,
       correct_answer: q.correct_answer,
       explanation: q.explanation,
+      topic: q.topic,
       position: i + 1,
       source_line: q._sourceLine,
       valid: errors.length === 0,
@@ -200,6 +204,7 @@ export function toStoredQuestion(q) {
     correct_answer: q.correct_answer,
     explanation: q.explanation || '',
   };
+  if (q.topic) out.topic = String(q.topic).trim().slice(0, 120);
   // Problems found while parsing the original text (e.g. "option B appears twice")
   // stay attached until the admin edits the question, so they keep blocking publishing.
   const pe = (q.errors || []).filter((e) => e.code === 'MALFORMED_BLOCK').map((e) => e.message);

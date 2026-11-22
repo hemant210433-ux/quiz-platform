@@ -2,7 +2,7 @@
 
 A Google Forms–style quiz platform built for one job above all: **paste 500–1000 MCQs at once, check them, publish one quiz, and share a link.** Students open the link, enter their name, take a timed quiz, and see their result as soon as they submit. The admin sees every attempt, analytics, and CSV exports.
 
-- **Frontend:** React 18 + Vite 5 + Tailwind CSS 3
+- **Frontend:** Next.js 14 (App Router; maroon + gold boutique-style design, Tiro Devanagari + Mukta fonts) + React 18 + Tailwind CSS 3 (public SEO pages are server-rendered with ISR; quiz/admin pages are client components)
 - **Backend:** Node.js (≥ 20) + Express 4, Zod validation, bcrypt password hashing, Helmet, rate limiting
 - **Storage:** **MongoDB Atlas** in production (set `MONGODB_URI`). Without it, the app falls back to JSON files on disk (handy for local development). Both use the same storage API, with atomic updates, backup and restore.
 - **No AI and no external APIs.** The MCQ parser is a deterministic JavaScript state machine.
@@ -70,7 +70,7 @@ quiz-platform/
 │   │   └── utils/
 │   └── test/                    # parser, storage and API tests (node:test + supertest)
 └── frontend/
-    ├── index.html, vite.config.js, tailwind.config.js
+    ├── next.config.js (BACKEND_URL proxy), tailwind.config.js, app/ (routes), src/ (components, views, content, i18n)
     └── src/
         ├── App.jsx, main.jsx, index.css
         ├── services/api.js
@@ -114,19 +114,19 @@ cp .env.example .env         # then edit it: for local dev set NODE_ENV=developm
 npm run setup-admin          # create the admin account (see §4)
 npm run dev                  # node --watch src/server.js
 
-# Terminal 2 – frontend on http://localhost:5173 (proxies /api to :4000)
+# Terminal 2 – frontend on http://localhost:3000 (proxies /api to BACKEND_URL, default http://localhost:4000)
 cd frontend
 npm run dev
 ```
 
-Open **http://localhost:5173/admin** and sign in.
+Open **http://localhost:3000/admin** and sign in.
 
-> Without a `.env` file the backend uses development defaults: port 4000, `backend/data`, non-secure cookies, and CORS allowed for `http://localhost:5173`.
+> Without a `.env` file the backend uses development defaults: port 4000, `backend/data`, non-secure cookies, and CORS allowed for `http://localhost:3000`.
 
 ### Production-style run on one port
 
 ```bash
-npm run build                                  # builds frontend/dist
+BACKEND_URL=http://localhost:4000 npm run build   # Next.js production build
 cd backend && NODE_ENV=production SERVE_FRONTEND=true COOKIE_SECURE=false npm start
 # → http://localhost:4000/admin   (COOKIE_SECURE=false only because this is plain http on localhost)
 ```
@@ -461,13 +461,13 @@ Browser ──► Vercel (React app)
                └─ /api/* rewrite ─► Render (Express API) ──► MongoDB Atlas
 ```
 
-Vercel proxies `/api/*` to the Render service (see `frontend/vercel.json`), so the browser only ever talks to one origin: no CORS, and the admin cookie is first-party (works in Safari/Brave too).
+Next.js (on Vercel) proxies `/api/*` to the Render service via `rewrites()` in `frontend/next.config.js` using the server env `BACKEND_URL`, so the browser only ever talks to one origin: no CORS, and the admin cookie is first-party (works in Safari/Brave too).
 
 Key environment variables (backend): `MONGODB_URI`, `MONGODB_DB`, `NODE_ENV=production`, `SERVE_FRONTEND=false`, `TRUST_PROXY=1`, `COOKIE_SECURE=true`, `COOKIE_SAMESITE=lax`, `ADMIN_USERNAME` / `ADMIN_PASSWORD` (first start only). See `backend/.env.example`.
 
 Moving old local data into MongoDB: `MONGODB_URI="..." npm run migrate-to-mongo` (from the project root).
 
-Single-server alternative (VPS): set `SERVE_FRONTEND=true`, run `npm run build && npm start`, and put Nginx/Caddy with HTTPS in front. Use either MongoDB or a persistent `DATA_DIR`.
+Single-server alternative (VPS): run the backend (`npm start`) and the frontend (`cd frontend && npm run build && npm start`) behind Nginx/Caddy; route `/api` to the backend and everything else to Next.js. (`SERVE_FRONTEND` only applied to the old Vite build and is no longer used.)
 
 ---
 
@@ -502,3 +502,15 @@ sudo systemctl start quiz-platform
 ```
 
 A plain copy also works: stop the service, then `tar czf quiz-data-$(date +%F).tgz -C /var/lib/quiz-platform data`.
+
+
+## O Level Mock Test public site
+
+This repo now also contains a Hindi-first, SEO-friendly public website for O Level practice, **on top of** the unchanged quiz platform:
+
+- Public pages: `/`, `/o-level-mock-test`, `/o-level/m1-r5` … `m4-r5`, `/about`, `/privacy`, `/contact`, `/robots.txt`, `/sitemap.xml`.
+- Unchanged student/admin URLs: `/quiz/:slug`, `/quiz/:slug/attempt`, `/result/:token`, `/admin/*`. (Only difference: `/` used to redirect to `/admin`; it is now the public home page.)
+- New optional quiz fields: `module` (m1-r5…m4-r5), `topic`, `year`, `seoTitle`, `seoDescription` (Admin → Create/Edit quiz → "Public website"). Quizzes without a Module keep working exactly as before via their own link and are never listed on the public site.
+- New optional per-question `topic` (use a `Topic: …` / `विषय: …` line in the pasted text, or a `topic` key in JSON). Results then show a "weak topics" report.
+- New API: `GET /api/public/quizzes[?module=m1-r5]` (published quizzes only, no answers).
+- Content workflow: see `docs/CONTENT_GUIDE.md`. The site never claims an official exam pattern and shows a not-affiliated-with-NIELIT disclaimer in every public footer.

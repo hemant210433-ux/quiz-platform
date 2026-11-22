@@ -4,7 +4,7 @@
  * - Adds the CSRF header expected by the server.
  * - Throws ApiError with { status, code, message, details } on failure.
  */
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+export const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || '').replace(/\/$/, '');
 
 export class ApiError extends Error {
   constructor(status, code, message, details) {
@@ -15,10 +15,46 @@ export class ApiError extends Error {
   }
 }
 
-async function request(method, path, { body, headers = {}, signal, raw = false, keepalive = false } = {}) {
-  let res;
+/* ---------- Waking a sleeping backend (Render free tier) ----------
+ * A sleeping Render service needs up to ~1 minute to start. Instead of showing an error we
+ * tell the page ("qp:waking" event -> banner), poll /api/health until the server answers,
+ * and then retry the request once. */
+const COLD_STATUSES = new Set([502, 503, 504]);
+let wakePromise = null;
+
+function emitWaking(on) {
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('qp:waking', { detail: on }));
+}
+
+export function wakeBackend({ maxMs = 90000 } = {}) {
+  if (typeof window === 'undefined') return Promise.resolve(false);
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return Promise.resolve(false); // really offline
+  if (wakePromise) return wakePromise;
+  wakePromise = (async () => {
+    emitWaking(true);
+    const start = Date.now();
+    try {
+      while (Date.now() - start < maxMs) {
+        try {
+          const r = await fetch(`${API_BASE}/api/health`, { cache: 'no-store' });
+          if (r.ok) return true;
+        } catch {
+          /* still asleep */
+        }
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+      }
+      return false;
+    } finally {
+      emitWaking(false);
+      wakePromise = null;
+    }
+  })();
+  return wakePromise;
+}
+
+async function send(method, path, { body, headers = {}, signal, keepalive = false }) {
   try {
-    res = await fetch(`${API_BASE}${path}`, {
+    return await fetch(`${API_BASE}${path}`, {
       method,
       credentials: 'include',
       signal,
@@ -32,14 +68,29 @@ async function request(method, path, { body, headers = {}, signal, raw = false, 
     });
   } catch (err) {
     if (err.name === 'AbortError') throw err;
-    throw new ApiError(0, 'NETWORK_ERROR', 'Could not reach the server. Check your internet connection.');
+    return null; // network failure
+  }
+}
+
+async function request(method, path, opts = {}) {
+  const { raw = false, keepalive = false } = opts;
+  let res = await send(method, path, opts);
+  const cold = (r) => r === null || COLD_STATUSES.has(r.status);
+  // Retry once after waking the server. A 504 on a write may mean it already ran, so only
+  // reads are retried on 504; writes are retried only when the request clearly never arrived.
+  if (!keepalive && cold(res) && (method === 'GET' || res === null || res.status !== 504)) {
+    if (await wakeBackend()) res = await send(method, path, opts);
+  }
+  if (res === null) {
+    throw new ApiError(0, 'NETWORK_ERROR', 'Could not reach the server. Check your internet connection and try again in a minute.');
   }
   if (raw && res.ok) return res;
   const isJson = res.headers.get('content-type')?.includes('application/json');
   const data = isJson ? await res.json().catch(() => null) : null;
   if (!res.ok) {
     const e = data?.error || {};
-    throw new ApiError(res.status, e.code || 'HTTP_ERROR', e.message || `Request failed (${res.status})`, e.details);
+    const msg = COLD_STATUSES.has(res.status) && !e.message ? 'The server is starting up. Please wait a minute and try again.' : e.message || `Request failed (${res.status})`;
+    throw new ApiError(res.status, e.code || 'HTTP_ERROR', msg, e.details);
   }
   return data;
 }

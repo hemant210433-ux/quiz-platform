@@ -30,7 +30,7 @@ const config = {
   dataDir: path.resolve(process.env.DATA_DIR || path.join(BACKEND_ROOT, 'data')),
   // Comma separated list of allowed browser origins (only needed when the
   // frontend is hosted on a different origin than the API).
-  corsOrigins: (process.env.CORS_ORIGIN || (isProd ? '' : 'http://localhost:5173'))
+  corsOrigins: (process.env.CORS_ORIGIN || (isProd ? '' : 'http://localhost:3000'))
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean),
@@ -38,6 +38,10 @@ const config = {
   frontendDist: process.env.FRONTEND_DIST
     ? path.resolve(process.env.FRONTEND_DIST)
     : path.resolve(BACKEND_ROOT, '..', 'frontend', 'dist'),
+  // Render free tier: self-ping so the service does not fall asleep. Needs RENDER_EXTERNAL_URL
+  // (set by Render) or KEEP_ALIVE_URL. Turn off with KEEP_ALIVE=false (e.g. on a paid plan).
+  keepAliveUrl: (process.env.KEEP_ALIVE ?? 'true') === 'false' ? '' : process.env.KEEP_ALIVE_URL || process.env.RENDER_EXTERNAL_URL || '',
+  keepAliveIntervalMs: Math.max(1, Number(process.env.KEEP_ALIVE_INTERVAL_MIN) || 10) * 60 * 1000,
   serveFrontend: (process.env.SERVE_FRONTEND ?? (isProd ? 'true' : 'false')) === 'true',
   trustProxy: process.env.TRUST_PROXY ?? (isProd ? '1' : ''),
   session: {
