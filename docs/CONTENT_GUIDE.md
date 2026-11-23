@@ -78,3 +78,7 @@ Quiz → Edit details → **How students identify themselves**:
 * Max attempts set ho to **device limit** (default ON) naam badalkar usi phone se dobara test dene se rokta hai.
 * Code mode me naam code se fix hota hai; phone band/kharab ho jaye to wahi code dobara dalne par adhura attempt wahin se continue hota hai.
 * Results → **Delete** se kisi attempt ko hata sakte ho (duplicate / atka hua), totals bhi theek ho jate hain aur student dobara de sakta hai.
+
+## Short notes (`/o-level-short-notes`)
+The notes text lives in `frontend/src/content/notes.json`, generated from the four note documents by `tools/parse_notes_docx.py`. To change a note, edit the .docx and re-run the script, then rebuild. Chapter pages are statically generated and listed in the sitemap.
+Copy protection (`NotesGuard`) is a deterrent only: it blocks copy/cut/select/right-click/shortcuts, hides the text when printing and adds a tiled watermark. The text must remain in the page HTML for Google to index it, so screenshots, view-source and disabled JavaScript can still get at it. There are intentionally no share buttons or PDF downloads.

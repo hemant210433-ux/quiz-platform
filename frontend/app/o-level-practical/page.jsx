@@ -63,6 +63,12 @@ export default function Practical() {
         </p>
       </div>
 
+      <Link href="/o-level-practical/m2-r5" className="mt-10 block max-w-4xl rounded-2xl bg-brand-900 p-6 text-white shadow-lg ring-1 ring-brand-700 transition hover:bg-brand-800">
+        <div className="text-xs font-bold uppercase tracking-widest text-mark-300">M2-R5 · HTML Practical Lab</div>
+        <div className="mt-1 font-display text-2xl font-bold"><T hi="HTML के सारे practical – output और code के साथ" en="All HTML practicals – with output and code" /></div>
+        <p className="mt-2 text-[16px] text-white/85"><T hi="Tables, Forms, Frames, Lists, Links और HTML5: हर program का अलग पेज, output देखो और code सीखो →" en="Tables, forms, frames, lists, links and HTML5: one page per program, see the output and learn the code →" /></p>
+      </Link>
+
       <div className="mt-14 space-y-14">
         {MODULES.map((m) => (
           <section key={m.code} aria-labelledby={`p-${m.code}`}>
