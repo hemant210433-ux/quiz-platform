@@ -41,6 +41,7 @@ export function SiteHeader() {
         <nav aria-label="Main" className="ml-auto hidden items-center gap-1 md:flex">
           <Link className={navLink} href="/">{t('home')}</Link>
           <Link className={navLink} href="/o-level-mock-test">{t('tests')}</Link>
+          <Link className={navLink} href="/o-level-practical">{t('practical')}</Link>
           <Link className={navLink} href="/#modules">{t('modules')}</Link>
           <Link className={navLink} href="/about">{t('about')}</Link>
           <Link className={navLink} href="/contact">{t('contact')}</Link>
@@ -65,7 +66,7 @@ export function SiteHeader() {
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </summary>
             <div className="absolute right-0 mt-2 w-52 rounded-xl bg-white p-2 shadow-lift ring-1 ring-ink-200">
-              {[['/', 'home'], ['/o-level-mock-test', 'tests'], ['/#modules', 'modules'], ['/about', 'about'], ['/contact', 'contact']].map(([href, k]) => (
+              {[['/', 'home'], ['/o-level-mock-test', 'tests'], ['/o-level-practical', 'practical'], ['/#modules', 'modules'], ['/about', 'about'], ['/contact', 'contact']].map(([href, k]) => (
                 <Link key={k} href={href} className="block rounded-md px-3 py-2.5 text-[15px] font-semibold text-ink-800 hover:bg-brand-50">{t(k)}</Link>
               ))}
             </div>
@@ -106,6 +107,7 @@ export function SiteFooter() {
             <h2 className="font-display text-lg text-mark-300">{t('explore')}</h2>
             <ul className="mt-3 space-y-2 text-[15px]">
               <li><Link href="/o-level-mock-test" className="hover:text-white hover:underline">{t('tests')}</Link></li>
+              <li><Link href="/o-level-practical" className="hover:text-white hover:underline">{t('practical')}</Link></li>
               <li><Link href="/o-level-syllabus" className="hover:text-white hover:underline">{t('syllabus')}</Link></li>
               <li><Link href="/about" className="hover:text-white hover:underline">{t('about')}</Link></li>
               <li><Link href="/privacy" className="hover:text-white hover:underline">{t('privacy')}</Link></li>

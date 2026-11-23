@@ -9,6 +9,19 @@ export const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const QUIZ_ID_RE = /^[a-z0-9]{6,20}$/;
 /** O Level module codes a quiz can be tagged with (optional). */
 export const QUIZ_MODULES = ['m1-r5', 'm2-r5', 'm3-r5', 'm4-r5'];
+/** How students identify themselves: free name (+ID), e-mail, or a personal access code. */
+export const ACCESS_MODES = ['name', 'email', 'code'];
+export const EMAIL_RE = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/;
+const optEmails = z
+  .union([z.array(z.string()).max(3000), z.string().max(200000), z.null()])
+  .optional()
+  .transform((v) => {
+    if (v === undefined) return undefined;
+    const list = Array.isArray(v) ? v : String(v || '').split(/[\s,;]+/);
+    return [...new Set(list.map((x) => String(x).trim().toLowerCase()).filter((x) => EMAIL_RE.test(x)))].slice(0, 3000);
+  });
+const optAccessMode = z.enum(ACCESS_MODES).optional();
+const optBool = z.boolean().optional();
 
 const optText = (max) =>
   z.union([z.string().trim().max(max), z.null()]).optional().transform((v) => (v === undefined ? undefined : v || null));
@@ -39,6 +52,9 @@ export const quizInputSchema = z
     maxAttempts: z.union([z.coerce.number().int().min(1).max(1000), z.null()]).optional().default(null),
     startAt: isoOrNull,
     endAt: isoOrNull,
+    accessMode: optAccessMode,
+    lockDevice: optBool,
+    allowedEmails: optEmails,
     module: optModule,
     topic: optText(120),
     year: optYear,
@@ -86,6 +102,11 @@ export const quizMetaSchema = z.object({
   year: z.number().int().nullable().optional(),
   seoTitle: z.string().nullable().optional(),
   seoDescription: z.string().nullable().optional(),
+  // Student identification (older quizzes do not have these: they behave like accessMode "name").
+  accessMode: z.enum(ACCESS_MODES).optional(),
+  lockDevice: z.boolean().optional(),
+  allowedEmails: z.array(z.string()).optional(),
+  accessCodes: z.array(z.object({ code: z.string(), label: z.string(), createdAt: z.string() })).optional(),
 });
 const quizListSchema = z.array(quizMetaSchema);
 
@@ -142,6 +163,10 @@ export async function createQuiz(input) {
       maxAttempts: data.maxAttempts,
       startAt: data.startAt,
       endAt: data.endAt,
+      accessMode: data.accessMode ?? 'name',
+      lockDevice: data.lockDevice ?? true,
+      allowedEmails: data.allowedEmails ?? [],
+      accessCodes: [],
       module: data.module ?? null,
       topic: data.topic ?? null,
       year: data.year ?? null,
@@ -185,7 +210,7 @@ export async function updateQuiz(id, input) {
       endAt: data.endAt,
       // New optional fields: only touched when the client actually sent them.
       ...Object.fromEntries(
-        ['module', 'topic', 'year', 'seoTitle', 'seoDescription'].filter((k) => data[k] !== undefined).map((k) => [k, data[k]]),
+        ['module', 'topic', 'year', 'seoTitle', 'seoDescription', 'accessMode', 'lockDevice', 'allowedEmails'].filter((k) => data[k] !== undefined).map((k) => [k, data[k]]),
       ),
       updatedAt: nowIso(),
     });
@@ -254,6 +279,9 @@ export async function duplicateQuiz(id) {
     year: src.year ?? null,
     seoTitle: src.seoTitle ?? null,
     seoDescription: src.seoDescription ?? null,
+    accessMode: src.accessMode ?? 'name',
+    lockDevice: src.lockDevice ?? true,
+    allowedEmails: src.allowedEmails ?? [],
   });
   await replaceQuestions(copy.id, questions.map((q) => ({ ...q, id: undefined })));
   return getQuiz(copy.id);
@@ -361,6 +389,8 @@ export function publicQuizView(quiz) {
     year: quiz.year ?? null,
     seoTitle: quiz.seoTitle ?? null,
     seoDescription: quiz.seoDescription ?? null,
+    accessMode: quiz.accessMode || 'name',
+    restrictedEmails: (quiz.allowedEmails || []).length > 0,
   };
 }
 

@@ -29,27 +29,57 @@ export const importedQuestionSchema = z
       ])
       .optional()
       .nullable(),
-    correct_answer: z.union([z.string().max(200), z.null()]).optional(),
+    correct_answer: z.union([z.string().max(200), z.boolean(), z.null()]).optional(),
+    type: z.union([z.string().max(30), z.null()]).optional(),
     explanation: z.union([z.string().max(MAX_TEXT), z.null()]).optional(),
     topic: z.union([z.string().max(120), z.null()]).optional(),
   })
   .passthrough();
 
-// Strict schema for a question that is ready to publish.
-export const strictQuestionSchema = z.object({
+const optText = z.string().trim().min(1).max(MAX_TEXT);
+const strictBase = {
   id: z.string().min(1).max(64),
   question_no: z.number().int().positive(),
   question: z.string().trim().min(1).max(MAX_TEXT),
-  options: z.object({
-    A: z.string().trim().min(1).max(MAX_TEXT),
-    B: z.string().trim().min(1).max(MAX_TEXT),
-    C: z.string().trim().min(1).max(MAX_TEXT),
-    D: z.string().trim().min(1).max(MAX_TEXT),
-  }),
-  correct_answer: z.enum(['A', 'B', 'C', 'D']),
   explanation: z.string().max(MAX_TEXT).optional().default(''),
   topic: z.string().max(120).optional().default(''),
-});
+};
+// Strict schema for a question that is ready to publish (4-option MCQ, or True/False with 2 options).
+export const strictQuestionSchema = z.union([
+  z.object({
+    ...strictBase,
+    type: z.literal('tf'),
+    options: z.object({ A: optText, B: optText }),
+    correct_answer: z.enum(['A', 'B']),
+  }),
+  z.object({
+    ...strictBase,
+    type: z.literal('mcq').optional(),
+    options: z.object({ A: optText, B: optText, C: optText, D: optText }),
+    correct_answer: z.enum(['A', 'B', 'C', 'D']),
+  }),
+]);
+
+/* ---------------- True / False support ---------------- */
+
+/** Option texts used when a True/False question is written without explicit options. */
+export const TF_DEFAULT_OPTIONS = { A: 'सही (True)', B: 'गलत (False)' };
+const TRUE_RE = /^(?:true|t|yes|y|correct|right|सही|सत्य|ठीक|हाँ|हां)$/iu;
+const FALSE_RE = /^(?:false|f|no|n|incorrect|wrong|गलत|असत्य|नहीं)$/iu;
+const TF_TYPE_RE = /^(?:tf|t\/f|true[\s_-]*false|truefalse|boolean|bool|सही[\s_-]*गलत)$/iu;
+
+const cleanWord = (v) => String(v ?? '').trim().replace(/^[([\s]+|[)\].:।\s]+$/g, '').replace(/\s*\(.*\)\s*$/u, '').trim();
+/** 'true' | 'false' | null for a word such as "True", "F", "सही", "गलत (False)". */
+export function tfWord(v) {
+  if (v === true) return 'true';
+  if (v === false) return 'false';
+  const raw = String(v ?? '').trim();
+  for (const cand of [cleanWord(raw), raw.replace(/^.*\(([^)]*)\)\s*$/u, '$1').trim(), raw.split(/[\s/|]+/u)[0]]) {
+    if (TRUE_RE.test(cand)) return 'true';
+    if (FALSE_RE.test(cand)) return 'false';
+  }
+  return null;
+}
 
 const str = (v) => (v === null || v === undefined ? '' : String(v));
 
@@ -68,7 +98,33 @@ export function normalizeQuestion(input, index = 0) {
   const upper = {};
   for (const [k, v] of Object.entries(options)) upper[String(k).trim().toUpperCase()] = v;
 
-  const missingOptions = OPTION_KEYS.filter((k) => !(k in upper) || upper[k] === null);
+  // --- question type: explicit "type", or detected True/False shape ---
+  const typeRaw = typeof q.type === 'string' ? q.type.trim() : '';
+  const hasText = (k) => k in upper && upper[k] !== null && String(upper[k]).trim() !== '';
+  const noCD = !hasText('C') && !hasText('D');
+  const optsTf = hasText('A') && hasText('B') && tfWord(upper.A) !== null && tfWord(upper.B) !== null && tfWord(upper.A) !== tfWord(upper.B);
+  const noOpts = !hasText('A') && !hasText('B') && noCD;
+  const answerTf = tfWord(q.correct_answer) !== null;
+  let type = 'mcq';
+  if (TF_TYPE_RE.test(typeRaw)) type = 'tf';
+  else if (!/^(?:mcq|multiple[\s_-]*choice)$/iu.test(typeRaw) && noCD && (optsTf || (noOpts && answerTf))) type = 'tf';
+
+  let correct = q.correct_answer;
+  if (type === 'tf') {
+    if (!hasText('A')) upper.A = TF_DEFAULT_OPTIONS.A;
+    if (!hasText('B')) upper.B = TF_DEFAULT_OPTIONS.B;
+    delete upper.C;
+    delete upper.D;
+    const w = tfWord(correct);
+    if (w) {
+      // Map "True"/"False" onto whichever option carries that meaning (default A = True).
+      const hit = ['A', 'B'].find((k) => tfWord(upper[k]) === w);
+      correct = hit || (w === 'true' ? 'A' : 'B');
+    }
+  }
+
+  const keys = type === 'tf' ? ['A', 'B'] : OPTION_KEYS;
+  const missingOptions = keys.filter((k) => !(k in upper) || upper[k] === null);
   const extraOptions = Object.keys(upper).filter((k) => !OPTION_KEYS.includes(k));
 
   let qno = q.question_no;
@@ -77,6 +133,7 @@ export function normalizeQuestion(input, index = 0) {
 
   return {
     id: typeof q.id === 'string' && q.id ? q.id : undefined,
+    type,
     question_no: qno,
     question: str(q.question),
     options: {
@@ -85,7 +142,7 @@ export function normalizeQuestion(input, index = 0) {
       C: str(upper.C),
       D: str(upper.D),
     },
-    correct_answer: str(q.correct_answer).trim().toUpperCase(),
+    correct_answer: str(correct).trim().toUpperCase(),
     explanation: str(q.explanation),
     topic: str(q.topic).trim().slice(0, 120),
     _missingOptions: q._missingOptions ?? missingOptions,
@@ -112,7 +169,8 @@ function validateOne(q) {
   if (q.question_no === null) add('MISSING_NUMBER', 'Question number is missing or not a number.');
   else if (!Number.isInteger(q.question_no) || q.question_no < 1) add('INVALID_NUMBER', 'Question number must be a positive whole number.');
 
-  for (const k of OPTION_KEYS) {
+  const keys = q.type === 'tf' ? ['A', 'B'] : OPTION_KEYS;
+  for (const k of keys) {
     if (q._missingOptions.includes(k)) add(`MISSING_OPTION_${k}`, `Option ${k} is missing.`);
     else if (!q.options[k].trim()) add(`EMPTY_OPTION_${k}`, `Option ${k} is empty.`);
   }
@@ -122,7 +180,7 @@ function validateOne(q) {
 
   // Duplicate options (case/space-insensitive)
   const seen = new Map();
-  for (const k of OPTION_KEYS) {
+  for (const k of keys) {
     const t = q.options[k].trim().replace(/\s+/g, ' ').toLowerCase();
     if (!t) continue;
     if (seen.has(t)) add('DUPLICATE_OPTIONS', `Options ${seen.get(t)} and ${k} have the same text.`);
@@ -130,8 +188,13 @@ function validateOne(q) {
   }
 
   if (!q.correct_answer) add('MISSING_ANSWER', 'Correct answer is missing.');
-  else if (!OPTION_KEYS.includes(q.correct_answer)) {
-    add('INVALID_ANSWER', `Invalid answer "${q.correct_answer}". The answer must be A, B, C or D.`);
+  else if (!keys.includes(q.correct_answer)) {
+    add(
+      'INVALID_ANSWER',
+      q.type === 'tf'
+        ? `Invalid answer "${q.correct_answer}". For a True/False question write True or False.`
+        : `Invalid answer "${q.correct_answer}". The answer must be A, B, C or D.`,
+    );
   } else if (!q._missingOptions.includes(q.correct_answer) && !q.options[q.correct_answer].trim()) {
     add('ANSWER_POINTS_TO_EMPTY_OPTION', `The correct answer ${q.correct_answer} points to an empty option.`);
   }
@@ -164,9 +227,10 @@ export function validateQuestions(list, { assignIds } = {}) {
     if (errors.some((e) => e.code === 'MISSING_ANSWER')) missingAnswers++;
     const out = {
       id: q.id || (assignIds ? assignIds() : undefined),
+      type: q.type,
       question_no: q.question_no,
       question: q.question,
-      options: q.options,
+      options: q.type === 'tf' ? { A: q.options.A, B: q.options.B } : q.options,
       correct_answer: q.correct_answer,
       explanation: q.explanation,
       topic: q.topic,
@@ -196,11 +260,13 @@ export function validateQuestions(list, { assignIds } = {}) {
 
 /** Strip validation metadata, producing the canonical stored/exported question. */
 export function toStoredQuestion(q) {
+  const tf = q.type === 'tf';
   const out = {
     id: q.id,
+    ...(tf ? { type: 'tf' } : {}),
     question_no: q.question_no,
     question: q.question,
-    options: { A: q.options.A, B: q.options.B, C: q.options.C, D: q.options.D },
+    options: tf ? { A: q.options.A, B: q.options.B } : { A: q.options.A, B: q.options.B, C: q.options.C, D: q.options.D },
     correct_answer: q.correct_answer,
     explanation: q.explanation || '',
   };

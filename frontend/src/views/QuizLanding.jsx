@@ -1,11 +1,28 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from '@/lib/router.jsx';
 import { publicApi } from '../services/api.js';
 import { Alert, ErrorState, PageLoader, Spinner } from '../components/common/ui.jsx';
 import { formatDateTime, num, storage } from '../utils/format.js';
 
 export const attemptKey = (slug) => `qp:attempt:${slug}`;
+
+/** Random URL-safe id (used for the "same Start press" key and the per-browser device id). */
+function randomId(len = 24) {
+  const bytes = new Uint8Array(len);
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) crypto.getRandomValues(bytes);
+  else for (let i = 0; i < len; i++) bytes[i] = Math.floor(Math.random() * 256);
+  const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  return Array.from(bytes, (b) => abc[b % abc.length]).join('');
+}
+function deviceId() {
+  let id = storage.get('qp:device');
+  if (typeof id !== 'string' || id.length < 16) {
+    id = randomId(24);
+    storage.set('qp:device', id);
+  }
+  return id;
+}
 export const lastResultKey = (slug) => `qp:lastResult:${slug}`;
 
 export default function QuizLanding() {
@@ -15,6 +32,11 @@ export default function QuizLanding() {
   const [error, setError] = useState(null);
   const [name, setName] = useState('');
   const [studentId, setStudentId] = useState('');
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  // One key per Start press: if the request is sent twice (slow network / automatic retry) the server
+  // returns the same attempt instead of creating a duplicate or saying "attempts used".
+  const startKey = useRef(null);
   const [agree, setAgree] = useState(false);
   const [busy, setBusy] = useState(false);
   const [startError, setStartError] = useState('');
@@ -44,11 +66,23 @@ export default function QuizLanding() {
   const start = async (e) => {
     e.preventDefault();
     setStartError('');
-    if (name.trim().length < 2) return setStartError('Please enter your full name.');
+    const mode = data.quiz.accessMode || 'name';
+    if (mode === 'code' && !code.trim()) return setStartError('Please enter your access code.');
+    if (mode === 'email' && !/^\S+@\S+\.\S{2,}$/.test(email.trim())) return setStartError('Please enter a valid email address.');
+    if (mode !== 'code' && name.trim().length < 2) return setStartError('Please enter your full name.');
+    if (!startKey.current) startKey.current = randomId(24);
     setBusy(true);
     try {
-      const r = await publicApi.start(slug, name.trim(), studentId.trim());
-      storage.set(attemptKey(slug), { attemptId: r.attemptId, accessToken: r.accessToken, studentName: name.trim() });
+      const r = await publicApi.start(slug, {
+        studentName: name.trim(),
+        studentId: studentId.trim(),
+        email: email.trim(),
+        code: code.trim(),
+        startKey: startKey.current,
+        deviceId: deviceId(),
+      });
+      startKey.current = null;
+      storage.set(attemptKey(slug), { attemptId: r.attemptId, accessToken: r.accessToken, studentName: name.trim() || 'student' });
       navigate(`/quiz/${slug}/attempt`);
     } catch (err) {
       setStartError(err.details?.[0]?.message || err.message);
@@ -118,19 +152,35 @@ export default function QuizLanding() {
           <form onSubmit={start} className="card card-pad space-y-4" noValidate>
             <h2 className="section-title">{saved ? 'Or start a new attempt' : 'Start the quiz'}</h2>
             {startError && <Alert tone="error">{startError}</Alert>}
+            {quiz.accessMode === 'code' && (
+              <div>
+                <label className="label" htmlFor="code">Access code *</label>
+                <input id="code" className="input text-center font-mono text-lg uppercase tracking-[0.25em]" value={code} onChange={(e) => setCode(e.target.value)} maxLength={20} autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="XXXX-XXXX" inputMode="text" />
+                <p className="mt-1 text-xs text-ink-500">Your teacher gave you this personal code. It works only for you.</p>
+              </div>
+            )}
+            {quiz.accessMode === 'email' && (
+              <div>
+                <label className="label" htmlFor="email">Email *</label>
+                <input id="email" type="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={120} autoComplete="email" inputMode="email" required />
+                {quiz.restrictedEmails && <p className="mt-1 text-xs text-ink-500">Use the email address your teacher has for you.</p>}
+              </div>
+            )}
             <div>
-              <label className="label" htmlFor="name">Your name *</label>
-              <input id="name" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} autoComplete="name" required />
+              <label className="label" htmlFor="name">Your name {quiz.accessMode === 'code' ? <span className="font-normal text-ink-400">(only if asked)</span> : '*'}</label>
+              <input id="name" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} autoComplete="name" required={quiz.accessMode !== 'code'} />
             </div>
-            <div>
-              <label className="label" htmlFor="sid">Student ID / Roll no. <span className="font-normal text-ink-400">(optional)</span></label>
-              <input id="sid" className="input" value={studentId} onChange={(e) => setStudentId(e.target.value)} maxLength={50} />
-            </div>
+            {(quiz.accessMode || 'name') === 'name' && (
+              <div>
+                <label className="label" htmlFor="sid">Student ID / Roll no. <span className="font-normal text-ink-400">(optional)</span></label>
+                <input id="sid" className="input" value={studentId} onChange={(e) => setStudentId(e.target.value)} maxLength={50} />
+              </div>
+            )}
             <label className="flex items-start gap-2 text-sm text-ink-700">
               <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-ink-300 text-brand-600" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
               I have read the instructions.
             </label>
-            <button className="btn-primary btn-lg w-full" disabled={busy || !agree || !name.trim()}>
+            <button className="btn-primary btn-lg w-full" disabled={busy || !agree || (quiz.accessMode === 'code' ? !code.trim() : !name.trim())}>
               {busy && <Spinner className="h-4 w-4" />}
               Start quiz
             </button>

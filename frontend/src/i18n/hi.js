@@ -1,6 +1,7 @@
 export default {
   comingSoon: 'जल्द आ रहा है',
   modules: 'मॉड्यूल', explore: 'खोजें', new: 'नया', viewTests: 'टेस्ट देखें',
+  practical: 'प्रैक्टिकल',
   syllabus: 'सिलेबस',
   home: 'होम', tests: 'मॉक टेस्ट', about: 'हमारे बारे में', privacy: 'प्राइवेसी', contact: 'संपर्क',
   startPractice: 'अभ्यास शुरू करें', switchLang: 'English', menu: 'मेनू',

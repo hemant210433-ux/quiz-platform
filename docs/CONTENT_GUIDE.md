@@ -49,3 +49,32 @@ Students search in English letters even for Hindi tests ("o level m1 r5 mock tes
 - [ ] `NEXT_PUBLIC_CONTACT_EMAIL` set
 - [ ] Privacy / About text reviewed by you
 - [ ] Render on Starter plan (or kept awake) for exam season
+
+## True / False questions
+
+True/False sawal MCQ ke saath ek hi quiz me mix kar sakte ho. Options likhna zaroori nahi:
+
+```
+Q2. The CPU is the brain of the computer.
+Answer: True
+
+प्रश्न 3. मॉनिटर एक इनपुट डिवाइस है।
+उत्तर: गलत
+```
+
+`True/False`, `T/F`, `सही/गलत`, `सत्य/असत्य` sab chalta hai. Chaho to `A. True` `B. False` likh sakte ho. Students ko 2 options (सही / गलत) dikhte hain. JSON me `"type": "tf"` aur `"correct_answer": "True"` (ya `true`) likho. Question editor me "True / False" toggle bhi hai.
+Sirf 2 options wala normal MCQ (jaise Red/Blue) valid nahi maana jata; Yes/No ko True/False jaisa maana jata hai.
+
+## Students ki pehchaan (Name / Email / Access code)
+
+Quiz → Edit details → **How students identify themselves**:
+
+| Mode | Kab use karo |
+|---|---|
+| Name + Roll no. | Public practice test. Koi bhi naam likh sakta hai. |
+| Email | Attempt limit email par ginti hoti hai. Chaho to allowed emails ki list do. |
+| Personal access code | Institute ke private link ke liye best. Har student ko apna secret code (password jaisa). |
+
+* Max attempts set ho to **device limit** (default ON) naam badalkar usi phone se dobara test dene se rokta hai.
+* Code mode me naam code se fix hota hai; phone band/kharab ho jaye to wahi code dobara dalne par adhura attempt wahin se continue hota hai.
+* Results → **Delete** se kisi attempt ko hata sakte ho (duplicate / atka hua), totals bhi theek ho jate hain aur student dobara de sakta hai.

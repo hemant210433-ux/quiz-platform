@@ -2,9 +2,12 @@
 import { memo, useState } from 'react';
 
 const KEYS = ['A', 'B', 'C', 'D'];
+const TF_OPTIONS = { A: 'सही (True)', B: 'गलत (False)' };
+const keysFor = (type) => (type === 'tf' ? ['A', 'B'] : KEYS);
 
 function QuestionEditForm({ item, onApply, onCancel }) {
   const [d, setD] = useState(() => ({
+    type: item.type === 'tf' ? 'tf' : 'mcq',
     question_no: item.question_no ?? '',
     question: item.question,
     options: { ...item.options },
@@ -13,6 +16,16 @@ function QuestionEditForm({ item, onApply, onCancel }) {
   }));
   const setOpt = (k, v) => setD((x) => ({ ...x, options: { ...x.options, [k]: v } }));
   const idp = `q-${item._key}`;
+  const tf = d.type === 'tf';
+  const switchType = (type) =>
+    setD((x) => {
+      if (type === x.type) return x;
+      if (type === 'tf') {
+        const keep = ['true', 'false', 'सही', 'गलत', 'yes', 'no'].some((w) => String(x.options.A).toLowerCase().includes(w));
+        return { ...x, type, options: keep ? { ...x.options } : { ...x.options, ...TF_OPTIONS }, correct_answer: ['A', 'B'].includes(x.correct_answer) ? x.correct_answer : '' };
+      }
+      return { ...x, type, correct_answer: x.correct_answer };
+    });
 
   return (
     <div className="space-y-4">
@@ -26,10 +39,15 @@ function QuestionEditForm({ item, onApply, onCancel }) {
           <textarea id={`${idp}-text`} className="input min-h-[72px]" value={d.question} onChange={(e) => setD({ ...d, question: e.target.value })} autoFocus />
         </div>
       </div>
+      <div role="group" aria-label="Question type" className="inline-flex rounded-lg bg-ink-100 p-0.5 text-sm font-semibold">
+        {[['mcq', 'MCQ (4 options)'], ['tf', 'True / False']].map(([v, label]) => (
+          <button key={v} type="button" onClick={() => switchType(v)} aria-pressed={d.type === v} className={`rounded-md px-3 py-1.5 ${d.type === v ? 'bg-white text-brand-700 shadow-sm' : 'text-ink-600'}`}>{label}</button>
+        ))}
+      </div>
       <fieldset>
-        <legend className="label">Options — select the correct answer</legend>
+        <legend className="label">{tf ? 'Select the correct answer' : 'Options — select the correct answer'}</legend>
         <div className="space-y-2">
-          {KEYS.map((k) => (
+          {keysFor(d.type).map((k) => (
             <div key={k} className="flex items-start gap-2">
               <label className={`mt-1 flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-sm font-semibold ring-1 ring-inset ${d.correct_answer === k ? 'bg-brand-600 text-white ring-brand-600' : 'bg-white text-ink-600 ring-ink-200 hover:bg-ink-50'}`} title={`Mark ${k} as correct`}>
                 <input type="radio" name={`${idp}-ans`} value={k} checked={d.correct_answer === k} onChange={() => setD({ ...d, correct_answer: k })} className="sr-only" />
@@ -70,6 +88,7 @@ function QuestionCard({ item, position, total, editing, readOnly, onEdit, onAppl
       <div className={`flex flex-wrap items-center gap-2 border-b px-4 py-2.5 text-xs ${invalid ? 'border-red-100 bg-red-50/70' : 'border-ink-100 bg-ink-50/60'}`}>
         <span className="font-semibold text-ink-800">#{position}</span>
         <span className="text-ink-500">Q{item.question_no ?? '?'}</span>
+        {item.type === 'tf' && <span className="badge bg-brand-50 text-brand-700">True/False</span>}
         {item.source_line ? <span className="text-ink-400">line {item.source_line}</span> : null}
         {invalid ? <span className="badge bg-red-100 text-red-700">Invalid</span> : <span className="badge bg-good-100 text-good-800">Valid</span>}
         <div className="ml-auto flex items-center gap-0.5">
@@ -92,7 +111,7 @@ function QuestionCard({ item, position, total, editing, readOnly, onEdit, onAppl
           <>
             <p className={`prewrap font-medium ${item.question ? 'text-ink-900' : 'italic text-ink-400'}`}>{item.question || 'No question text'}</p>
             <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-              {KEYS.map((k) => {
+              {keysFor(item.type).map((k) => {
                 const correct = item.correct_answer === k;
                 const text = item.options?.[k];
                 return (

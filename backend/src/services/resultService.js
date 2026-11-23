@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import crypto from 'node:crypto';
 import config from '../config/index.js';
-import { readJson, writeJson, updateJson } from '../storage/jsonStorage.js';
+import { readJson, writeJson, updateJson, deletePath } from '../storage/jsonStorage.js';
 import { AppError, randomToken, sha256, notFound, conflict, forbidden, round2, toCsv } from '../utils/helpers.js';
 import { now } from '../utils/clock.js';
 import {
@@ -14,6 +14,8 @@ import {
   QUIZ_ID_RE,
 } from './quizService.js';
 import { scoreAttempt } from './scoringService.js';
+import { normalizeCode, formatCode } from './accessCodeService.js';
+import { EMAIL_RE } from './quizService.js';
 
 /*
  * Storage layout
@@ -28,20 +30,18 @@ import { scoreAttempt } from './scoringService.js';
 const ATTEMPT_ID_RE = /^([a-z0-9]{6,20})-([A-Za-z0-9_-]{16,64})$/;
 const RESULT_TOKEN_RE = /^([a-z0-9]{6,20})\.([A-Za-z0-9_-]{16,64})$/;
 
+const safeText = (max, msg) => z.string().trim().max(max, msg).refine((s) => !/[<>]/.test(s), 'Contains invalid characters.');
 export const startSchema = z.object({
-  studentName: z
-    .string()
-    .trim()
-    .min(2, 'Please enter your name (at least 2 characters).')
-    .max(100, 'Name is too long.')
-    .refine((s) => !/[<>]/.test(s), 'Name contains invalid characters.'),
-  studentId: z
-    .string()
-    .trim()
-    .max(50, 'Student ID is too long.')
-    .refine((s) => !/[<>]/.test(s), 'Student ID contains invalid characters.')
-    .optional()
-    .default(''),
+  // Required for "name"/"email" quizzes and for "code" quizzes whose code has no fixed name.
+  studentName: safeText(100, 'Name is too long.').optional().default(''),
+  studentId: safeText(50, 'Student ID is too long.').optional().default(''),
+  email: z.string().trim().max(120).optional().default(''),
+  code: z.string().trim().max(40).optional().default(''),
+  // Random value made by the browser for one Start press. If the same request is sent twice
+  // (slow network, automatic retry) the server returns the first attempt instead of a second one.
+  startKey: z.string().regex(/^[A-Za-z0-9_-]{16,64}$/).optional(),
+  // Random id stored in the student's browser; used to stop name-changing on the same device.
+  deviceId: z.string().regex(/^[A-Za-z0-9_-]{16,64}$/).optional(),
 });
 
 export const answersSchema = z.object({
@@ -64,6 +64,7 @@ const statsFile = (quizId) => `results/${quizId}.stats.json`;
 
 const studentKey = (name, id) =>
   `${String(name).trim().toLowerCase().replace(/\s+/g, ' ')}|${String(id || '').trim().toLowerCase()}`;
+const fieldError = (path, message) => new AppError(400, 'BAD_REQUEST', message, [{ path, message }]);
 
 function deadlineMs(attempt) {
   return new Date(attempt.deadline).getTime();
@@ -96,25 +97,72 @@ export async function startAttempt(slug, body) {
   const av = availability(quiz);
   if (!av.open) throw new AppError(av.reason === 'NOT_FOUND' ? 404 : 403, av.reason, av.message);
 
-  const { studentName, studentId } = body;
   const { questions } = await getStoredQuestions(quiz.id);
   if (!questions.length) throw new AppError(403, 'NO_QUESTIONS', 'This quiz has no questions yet.');
 
-  const key = studentKey(studentName, studentId);
+  // ---- Who is this student? ----
+  const mode = quiz.accessMode || 'name';
+  let studentName = body.studentName.trim();
+  let studentId = body.studentId.trim();
+  let email = '';
+  let accessCode = '';
+  let key;
+  if (mode === 'code') {
+    accessCode = normalizeCode(body.code);
+    if (!accessCode) throw fieldError('code', 'Please enter your access code.');
+    const entry = (quiz.accessCodes || []).find((c) => c.code === accessCode);
+    if (!entry) throw new AppError(403, 'INVALID_CODE', 'This access code is not valid. Check it with your teacher.');
+    if (entry.label) studentName = entry.label;
+    key = `code|${accessCode}`;
+  } else if (mode === 'email') {
+    email = body.email.trim().toLowerCase();
+    if (!EMAIL_RE.test(email)) throw fieldError('email', 'Please enter a valid email address.');
+    const allowed = quiz.allowedEmails || [];
+    if (allowed.length && !allowed.includes(email)) {
+      throw new AppError(403, 'EMAIL_NOT_ALLOWED', 'This email address is not on the list for this quiz. Use the email your teacher has.');
+    }
+    key = `email|${email}`;
+  } else {
+    key = studentKey(studentName, studentId);
+  }
+  if (studentName.length < 2) throw fieldError('studentName', 'Please enter your name (at least 2 characters).');
+
+  const useDevice = mode !== 'code' && quiz.lockDevice !== false && Boolean(quiz.maxAttempts) && Boolean(body.deviceId);
+  const deviceHash = body.deviceId ? sha256(`${quiz.id}:${body.deviceId}`) : '';
+  const startKeyHash = body.startKey ? sha256(`${quiz.id}:${body.startKey}`) : '';
+
   const attemptId = `${quiz.id}-${randomToken(18)}`;
   const accessToken = randomToken(24);
   const startedAt = now();
   let deadline = startedAt + quiz.durationMinutes * 60 * 1000;
   if (quiz.endAt) deadline = Math.min(deadline, new Date(quiz.endAt).getTime());
 
+  let resumed = null; // existing index row when this request repeats an earlier one
   const attemptNumber = await updateJson(indexFile(quiz.id), { attempts: [] }, (index, ctx) => {
+    // 1) Same Start press sent twice -> hand back the first attempt (no duplicate, no limit error).
+    const twin = startKeyHash && index.attempts.find((a) => a.startKeyHash === startKeyHash && a.status === 'in_progress');
+    if (twin) {
+      resumed = twin;
+      ctx.skipWrite = true;
+      return;
+    }
     if (quiz.maxAttempts) {
-      const used = index.attempts.filter((a) => a.studentKey === key).length;
-      if (used >= quiz.maxAttempts) {
+      const mine = index.attempts.filter((a) => a.studentKey === key || (useDevice && a.deviceHash === deviceHash));
+      if (mine.length >= quiz.maxAttempts) {
+        // 2) Code holders may continue an unfinished attempt (lost phone, cleared browser). The code is the secret.
+        const open = mode === 'code' && mine.find((a) => a.status === 'in_progress' && new Date(a.deadline).getTime() > startedAt);
+        if (open) {
+          resumed = open;
+          ctx.skipWrite = true;
+          return;
+        }
+        const sameDevice = useDevice && !mine.some((a) => a.studentKey === key);
         throw new AppError(
           403,
           'ATTEMPT_LIMIT_REACHED',
-          `You have already used the maximum number of attempts (${quiz.maxAttempts}) for this quiz.`,
+          sameDevice
+            ? `An attempt for this quiz was already made from this device. If you are a different student, ask your teacher for your own access.`
+            : `You have already used the maximum number of attempts (${quiz.maxAttempts}) for this quiz. If your internet dropped while starting, ask your teacher to reset your attempt.`,
         );
       }
     }
@@ -124,7 +172,11 @@ export async function startAttempt(slug, body) {
       attemptNumber: n,
       studentName,
       studentId,
+      email,
+      accessCode,
       studentKey: key,
+      deviceHash,
+      startKeyHash,
       status: 'in_progress',
       startedAt: new Date(startedAt).toISOString(),
       deadline: new Date(deadline).toISOString(),
@@ -133,17 +185,49 @@ export async function startAttempt(slug, body) {
     ctx.result = n;
   });
 
-  const attempt = {
-    attemptId,
-    tokenHash: sha256(accessToken),
+  if (resumed) {
+    // Give the returning browser a fresh secret for the existing attempt.
+    const file = attemptFile(quiz.id, resumed.attemptId);
+    let ok = false;
+    await updateJson(file, null, (a, ctx) => {
+      if (!a || a.status !== 'in_progress') {
+        ctx.skipWrite = true;
+        return;
+      }
+      a.tokenHash = sha256(accessToken);
+      ok = true;
+    }, { backup: false });
+    if (!ok) {
+      const existing = await readJson(file, null);
+      if (existing) throw conflict('This attempt was already submitted.');
+      // The first request stopped between "reserve" and "create": rebuild the attempt file.
+      await writeJson(file, buildAttempt({ quiz, questions, row: resumed, tokenHash: sha256(accessToken) }));
+    }
+    return { attemptId: resumed.attemptId, accessToken, attemptNumber: resumed.attemptNumber, resumed: true };
+  }
+
+  const row = {
+    attemptId, attemptNumber, studentName, studentId, email, accessCode, studentKey: key,
+    startedAt: new Date(startedAt).toISOString(), deadline: new Date(deadline).toISOString(),
+  };
+  await writeJson(attemptFile(quiz.id, attemptId), buildAttempt({ quiz, questions, row, tokenHash: sha256(accessToken) }));
+  return { attemptId, accessToken, attemptNumber };
+}
+
+function buildAttempt({ quiz, questions, row, tokenHash }) {
+  return {
+    attemptId: row.attemptId,
+    tokenHash,
     quizId: quiz.id,
-    attemptNumber,
-    studentName,
-    studentId,
-    studentKey: key,
+    attemptNumber: row.attemptNumber,
+    studentName: row.studentName,
+    studentId: row.studentId,
+    email: row.email || '',
+    accessCode: row.accessCode || '',
+    studentKey: row.studentKey,
     status: 'in_progress',
-    startedAt: new Date(startedAt).toISOString(),
-    deadline: new Date(deadline).toISOString(),
+    startedAt: row.startedAt,
+    deadline: row.deadline,
     questionIds: questions.map((q) => q.id),
     answers: {},
     marked: [],
@@ -154,8 +238,6 @@ export async function startAttempt(slug, body) {
     summary: null,
     resultTokenHash: null,
   };
-  await writeJson(attemptFile(quiz.id, attemptId), attempt);
-  return { attemptId, accessToken, attemptNumber };
 }
 
 /* ---------------- Public: fetch / save ---------------- */
@@ -189,8 +271,9 @@ export async function getAttemptForStudent(attemptId, token) {
       return {
         id,
         n: i + 1,
+        type: q?.type === 'tf' ? 'tf' : 'mcq',
         question: q ? q.question : '(This question was removed.)',
-        options: q ? { A: q.options.A, B: q.options.B, C: q.options.C, D: q.options.D } : { A: '', B: '', C: '', D: '' },
+        options: q ? (q.type === 'tf' ? { A: q.options.A, B: q.options.B } : { A: q.options.A, B: q.options.B, C: q.options.C, D: q.options.D }) : { A: '', B: '', C: '', D: '' },
       };
     }),
     answers: attempt.answers,
@@ -273,6 +356,8 @@ async function finalizeAttempt(quizId, attemptId, { auto = false, finalAnswers =
     attemptNumber: created.attemptNumber,
     studentName: created.studentName,
     studentId: created.studentId,
+    email: created.email || '',
+    accessCode: created.accessCode || '',
     ...created.summary,
     timeTakenSeconds: created.timeTakenSeconds,
     startedAt: created.startedAt,
@@ -359,6 +444,7 @@ async function buildDetailedResult(attempt, { forAdmin = false } = {}) {
     return {
       n: i + 1,
       id,
+      type: q?.type === 'tf' ? 'tf' : 'mcq',
       question: q ? q.question : '(This question was removed after the attempt.)',
       options: q ? q.options : { A: '', B: '', C: '', D: '' },
       selected,
@@ -421,6 +507,7 @@ export async function getQuizResultsForAdmin(quizId) {
       n: i + 1,
       id: q.id,
       question_no: q.question_no,
+      type: q.type === 'tf' ? 'tf' : 'mcq',
       question: q.question.length > 160 ? `${q.question.slice(0, 160)}…` : q.question,
       correct_answer: q.correct_answer,
       attempted: s.attempted,
@@ -444,8 +531,46 @@ export async function getQuizResultsForAdmin(quizId) {
       averagePercentage: avg(pct),
     },
     results: rows,
+    // Started but not submitted yet (or abandoned): the admin can remove them to free a student's slot.
+    inProgress: index.attempts
+      .filter((a) => a.status === 'in_progress')
+      .map((a) => ({ attemptId: a.attemptId, attemptNumber: a.attemptNumber, studentName: a.studentName, studentId: a.studentId, email: a.email || '', accessCode: a.accessCode ? formatCode(a.accessCode) : '', startedAt: a.startedAt, deadline: a.deadline })),
     questionPerformance,
   };
+}
+
+/** Remove one attempt completely (also from the totals) so the student can try again. */
+export async function deleteAttempt(quizId, attemptId) {
+  const parsed = parseAttemptId(attemptId);
+  if (parsed.quizId !== quizId) throw notFound('Attempt not found.');
+  await getQuiz(quizId);
+  const attempt = await readJson(attemptFile(quizId, attemptId), null);
+  let found = false;
+  await updateJson(indexFile(quizId), { attempts: [] }, (index) => {
+    const i = index.attempts.findIndex((a) => a.attemptId === attemptId);
+    if (i !== -1) {
+      index.attempts.splice(i, 1);
+      found = true;
+    }
+  });
+  if (!found && !attempt) throw notFound('Attempt not found.');
+  await updateJson(resultsFile(quizId), { quizId, results: [] }, (file) => {
+    file.results = file.results.filter((r) => r.attemptId !== attemptId);
+  });
+  if (attempt?.status === 'submitted' && attempt.review) {
+    await updateJson(statsFile(quizId), { quizId, submissions: 0, questions: {} }, (stats) => {
+      stats.submissions = Math.max(0, stats.submissions - 1);
+      for (const [qid, [sel, cor]] of Object.entries(attempt.review)) {
+        const q = stats.questions[qid];
+        if (!q || !sel) continue;
+        q.attempted = Math.max(0, q.attempted - 1);
+        q[sel] = Math.max(0, (q[sel] || 0) - 1);
+        if (sel === cor) q.correct = Math.max(0, q.correct - 1);
+      }
+    });
+  }
+  await deletePath(attemptFile(quizId, attemptId));
+  return { ok: true };
 }
 
 export async function getAttemptResultForAdmin(quizId, attemptId) {
@@ -460,14 +585,14 @@ export async function getAttemptResultForAdmin(quizId, attemptId) {
 }
 
 const CSV_HEADERS = [
-  'Quiz', 'Attempt Number', 'Student Name', 'Student ID', 'Obtained Marks', 'Total Marks', 'Percentage',
+  'Quiz', 'Attempt Number', 'Student Name', 'Student ID', 'Email', 'Access Code', 'Obtained Marks', 'Total Marks', 'Percentage',
   'Correct', 'Incorrect', 'Unattempted', 'Attempted', 'Negative Marks', 'Time Taken (s)', 'Started At',
   'Submitted At', 'Auto Submitted',
 ];
 
 function csvRow(quiz, r) {
   return [
-    quiz.title, r.attemptNumber, r.studentName, r.studentId, r.obtainedMarks, r.totalMarks, r.percentage,
+    quiz.title, r.attemptNumber, r.studentName, r.studentId, r.email || '', r.accessCode ? formatCode(r.accessCode) : '', r.obtainedMarks, r.totalMarks, r.percentage,
     r.correct, r.incorrect, r.unattempted, r.attempted, r.negativeMarks, r.timeTakenSeconds, r.startedAt,
     r.submittedAt, r.autoSubmitted ? 'Yes' : 'No',
   ];

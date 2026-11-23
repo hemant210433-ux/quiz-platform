@@ -9,5 +9,6 @@ router.get('/results/export', a(results.exportAll));
 router.get('/quizzes/:quizId/results', a(results.list));
 router.get('/quizzes/:quizId/results/export', a(results.exportCsv));
 router.get('/quizzes/:quizId/results/:attemptId', a(results.detail));
+router.delete('/quizzes/:quizId/results/:attemptId', a(results.removeAttempt));
 
 export default router;

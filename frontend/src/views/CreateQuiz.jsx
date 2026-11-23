@@ -4,6 +4,7 @@ import { useNavigate, useParams } from '@/lib/router.jsx';
 import { adminApi } from '../services/api.js';
 import { Alert, ErrorState, Field, PageLoader, Spinner } from '../components/common/ui.jsx';
 import QuizHeader from '../components/admin/QuizHeader.jsx';
+import AccessCodes from '../components/admin/AccessCodes.jsx';
 import { useToast } from '../hooks/useToast.jsx';
 import { isoToLocalInput, localInputToIso } from '../utils/format.js';
 
@@ -19,6 +20,9 @@ const EMPTY = {
   startAt: '',
   endAt: '',
   slug: '',
+  accessMode: 'name',
+  lockDevice: true,
+  allowedEmails: '',
   module: '',
   topic: '',
   year: '',
@@ -36,6 +40,9 @@ function fromQuiz(q) {
     negativeMarking: q.negativeMarking,
     negativeMarks: q.negativeMarking ? q.negativeMarks : 0.25,
     maxAttempts: q.maxAttempts ?? '',
+    accessMode: q.accessMode || 'name',
+    lockDevice: q.lockDevice !== false,
+    allowedEmails: (q.allowedEmails || []).join('\n'),
     module: q.module || '',
     topic: q.topic || '',
     year: q.year ?? '',
@@ -93,6 +100,9 @@ export default function CreateQuiz() {
       startAt: localInputToIso(form.startAt),
       endAt: localInputToIso(form.endAt),
       slug: form.slug.trim() || undefined,
+      accessMode: form.accessMode,
+      lockDevice: form.lockDevice,
+      allowedEmails: form.accessMode === 'email' ? form.allowedEmails : '',
       module: form.module || null,
       topic: form.topic.trim() || null,
       year: form.year === '' ? null : Number(form.year),
@@ -210,6 +220,50 @@ export default function CreateQuiz() {
               <input id="endAt" type="datetime-local" className="input" value={form.endAt} onChange={set('endAt')} />
             </Field>
           </div>
+        </section>
+
+        <section className="card card-pad space-y-5">
+          <div>
+            <h2 className="section-title">How students identify themselves</h2>
+            <p className="mt-1 text-sm text-ink-500">This decides who can start the quiz and what counts as “the same student” for the attempt limit.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3" role="radiogroup" aria-label="Student identification">
+            {[
+              ['name', 'Name + Roll no.', 'Anyone with the link. Easiest, but a student can type a different name.'],
+              ['email', 'Email', 'Limit is counted per email. Optionally allow only your list of emails.'],
+              ['code', 'Personal access code', 'Best for your institute. One secret code per student – like a password.'],
+            ].map(([v, title, hint]) => (
+              <label key={v} className={`cursor-pointer rounded-xl p-4 ring-1 ring-inset transition ${form.accessMode === v ? 'bg-brand-50 ring-2 ring-brand-500' : 'bg-white ring-ink-200 hover:bg-ink-50'}`}>
+                <input type="radio" name="accessMode" value={v} checked={form.accessMode === v} onChange={set('accessMode')} className="sr-only" />
+                <div className="text-sm font-bold text-ink-900">{title}</div>
+                <div className="mt-1 text-xs leading-relaxed text-ink-600">{hint}</div>
+              </label>
+            ))}
+          </div>
+          {form.accessMode !== 'code' && (
+            <label className="flex items-start gap-3 rounded-lg bg-ink-50 p-4 text-sm text-ink-800">
+              <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-ink-300 text-brand-600" checked={form.lockDevice} onChange={set('lockDevice')} />
+              <span>
+                <b>Also limit by device</b> (recommended)
+                <span className="block text-xs text-ink-600">If “Max attempts” is set, the same phone/computer cannot start again just by changing the name. Turn this off if several students share one device.</span>
+              </span>
+            </label>
+          )}
+          {form.accessMode === 'email' && (
+            <Field label="Allowed emails (optional)" htmlFor="allowedEmails" hint="One per line. Leave empty to accept any email. Students must enter exactly one of these.">
+              <textarea id="allowedEmails" className="input min-h-[100px] font-mono text-sm" value={form.allowedEmails} onChange={set('allowedEmails')} placeholder={'student1@gmail.com\nstudent2@gmail.com'} />
+            </Field>
+          )}
+          {form.accessMode === 'code' &&
+            (editing ? (
+              <div>
+                <h3 className="text-sm font-bold text-ink-900">Access codes</h3>
+                <p className="mb-3 mt-0.5 text-xs text-ink-500">Save the quiz details first if you just switched to “Personal access code”.</p>
+                {quiz?.accessMode === 'code' ? <AccessCodes quizId={quizId} /> : <Alert tone="warn">Click “Save details” below, then create the codes here.</Alert>}
+              </div>
+            ) : (
+              <Alert tone="info">After you create the quiz, open its “Edit details” page to generate the codes.</Alert>
+            ))}
         </section>
 
         <section className="card card-pad space-y-5">

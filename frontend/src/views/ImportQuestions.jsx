@@ -223,6 +223,7 @@ function ImportIntoQuiz({ quizId }) {
                   <li><b>Questions:</b> <code>Q1.</code> <code>Q.1</code> <code>Question 1:</code> <code>प्रश्न 1.</code> (or plain <code>1.</code>)</li>
                   <li><b>Options:</b> <code>A.</code> <code>(a)</code> <code>A)</code> <code>(क)</code></li>
                   <li><b>Answer:</b> <code>Answer: A</code> <code>Ans - (b)</code> <code>उत्तर: ख</code></li>
+                  <li><b>True / False:</b> सवाल के बाद सीधे <code>Answer: True</code> या <code>उत्तर: गलत</code> लिखो (options की ज़रूरत नहीं). या <code>A. True</code> <code>B. False</code> लिखो।</li>
                   <li><b>Explanation</b> (optional): <code>Explanation:</code> <code>Solution:</code> <code>व्याख्या:</code></li>
                 </ul>
                 <p className="mt-3">Questions, options and explanations may span several lines. Blank lines are ignored. Up to thousands of questions at once.</p>
@@ -233,7 +234,7 @@ function ImportIntoQuiz({ quizId }) {
             <div className="card overflow-hidden">
               <textarea
                 className="block h-[50vh] min-h-[280px] w-full resize-y border-0 p-4 font-mono text-[13px] focus:ring-0"
-                placeholder={'[\n  {\n    "question_no": 1,\n    "question": "What is the full form of CPU?",\n    "options": { "A": "…", "B": "…", "C": "…", "D": "…" },\n    "correct_answer": "A",\n    "explanation": "…"\n  }\n]'}
+                placeholder={'[\n  { "question_no": 2, "type": "tf", "question": "CPU is the brain of the computer.", "correct_answer": "True" },\n  {\n    "question_no": 1,\n    "question": "What is the full form of CPU?",\n    "options": { "A": "…", "B": "…", "C": "…", "D": "…" },\n    "correct_answer": "A",\n    "explanation": "…"\n  }\n]'}
                 value={jsonText}
                 onChange={(e) => setJsonText(e.target.value)}
                 spellCheck={false}

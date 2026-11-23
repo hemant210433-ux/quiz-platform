@@ -7,12 +7,14 @@ import { useConfirm } from '../../hooks/useConfirm.jsx';
 import { useToast } from '../../hooks/useToast.jsx';
 
 const PAGE_SIZE = 20;
+const TF_OPTIONS = { A: 'सही (True)', B: 'गलत (False)' };
 let keySeq = 0;
 const nextKey = () => `k${++keySeq}`;
 
 const toItem = (q) => ({
   _key: nextKey(),
   id: q.id,
+  type: q.type === 'tf' ? 'tf' : 'mcq',
   question_no: q.question_no ?? null,
   question: q.question ?? '',
   options: { A: q.options?.A ?? '', B: q.options?.B ?? '', C: q.options?.C ?? '', D: q.options?.D ?? '' },
@@ -27,6 +29,7 @@ const toItem = (q) => ({
 // original text, so keep them until the admin edits that question.
 const stripForServer = (it) => ({
   id: it.id,
+  type: it.type === 'tf' ? 'tf' : 'mcq',
   question_no: it.question_no,
   question: it.question,
   options: it.options,
@@ -191,9 +194,16 @@ export default function QuestionEditor({ initialQuestions, globalErrors = [], re
     setEditingKey(null);
   };
 
-  const addQuestion = () => {
+  const addQuestion = (type = 'mcq') => {
     const maxNo = items.reduce((m, x) => Math.max(m, Number(x.question_no) || 0), 0);
-    const blank = toItem({ question_no: maxNo + 1, question: '', options: {}, correct_answer: '' });
+    const tf = type === 'tf';
+    const blank = toItem({
+      type: tf ? 'tf' : 'mcq',
+      question_no: maxNo + 1,
+      question: '',
+      options: tf ? TF_OPTIONS : {},
+      correct_answer: '',
+    });
     mutate((arr) => [...arr, blank]);
     setFilter('all');
     setSearch('');
@@ -269,7 +279,8 @@ export default function QuestionEditor({ initialQuestions, globalErrors = [], re
         <div className="flex flex-wrap gap-2">
           {!readOnly && (
             <>
-              <button className="btn-secondary btn-sm" onClick={addQuestion}>+ Add question</button>
+              <button className="btn-secondary btn-sm" onClick={() => addQuestion('mcq')}>+ MCQ</button>
+              <button className="btn-secondary btn-sm" onClick={() => addQuestion('tf')}>+ True/False</button>
               <button className="btn-secondary btn-sm" onClick={() => runValidation(version)} disabled={validating}>Validate again</button>
               <button className="btn-secondary btn-sm" onClick={renumber} disabled={!items.length}>Renumber</button>
               {counts.invalid > 0 && (
@@ -281,7 +292,7 @@ export default function QuestionEditor({ initialQuestions, globalErrors = [], re
       </div>
 
       {items.length === 0 ? (
-        <EmptyState title="No questions" message={readOnly ? 'This quiz has no questions.' : 'Import questions or add one manually.'} action={!readOnly && <button className="btn-primary" onClick={addQuestion}>Add a question</button>} />
+        <EmptyState title="No questions" message={readOnly ? 'This quiz has no questions.' : 'Import questions or add one manually.'} action={!readOnly && <button className="btn-primary" onClick={() => addQuestion('mcq')}>Add a question</button>} />
       ) : filtered.length === 0 ? (
         <EmptyState title="Nothing matches" message="No questions match this filter or search." />
       ) : (

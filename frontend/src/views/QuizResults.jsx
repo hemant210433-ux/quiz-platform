@@ -5,14 +5,17 @@ import { adminApi, downloadUrls } from '../services/api.js';
 import QuizHeader from '../components/admin/QuizHeader.jsx';
 import { EmptyState, ErrorState, PageLoader, Pagination, StatCard, Tabs } from '../components/common/ui.jsx';
 import { useQuiz } from '../hooks/useQuiz.js';
+import { useConfirm } from '../hooks/useConfirm.jsx';
+import { useToast } from '../hooks/useToast.jsx';
 import { formatDateTime, humanDuration, num } from '../utils/format.js';
 
 const PAGE = 25;
+const fmtCode = (c) => (c && c.length === 8 && !c.includes('-') ? `${c.slice(0, 4)}-${c.slice(4)}` : c);
 
 const COLUMNS = [
   { key: 'attemptNumber', label: '#', numeric: true },
   { key: 'studentName', label: 'Student' },
-  { key: 'studentId', label: 'Student ID' },
+  { key: 'studentId', label: 'ID / Email / Code' },
   { key: 'obtainedMarks', label: 'Score', numeric: true },
   { key: 'percentage', label: '%', numeric: true },
   { key: 'correct', label: 'Correct', numeric: true },
@@ -47,7 +50,7 @@ function compare(a, b, key, dir) {
   return dir === 'asc' ? r : -r;
 }
 
-function StudentTable({ quizId, results }) {
+function StudentTable({ quizId, results, onDelete }) {
   const [search, setSearch] = useState('');
   const [band, setBand] = useState('all');
   const [minPct, setMinPct] = useState(40);
@@ -57,7 +60,7 @@ function StudentTable({ quizId, results }) {
   const rows = useMemo(() => {
     const s = search.trim().toLowerCase();
     return results
-      .filter((r) => !s || r.studentName.toLowerCase().includes(s) || (r.studentId || '').toLowerCase().includes(s))
+      .filter((r) => !s || [r.studentName, r.studentId, r.email, r.accessCode].some((x) => (x || '').toLowerCase().includes(s)))
       .filter((r) => (band === 'pass' ? r.percentage >= minPct : band === 'fail' ? r.percentage < minPct : band === 'auto' ? r.autoSubmitted : true))
       .sort((a, b) => compare(a, b, sort.key, sort.dir));
   }, [results, search, band, minPct, sort]);
@@ -69,7 +72,7 @@ function StudentTable({ quizId, results }) {
   return (
     <div className="space-y-3">
       <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
-        <input className="input lg:max-w-xs" placeholder="Search name or student ID…" value={search} onChange={(e) => setSearch(e.target.value)} aria-label="Search students" />
+        <input className="input lg:max-w-xs" placeholder="Search name, ID, email or code…" value={search} onChange={(e) => setSearch(e.target.value)} aria-label="Search students" />
         <div className="flex flex-wrap items-center gap-2">
           <select className="input w-auto" value={band} onChange={(e) => setBand(e.target.value)} aria-label="Filter results">
             <option value="all">All results</option>
@@ -89,7 +92,38 @@ function StudentTable({ quizId, results }) {
       {rows.length === 0 ? (
         <EmptyState title="No matching results" />
       ) : (
-        <div className="card overflow-x-auto">
+        <>
+        <ul className="space-y-3 md:hidden">
+          {view.map((r) => (
+            <li key={r.attemptId} className="card p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="font-semibold leading-snug text-ink-900">{r.studentName}</div>
+                  <div className="mt-0.5 break-all text-xs text-ink-500">{[fmtCode(r.accessCode), r.email, r.studentId].filter(Boolean).join(' · ') || `Attempt ${r.attemptNumber}`}</div>
+                </div>
+                <div className="shrink-0 text-right">
+                  <div className={`text-xl font-bold tabular-nums ${r.percentage >= 60 ? 'text-good-700' : r.percentage < 33 ? 'text-red-600' : 'text-ink-800'}`}>{num(r.percentage)}%</div>
+                  <div className="text-xs tabular-nums text-ink-500">{num(r.obtainedMarks)} / {num(r.totalMarks)}</div>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-4 gap-2 rounded-lg bg-ink-50 px-2 py-2 text-center text-xs">
+                <div><div className="font-semibold tabular-nums text-good-700">{r.correct}</div>Correct</div>
+                <div><div className="font-semibold tabular-nums text-red-600">{r.incorrect}</div>Wrong</div>
+                <div><div className="font-semibold tabular-nums text-ink-700">{r.unattempted}</div>Skipped</div>
+                <div><div className="font-semibold tabular-nums text-ink-700">{humanDuration(r.timeTakenSeconds)}</div>Time</div>
+              </div>
+              <div className="mt-2 text-xs text-ink-500">
+                {formatDateTime(r.submittedAt)}
+                {r.autoSubmitted && <span className="badge ml-1 bg-amberish-100 text-amberish-700">auto</span>}
+              </div>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <Link className="btn-secondary btn-sm" to={`/admin/quizzes/${quizId}/results/${r.attemptId}`}>View</Link>
+                <button className="btn-secondary btn-sm text-red-600" onClick={() => onDelete(r)}>Delete</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="card hidden overflow-x-auto md:block">
           <table className="table-base">
             <thead>
               <tr>
@@ -104,7 +138,7 @@ function StudentTable({ quizId, results }) {
                 <tr key={r.attemptId} className="hover:bg-ink-50/60">
                   <td className="text-right tabular-nums text-ink-500">{r.attemptNumber}</td>
                   <td className="max-w-[220px] truncate font-medium">{r.studentName}</td>
-                  <td className="text-ink-600">{r.studentId || '—'}</td>
+                  <td className="max-w-[200px] truncate text-ink-600">{fmtCode(r.accessCode) || r.email || r.studentId || '—'}</td>
                   <td className="text-right tabular-nums">{num(r.obtainedMarks)} / {num(r.totalMarks)}</td>
                   <td className={`text-right font-semibold tabular-nums ${r.percentage >= 60 ? 'text-good-700' : r.percentage < 33 ? 'text-red-600' : 'text-ink-800'}`}>{num(r.percentage)}%</td>
                   <td className="text-right tabular-nums text-good-700">{r.correct}</td>
@@ -115,12 +149,16 @@ function StudentTable({ quizId, results }) {
                     {formatDateTime(r.submittedAt)}
                     {r.autoSubmitted && <span className="badge ml-1 bg-amberish-100 text-amberish-700">auto</span>}
                   </td>
-                  <td><Link className="btn-ghost btn-sm" to={`/admin/quizzes/${quizId}/results/${r.attemptId}`}>View</Link></td>
+                  <td className="whitespace-nowrap">
+                    <Link className="btn-ghost btn-sm" to={`/admin/quizzes/${quizId}/results/${r.attemptId}`}>View</Link>
+                    <button className="btn-ghost btn-sm text-red-600 hover:bg-red-50" onClick={() => onDelete(r)}>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        </>
       )}
       <Pagination page={page} pageCount={pageCount} onChange={setPage} total={rows.length} pageSize={PAGE} />
     </div>
@@ -169,7 +207,7 @@ function QuestionPerformance({ items }) {
                   </div>
                 </td>
                 <td className="tabular-nums text-ink-600">
-                  {['A', 'B', 'C', 'D'].map((k, i) => (
+                  {(q.type === 'tf' ? ['A', 'B'] : ['A', 'B', 'C', 'D']).map((k, i) => (
                     <span key={k} className={k === q.correct_answer ? 'font-semibold text-good-700' : ''}>
                       {i > 0 && ' / '}
                       {q.distribution[k]}
@@ -186,12 +224,50 @@ function QuestionPerformance({ items }) {
   );
 }
 
+function StartedList({ items, onDelete }) {
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-ink-500">These students pressed Start but have not submitted. If someone is stuck or this is a duplicate, delete it so they can start again. Unfinished attempts are scored automatically when their time is over.</p>
+      <ul className="card divide-y divide-ink-100">
+        {items.map((r) => (
+          <li key={r.attemptId} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3">
+            <div className="min-w-0 flex-1">
+              <div className="truncate font-medium text-ink-900">{r.studentName}</div>
+              <div className="truncate text-xs text-ink-500">{[r.accessCode, r.email, r.studentId].filter(Boolean).join(' · ') || '—'} · started {formatDateTime(r.startedAt)}</div>
+            </div>
+            <button className="btn-ghost btn-sm text-red-600 hover:bg-red-50" onClick={() => onDelete(r)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function QuizResults() {
   const { quizId } = useParams();
   const { quiz } = useQuiz(quizId);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [tab, setTab] = useState('students');
+  const confirm = useConfirm();
+  const toast = useToast();
+
+  const removeAttempt = async (r, started = false) => {
+    const ok = await confirm({
+      title: 'Delete this attempt?',
+      message: `${r.studentName}${started ? ' (not submitted yet)' : ` – ${num(r.obtainedMarks)} / ${num(r.totalMarks)}`} will be removed from the results and the totals, and the student can try again.`,
+      confirmLabel: 'Delete attempt',
+      danger: true,
+    });
+    if (!ok) return;
+    try {
+      await adminApi.deleteAttempt(quizId, r.attemptId);
+      toast.success('Attempt deleted.');
+      load();
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
 
   const load = useCallback(() => {
     adminApi.results(quizId).then(setData).catch(setError);
@@ -231,14 +307,17 @@ export default function QuizResults() {
           tabs={[
             { value: 'students', label: 'Student results', count: data.results.length },
             { value: 'questions', label: 'Question-wise performance', count: data.questionPerformance.length },
+            ...(data.inProgress?.length ? [{ value: 'started', label: 'Started, not submitted', count: data.inProgress.length }] : []),
           ]}
         />
       </div>
       <div className="mt-4">
-        {data.results.length === 0 && tab === 'students' ? (
+        {tab === 'started' ? (
+          <StartedList items={data.inProgress || []} onDelete={(r) => removeAttempt(r, true)} />
+        ) : data.results.length === 0 && tab === 'students' ? (
           <EmptyState icon="◷" title="No submissions yet" message={quiz.status === 'published' ? 'Results will appear here as soon as students submit.' : 'Publish the quiz and share the link to start collecting results.'} />
         ) : tab === 'students' ? (
-          <StudentTable quizId={quiz.id} results={data.results} />
+          <StudentTable quizId={quiz.id} results={data.results} onDelete={removeAttempt} />
         ) : (
           <QuestionPerformance items={data.questionPerformance} />
         )}

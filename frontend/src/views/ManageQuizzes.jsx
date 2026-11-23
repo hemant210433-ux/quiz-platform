@@ -93,7 +93,30 @@ export default function ManageQuizzes() {
         {visible.length === 0 ? (
           <EmptyState title={quizzes.length ? 'No quizzes match' : 'No quizzes yet'} message={quizzes.length ? 'Try another filter or search.' : 'Create a quiz to get started.'} action={!quizzes.length && <Link to="/admin/quizzes/new" className="btn-primary">Create quiz</Link>} />
         ) : (
-          <div className="card overflow-x-auto">
+          <>
+          <ul className="space-y-3 md:hidden">
+            {visible.map((q) => (
+              <li key={q.id} className="card p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <Link to={`/admin/quizzes/${q.id}`} className="min-w-0 font-semibold leading-snug text-ink-900">{q.title}</Link>
+                  <StatusBadge status={q.status} />
+                </div>
+                <div className="mt-0.5 break-all text-xs text-ink-500">/quiz/{q.slug}</div>
+                <dl className="mt-3 grid grid-cols-3 gap-2 rounded-lg bg-ink-50 px-3 py-2 text-center">
+                  <div><dt className="text-[11px] text-ink-500">Questions</dt><dd className="font-semibold tabular-nums">{q.questionCount}</dd></div>
+                  <div><dt className="text-[11px] text-ink-500">Results</dt><dd className="font-semibold tabular-nums">{q.submissions}</dd></div>
+                  <div><dt className="text-[11px] text-ink-500">Attempts</dt><dd className="font-semibold tabular-nums">{q.attempts ?? 0}</dd></div>
+                </dl>
+                {q.invalidCount > 0 && <p className="mt-2 text-xs font-semibold text-red-600">{q.invalidCount} invalid question(s)</p>}
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  <Link to={`/admin/quizzes/${q.id}`} className="btn-secondary btn-sm">Open</Link>
+                  <button className="btn-secondary btn-sm" onClick={() => duplicate(q)}>Duplicate</button>
+                  <button className="btn-secondary btn-sm text-red-600" onClick={() => remove(q)}>Delete</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="card hidden overflow-x-auto md:block">
             <table className="table-base">
               <thead>
                 <tr>
@@ -133,6 +156,7 @@ export default function ManageQuizzes() {
               </tbody>
             </table>
           </div>
+          </>
         )}
       </div>
     </div>

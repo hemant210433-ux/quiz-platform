@@ -220,7 +220,7 @@ export default function QuizOverview() {
             <Alert tone="info">
               {quiz.startAt && <div>Opens: {formatDateTime(quiz.startAt)}</div>}
               {quiz.endAt && <div>Closes: {formatDateTime(quiz.endAt)}</div>}
-              {quiz.maxAttempts && <div>Max {quiz.maxAttempts} attempt(s) per student (matched by name + student ID)</div>}
+              {quiz.maxAttempts && <div>Max {quiz.maxAttempts} attempt(s) per student ({{ code: 'counted per access code', email: 'counted per email' }[quiz.accessMode] || 'matched by name + student ID'}{quiz.accessMode !== 'code' && quiz.lockDevice !== false ? ' and device' : ''})</div>}
             </Alert>
           )}
         </div>

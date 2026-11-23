@@ -153,7 +153,7 @@ Agar purana data nahi chahiye, to ye step skip karo.
 | `TRUST_PROXY` | `1` |
 | `COOKIE_SECURE` | `true` |
 | `COOKIE_SAMESITE` | `lax` |
-| `PUBLIC_RATE_MAX_PER_MIN` | `30000` |
+| `PUBLIC_RATE_MAX_PER_MIN` | `30000` (optional; ab limit har student ke asli IP par lagti hai) |
 | `START_RATE_MAX_PER_10MIN` | `5000` |
 | `ADMIN_USERNAME` | `admin` *(sirf agar Step 3 nahi kiya)* |
 | `ADMIN_PASSWORD` | *kam se kam 10 characters, letters + numbers dono* *(sirf agar Step 3 nahi kiya)* |

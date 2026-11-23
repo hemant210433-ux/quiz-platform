@@ -72,9 +72,18 @@ async function send(method, path, { body, headers = {}, signal, keepalive = fals
   }
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function request(method, path, opts = {}) {
   const { raw = false, keepalive = false } = opts;
   let res = await send(method, path, opts);
+  // 429 = the server refused the request BEFORE doing anything, so waiting and retrying is always safe
+  // (also for writes). Honour Retry-After, at most twice, so a busy moment does not break a student's quiz.
+  for (let i = 0; i < 2 && !keepalive && res && res.status === 429; i++) {
+    const ra = Number(res.headers.get('retry-after'));
+    await sleep(Math.min(8000, (Number.isFinite(ra) && ra > 0 ? ra : 2 + i * 3) * 1000));
+    res = await send(method, path, opts);
+  }
   const cold = (r) => r === null || COLD_STATUSES.has(r.status);
   // Retry once after waking the server. A 504 on a write may mean it already ran, so only
   // reads are retried on 504; writes are retried only when the request clearly never arrived.
@@ -89,7 +98,11 @@ async function request(method, path, opts = {}) {
   const data = isJson ? await res.json().catch(() => null) : null;
   if (!res.ok) {
     const e = data?.error || {};
-    const msg = COLD_STATUSES.has(res.status) && !e.message ? 'The server is starting up. Please wait a minute and try again.' : e.message || `Request failed (${res.status})`;
+    const msg = COLD_STATUSES.has(res.status) && !e.message
+      ? 'The server is starting up. Please wait a minute and try again.'
+      : res.status === 429 && !e.message
+        ? 'Too many people are using the site right now. Please wait a few seconds and try again.'
+        : e.message || `Request failed (${res.status})`;
     throw new ApiError(res.status, e.code || 'HTTP_ERROR', msg, e.details);
   }
   return data;
@@ -131,6 +144,11 @@ export const adminApi = {
 
   results: (id) => api.get(`/api/admin/quizzes/${id}/results`),
   attemptResult: (id, attemptId) => api.get(`/api/admin/quizzes/${id}/results/${attemptId}`),
+  deleteAttempt: (id, attemptId) => api.del(`/api/admin/quizzes/${id}/results/${attemptId}`),
+
+  listCodes: (id) => api.get(`/api/admin/quizzes/${id}/codes`),
+  generateCodes: (id, body) => api.post(`/api/admin/quizzes/${id}/codes`, body),
+  deleteCode: (id, code) => api.del(`/api/admin/quizzes/${id}/codes/${encodeURIComponent(code)}`),
 
   getSettings: () => api.get('/api/admin/settings'),
   updateSettings: (data) => api.put('/api/admin/settings', data),
@@ -153,7 +171,8 @@ const tok = (t) => ({ headers: { 'X-Attempt-Token': t } });
 export const publicApi = {
   site: () => api.get('/api/public/site'),
   getQuiz: (slug) => api.get(`/api/public/quizzes/${encodeURIComponent(slug)}`),
-  start: (slug, studentName, studentId) => api.post(`/api/public/quizzes/${encodeURIComponent(slug)}/start`, { studentName, studentId }),
+  /** `who` = { studentName, studentId, email, code, startKey, deviceId } */
+  start: (slug, who) => api.post(`/api/public/quizzes/${encodeURIComponent(slug)}/start`, who),
   getAttempt: (attemptId, token) => api.get(`/api/public/attempts/${attemptId}`, tok(token)),
   saveAnswers: (attemptId, token, answers, marked, opts = {}) => api.put(`/api/public/attempts/${attemptId}/answers`, { answers, marked }, { ...tok(token), ...opts }),
   submit: (attemptId, token, answers, marked, auto = false) => api.post(`/api/public/attempts/${attemptId}/submit`, { answers, marked, auto }, tok(token)),

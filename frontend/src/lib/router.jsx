@@ -5,7 +5,7 @@
  */
 import NextLink from 'next/link';
 import { useParams as useNextParams, usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export function Link({ to, href, ...rest }) {
   return <NextLink href={to ?? href} {...rest} />;
@@ -22,12 +22,17 @@ export function NavLink({ to, end, className, children, ...rest }) {
   );
 }
 
+// Must be referentially stable (like react-router's navigate): pages put it in effect dependency
+// lists, and an unstable function made the quiz page reload its attempt on every render.
 export function useNavigate() {
   const router = useRouter();
-  return (to, opts = {}) => {
-    if (typeof to === 'number') return router.back();
-    return opts.replace ? router.replace(to) : router.push(to);
-  };
+  return useCallback(
+    (to, opts = {}) => {
+      if (typeof to === 'number') return router.back();
+      return opts.replace ? router.replace(to) : router.push(to);
+    },
+    [router],
+  );
 }
 
 export function useParams() {

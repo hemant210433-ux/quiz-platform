@@ -88,6 +88,7 @@ export async function saveQuestions(req, res) {
 const questionPatchSchema = z
   .object({
     question_no: z.coerce.number().int().positive().optional(),
+    type: z.enum(['mcq', 'tf']).optional(),
     question: z.string().max(10000).optional(),
     options: z.object({ A: z.string().max(10000), B: z.string().max(10000), C: z.string().max(10000), D: z.string().max(10000) }).partial().optional(),
     correct_answer: z.string().max(5).optional(),
@@ -128,6 +129,7 @@ export async function exportQuestions(req, res) {
           maxAttempts: quiz.maxAttempts,
           startAt: quiz.startAt,
           endAt: quiz.endAt,
+          accessMode: quiz.accessMode || 'name',
         },
         questions: questions.map(({ id, parse_errors, ...q }) => q), // eslint-disable-line no-unused-vars
       }

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as quiz from '../controllers/quizController.js';
+import * as codes from '../controllers/codeController.js';
 import * as settings from '../controllers/settingsController.js';
 import { asyncHandler as a } from '../utils/helpers.js';
 
@@ -16,6 +17,9 @@ router.post('/quizzes/:quizId/unpublish', a(quiz.unpublish));
 router.post('/quizzes/:quizId/status', a(quiz.setStatus));
 router.post('/quizzes/:quizId/duplicate', a(quiz.duplicate));
 router.get('/quizzes/:quizId/export', a(quiz.exportQuestions));
+router.get('/quizzes/:quizId/codes', a(codes.list));
+router.post('/quizzes/:quizId/codes', a(codes.generate));
+router.delete('/quizzes/:quizId/codes/:code', a(codes.remove));
 
 // Settings, backup & restore
 router.get('/settings', a(settings.getSettings));

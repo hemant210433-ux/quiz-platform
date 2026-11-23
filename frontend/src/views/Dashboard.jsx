@@ -62,14 +62,16 @@ export default function Dashboard() {
         ) : (
           <div className="card divide-y divide-ink-100">
             {quizzes.slice(0, 6).map((q) => (
-              <Link key={q.id} to={`/admin/quizzes/${q.id}`} className="flex flex-wrap items-center gap-3 px-5 py-4 hover:bg-ink-50">
-                <div className="min-w-0 flex-1">
-                  <div className="truncate font-medium text-ink-900">{q.title}</div>
-                  <div className="text-xs text-ink-500">Updated {formatDateTime(q.updatedAt)}</div>
+              <Link key={q.id} to={`/admin/quizzes/${q.id}`} className="block px-4 py-4 hover:bg-ink-50 sm:flex sm:items-center sm:gap-4 sm:px-5">
+                <div className="min-w-0 sm:flex-1">
+                  <div className="font-medium leading-snug text-ink-900 sm:truncate">{q.title}</div>
+                  <div className="mt-0.5 text-xs text-ink-500">Updated {formatDateTime(q.updatedAt)}</div>
                 </div>
-                <div className="text-sm tabular-nums text-ink-600">{q.questionCount} Qs</div>
-                <div className="w-24 text-right text-sm tabular-nums text-ink-600">{q.submissions} results</div>
-                <StatusBadge status={q.status} />
+                <div className="mt-2.5 flex items-center gap-3 text-sm tabular-nums text-ink-600 sm:mt-0">
+                  <StatusBadge status={q.status} />
+                  <span>{q.questionCount} Qs</span>
+                  <span className="sm:w-24 sm:text-right">{q.submissions} results</span>
+                </div>
               </Link>
             ))}
           </div>

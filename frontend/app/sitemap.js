@@ -5,7 +5,7 @@ export const revalidate = 600;
 
 export default async function sitemap() {
   const now = new Date();
-  const statics = ['', '/o-level-mock-test', '/o-level-syllabus', '/about', '/privacy', '/contact', ...MODULES.map((m) => `/o-level/${m.slug}`)].map((p) => ({
+  const statics = ['', '/o-level-mock-test', '/o-level-syllabus', '/o-level-practical', '/about', '/privacy', '/contact', ...MODULES.map((m) => `/o-level/${m.slug}`)].map((p) => ({
     url: `${SITE_URL}${p}`,
     lastModified: now,
     changeFrequency: p === '' ? 'daily' : 'weekly',

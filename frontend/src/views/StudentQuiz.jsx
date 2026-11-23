@@ -223,14 +223,15 @@ export default function StudentQuiz() {
       if (el && (['TEXTAREA', 'SELECT'].includes(el.tagName) || (el.tagName === 'INPUT' && !['radio', 'checkbox'].includes(el.type)))) return;
       const k = e.key.toUpperCase();
       const idx = ['1', '2', '3', '4'].indexOf(k);
-      if (KEYS.includes(k)) choose(k);
-      else if (idx >= 0) choose(KEYS[idx]);
+      const allowed = Object.keys(questions[current]?.options || {});
+      if (allowed.includes(k)) choose(k);
+      else if (idx >= 0 && allowed[idx]) choose(allowed[idx]);
       else if (e.key === 'ArrowRight') go((c) => c + 1);
       else if (e.key === 'ArrowLeft') go((c) => c - 1);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [choose, go, confirmOpen]);
+  }, [choose, go, confirmOpen, questions, current]);
 
   /* ---------- render ---------- */
   if (!creds) {
@@ -299,7 +300,7 @@ export default function StudentQuiz() {
                 {q.question}
               </h1>
               <div className="mt-6 space-y-3" role="radiogroup" aria-labelledby="question-text">
-                {KEYS.map((k) => {
+                {(q.type === 'tf' ? ['A', 'B'] : KEYS).map((k) => {
                   const selected = answers[q.id] === k;
                   return (
                     <label

@@ -1,6 +1,7 @@
 export default {
   comingSoon: 'Coming soon',
   modules: 'Modules', explore: 'Explore', new: 'New', viewTests: 'View tests',
+  practical: 'Practical',
   syllabus: 'Syllabus',
   home: 'Home', tests: 'Mock tests', about: 'About', privacy: 'Privacy', contact: 'Contact',
   startPractice: 'Start practising', switchLang: 'हिन्दी', menu: 'Menu',

@@ -40,7 +40,7 @@ function ReviewItem({ item }) {
       <div className="px-4 py-4">
         <p className="prewrap text-[15px] font-medium text-ink-900">{item.question}</p>
         <ul className="mt-3 space-y-1.5">
-          {['A', 'B', 'C', 'D'].map((k) => {
+          {(item.type === 'tf' ? ['A', 'B'] : ['A', 'B', 'C', 'D']).map((k) => {
             const isCorrect = item.correct === k;
             const isSelected = item.selected === k;
             const cls = isCorrect
