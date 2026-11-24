@@ -6,6 +6,7 @@ import QuestionNavGrid from '../components/quiz/QuestionNavGrid.jsx';
 import Modal from '../components/common/Modal.jsx';
 import { ErrorState, PageLoader, Spinner } from '../components/common/ui.jsx';
 import { formatDuration, storage } from '../utils/format.js';
+import NotesGuard from '../components/site/NotesGuard.jsx';
 import { attemptKey, lastResultKey } from './QuizLanding.jsx';
 
 const KEYS = ['A', 'B', 'C', 'D'];
@@ -287,6 +288,7 @@ export default function StudentQuiz() {
 
       <div className="mx-auto grid w-full max-w-6xl flex-1 gap-5 px-4 py-5 lg:grid-cols-[1fr_300px]">
         {/* Question */}
+        <NotesGuard mark="olevelmocktest.in">
         <main>
           <div className="card">
             <div className="flex items-center justify-between border-b border-ink-100 px-5 py-3 text-sm">
@@ -334,6 +336,7 @@ export default function StudentQuiz() {
             Question palette · {answeredCount}/{questions.length} answered
           </button>
         </main>
+        </NotesGuard>
 
         {/* Palette (desktop) */}
         <aside className="hidden lg:block">

@@ -1,0 +1,270 @@
+O Level M4-R5: Internet of Things and its Applications — Important Guess Paper (One Liner Q&A)
+
+हर सवाल के आगे उसका उत्तर दिया गया है। Units NIELIT के M4-R5 syllabus के क्रम में हैं।
+
+Unit 1: Introduction to IoT
+
+1.  Q: IoT का full form? — Ans: Internet of Things
+2.  Q: "Internet of Things" शब्द किसने दिया? — Ans: Kevin Ashton (1999)
+3.  Q: पहला IoT device किसे माना जाता है? — Ans: Carnegie Mellon University की Coca-Cola vending machine
+4.  Q: M2M का full form? — Ans: Machine to Machine
+5.  Q: IoT के मुख्य components? — Ans: Sensors/devices, connectivity, data processing (cloud) और user interface
+6.  Q: IoT की विशेषताएँ? — Ans: Connectivity, Sensing, Intelligence, Dynamic nature, Enormous scale, Heterogeneity, Security
+7.  Q: IoT के building blocks? — Ans: Things (sensors/actuators), Gateway, Cloud और Application
+8.  Q: IoT architecture की सबसे सरल layers? — Ans: तीन: Perception, Network, Application
+9.  Q: Five-layer architecture में और कौन-सी layers? — Ans: Processing और Business layer
+10. Q: IoT में data कहाँ store और analyse होता है? — Ans: Cloud
+11. Q: IoT में cloud की भूमिका? — Ans: Complementary (सहायक): storage, processing और analytics
+12. Q: Edge computing क्या है? — Ans: Data को device या उसके पास ही process करना
+13. Q: Fog computing क्या है? — Ans: Cloud और edge devices के बीच (gateway/router पर) processing
+14. Q: IoT के कितने levels हैं? — Ans: 6 (Level 1 से 6)
+15. Q: IoT Level 1 में? — Ans: एक node, local storage और analysis; जैसे home automation
+16. Q: IoT design methodology के कितने steps? — Ans: 10 (Purpose & requirements से Application development तक)
+17. Q: Design methodology का पहला step? — Ans: Purpose and requirements specification
+18. Q: Physical design में क्या आता है? — Ans: Things (devices) और IoT protocols
+19. Q: Logical design में क्या आता है? — Ans: Functional blocks, communication models और APIs
+20. Q: IoT के functional blocks? — Ans: Device, Communication, Services, Management, Security, Application
+21. Q: IoT communication models? — Ans: Request-Response, Publish-Subscribe, Push-Pull, Exclusive Pair
+22. Q: IoT के दो मुख्य APIs? — Ans: REST-based और WebSocket-based
+23. Q: WebSocket किस प्रकार का communication देता है? — Ans: Full-duplex, लगातार connection
+24. Q: MQTT किस model पर आधारित है? — Ans: Publish-Subscribe
+25. Q: MQTT में message पहुँचाने वाला server? — Ans: Broker (जैसे Mosquitto)
+26. Q: MQTT का default port? — Ans: 1883 (TLS के साथ 8883)
+27. Q: CoAP किस protocol पर चलता है? — Ans: UDP
+28. Q: CoAP का full form? — Ans: Constrained Application Protocol
+29. Q: XMPP का full form? — Ans: Extensible Messaging and Presence Protocol
+30. Q: AMQP का full form? — Ans: Advanced Message Queuing Protocol
+31. Q: TCP का full form? — Ans: Transmission Control Protocol
+32. Q: UDP connection-oriented है या connectionless? — Ans: Connectionless
+33. Q: 6LoWPAN का full form? — Ans: IPv6 over Low-power Wireless Personal Area Networks
+34. Q: IPv4 और IPv6 address कितने bits के? — Ans: 32 और 128 bits
+35. Q: WoT का full form? — Ans: Web of Things
+36. Q: IoE (Internet of Everything) के चार तत्व? — Ans: People, Process, Data, Things
+37. Q: IIoT का full form? — Ans: Industrial Internet of Things
+38. Q: IoT development tools के उदाहरण? — Ans: Arduino IDE, Raspbian, Eclipse IoT, PlatformIO, Kaa, Home Assistant
+39. Q: Smart home का उदाहरण? — Ans: Mobile से lights, AC और door lock control
+40. Q: IoT का सबसे बड़ा challenge? — Ans: Security
+
+Unit 2: Things and Connections
+
+41. Q: Open loop और closed loop में अंतर? — Ans: Closed loop में feedback होता है, open loop में नहीं
+42. Q: Feedback loop के भाग? — Ans: Sensor, Controller और Actuator
+43. Q: Refrigerator/AC का thermostat किसका उदाहरण? — Ans: Closed loop (feedback) control system
+44. Q: Washing machine का timer किसका उदाहरण? — Ans: Open loop system
+45. Q: System को स्थिर रखने वाला feedback? — Ans: Negative feedback
+46. Q: Hard real-time system का उदाहरण? — Ans: Airbag, pacemaker
+47. Q: Soft real-time system का उदाहरण? — Ans: Video streaming
+48. Q: OSI model में कितनी layers? — Ans: 7
+49. Q: TCP/IP model में कितनी layers? — Ans: 4
+50. Q: OSI model किसने बनाया? — Ans: ISO
+51. Q: OSI layers क्रम से (नीचे से)? — Ans: Physical, Data Link, Network, Transport, Session, Presentation, Application
+52. Q: Routing किस layer का काम? — Ans: Network layer
+53. Q: Encryption/compression किस layer का काम? — Ans: Presentation layer
+54. Q: MAC address किस layer पर? — Ans: Data Link layer
+55. Q: Simplex mode का उदाहरण? — Ans: Keyboard, TV broadcast
+56. Q: Half-duplex का उदाहरण? — Ans: Walkie-talkie
+57. Q: Full-duplex का उदाहरण? — Ans: Telephone
+58. Q: Guided media के उदाहरण? — Ans: Twisted pair, Coaxial cable, Optical fiber
+59. Q: सबसे ज़्यादा bandwidth वाला medium? — Ans: Optical fiber
+60. Q: Fiber में प्रकाश को बाहर निकलने से कौन रोकता है? — Ans: Cladding (total internal reflection)
+61. Q: I2C में कितने wires? — Ans: 2 (SDA और SCL)
+62. Q: SPI में कितने wires? — Ans: 4 (MOSI, MISO, SCK, SS)
+63. Q: UART की lines? — Ans: TX और RX
+64. Q: Wi-Fi का IEEE standard? — Ans: IEEE 802.11
+65. Q: Bluetooth का IEEE standard? — Ans: IEEE 802.15.1
+66. Q: Zigbee का IEEE standard? — Ans: IEEE 802.15.4
+67. Q: BLE का full form? — Ans: Bluetooth Low Energy
+68. Q: NFC की range? — Ans: लगभग 4 cm
+69. Q: सबसे कम दूरी वाला network? — Ans: PAN (Personal Area Network)
+70. Q: LPWAN के उदाहरण? — Ans: LoRaWAN, Sigfox, NB-IoT
+71. Q: LoRa का full form? — Ans: Long Range
+72. Q: RFID का full form? — Ans: Radio Frequency Identification
+73. Q: FASTag किस technology पर काम करता है? — Ans: RFID
+74. Q: Serial को parallel में बदलने वाला? — Ans: Shift register (SIPO)
+75. Q: IoT application का process flow? — Ans: Sense → Transmit → Process/Store → Analyse → Act/Display
+
+Unit 3: Sensors, Actuators और Microcontrollers
+
+76. Q: Sensor क्या करता है? — Ans: Physical मात्रा को नापकर electrical signal में बदलता है
+77. Q: Actuator क्या करता है? — Ans: Electrical signal को गति या काम में बदलता है
+78. Q: Sensor input device है या output? — Ans: Input; actuator output device है
+79. Q: एक ऊर्जा को दूसरी में बदलने वाला device? — Ans: Transducer
+80. Q: Sensor की प्रभावशीलता किस पर निर्भर? — Ans: Sensitivity, range, resolution, accuracy
+81. Q: ज़्यादातर sensors का transfer function? — Ans: Linear
+82. Q: LDR का full form? — Ans: Light Dependent Resistor
+83. Q: LDR किस सिद्धांत पर काम करता है? — Ans: Photoconductivity (रोशनी बढ़ने पर resistance घटता है)
+84. Q: DHT11 क्या नापता है? — Ans: तापमान और नमी (humidity)
+85. Q: LM35 का output? — Ans: 10 mV प्रति °C
+86. Q: MQ-135 किस प्रकार का sensor? — Ans: Gas/air quality sensor
+87. Q: PIR sensor क्या पहचानता है? — Ans: इंसान की हलचल (motion)
+88. Q: IR sensor का उपयोग? — Ans: Obstacle (रुकावट) पहचानना
+89. Q: Ultrasonic sensor (HC-SR04) क्या नापता है? — Ans: दूरी (ध्वनि तरंगों से)
+90. Q: Magnetic field पहचानने वाला sensor? — Ans: Hall sensor
+91. Q: DC motor की दिशा किस नियम से? — Ans: Fleming's Left Hand Rule
+92. Q: Maximum power पर DC motor की efficiency? — Ans: 50%
+93. Q: तय कोण (0–180°) तक घूमने वाली motor? — Ans: Servo motor
+94. Q: तय steps में घूमने वाली motor? — Ans: Stepper motor
+95. Q: Motor driver IC के उदाहरण? — Ans: L293D, L298N
+96. Q: छोटे signal से 220V load चलाने वाला switch? — Ans: Relay
+97. Q: IoT में प्रयुक्त actuators? — Ans: Relay, DC motor, servo, stepper, solenoid, buzzer
+98. Q: Hydraulic actuator किससे चलता है? — Ans: दबाव वाले तेल (liquid) से
+99. Q: Pneumatic actuator किससे चलता है? — Ans: दबाव वाली हवा से
+100. Q: Microcontroller में एक chip पर क्या-क्या होता है? — Ans: CPU, RAM, ROM, I/O ports और timers
+101. Q: Microprocessor और microcontroller में मुख्य अंतर? — Ans: Microprocessor में RAM/ROM/I/O बाहर से लगते हैं
+102. Q: Sensors और actuators के बीच gateway का काम कौन करता है? — Ans: Microcontroller
+103. Q: Embedded system क्या है? — Ans: Hardware और software का मेल, जो एक खास काम करता है
+104. Q: Floating point गणना के लिए? — Ans: Coprocessor (FPU)
+105. Q: Embedded systems में सबसे ज़्यादा प्रयुक्त memory? — Ans: Flash और EEPROM
+106. Q: 8051 microcontroller कितने bit का? — Ans: 8-bit
+107. Q: 8051 में RAM, ROM, ports, timers, pins? — Ans: 128 bytes RAM, 4 KB ROM, 4 ports, 2 timers, 40 pins
+108. Q: 8051 किस company ने बनाया? — Ans: Intel (1980)
+109. Q: Arduino Uno का microcontroller? — Ans: ATmega328P
+110. Q: ATmega328P में Flash, SRAM, EEPROM? — Ans: 32 KB, 2 KB, 1 KB
+111. Q: ESP8266/ESP32 की ख़ास बात? — Ans: Built-in Wi-Fi (ESP32 में Bluetooth भी)
+112. Q: Raspberry Pi क्या है? — Ans: Single Board Computer (SBC)
+113. Q: Raspberry Pi को power? — Ans: USB से 5V
+114. Q: पहला microprocessor? — Ans: Intel 4004 (4-bit, 1971)
+115. Q: Harvard architecture में? — Ans: Program और data की अलग memory
+116. Q: RISC का full form? — Ans: Reduced Instruction Set Computer
+117. Q: Timer के काम? — Ans: Counting, delay, compare-capture और PWM
+118. Q: Embedded systems में task swapping का तरीका? — Ans: Time slicing
+
+Unit 4: Building IoT Applications
+
+119. Q: Arduino क्या है? — Ans: Open-source hardware और software platform
+120. Q: Arduino program को क्या कहते हैं? — Ans: Sketch
+121. Q: Sketch file का extension? — Ans: .ino
+122. Q: Arduino IDE (1.x) किस language में बना? — Ans: Java (Processing पर आधारित)
+123. Q: Sketch compile करने वाला compiler? — Ans: avr-gcc; upload के लिए avrdude
+124. Q: हर sketch के दो ज़रूरी functions? — Ans: setup() और loop()
+125. Q: setup() कितनी बार चलता है? — Ans: केवल एक बार
+126. Q: loop() कितनी बार चलता है? — Ans: लगातार बार-बार
+127. Q: Arduino Uno में digital और analog pins? — Ans: 14 digital, 6 analog
+128. Q: Uno के PWM pins? — Ans: 3, 5, 6, 9, 10, 11
+129. Q: Arduino Mega में analog pins? — Ans: 16
+130. Q: Built-in LED किस pin पर? — Ans: Pin 13
+131. Q: Uno के crystal की frequency? — Ans: 16 MHz
+132. Q: analogRead() का range? — Ans: 0 से 1023 (10-bit ADC)
+133. Q: analogWrite() का range? — Ans: 0 से 255 (PWM)
+134. Q: delay(1000) कितना रोकता है? — Ans: 1 second
+135. Q: micros() की resolution (16 MHz board)? — Ans: 4 microseconds
+136. Q: millis() क्या देता है? — Ans: Board चालू होने से अब तक के milliseconds
+137. Q: Pin को output बनाने का function? — Ans: pinMode(pin, OUTPUT)
+138. Q: Internal pull-up चालू करने के लिए? — Ans: pinMode(pin, INPUT_PULLUP)
+139. Q: Serial communication शुरू करने का function? — Ans: Serial.begin(9600)
+140. Q: Serial data देखने की window? — Ans: Serial Monitor
+141. Q: Serial.write(20) और Serial.print(20) में अंतर? — Ans: write raw byte 20 भेजता है; print अक्षर '2' और '0'
+142. Q: map(512, 0, 1023, 0, 255) लगभग? — Ans: 127
+143. Q: Uno पर EEPROM.length()? — Ans: 1024
+144. Q: Uno के interrupt pins? — Ans: 2 और 3
+145. Q: Interrupt पर चलने वाला function? — Ans: ISR (Interrupt Service Routine)
+146. Q: ISR में shared variable किस प्रकार का? — Ans: volatile
+147. Q: Embedded C क्या है? — Ans: Microcontrollers के लिए C language का extension (hardware dependent)
+148. Q: Program बनने का क्रम? — Ans: Editor → Preprocessor → Compiler → Linker → Loader
+149. Q: Preprocessor directive किस चिह्न से शुरू? — Ans: #
+150. Q: Compilation रोकने वाला directive? — Ans: #error
+151. Q: Constant बनाने के तरीके? — Ans: #define और const
+152. Q: Keil 8051 में जो data type नहीं है? — Ans: dbit (sbit, bit, sfr होते हैं)
+153. Q: Uno पर int का size? — Ans: 2 bytes
+154. Q: Uno पर double का size? — Ans: 4 bytes (Due पर 8)
+155. Q: Function calls के बीच मान बनाए रखने वाला variable? — Ans: static
+156. Q: R & 0xFE क्या करता है? — Ans: Bit 0 को clear (0) करता है
+157. Q: Bit toggle करने का operator? — Ans: XOR (^)
+158. Q: 7 / 2 (int) का मान C में? — Ans: 3
+159. Q: 7 % 3? — Ans: 1
+160. Q: 5 << 1? — Ans: 10
+161. Q: b++ + ++b का परिणाम? — Ans: Undefined behaviour
+162. Q: Infinite loop? — Ans: for(;;) या while(1)
+163. Q: कम से कम एक बार चलने वाला loop? — Ans: do-while
+164. Q: switch में case न मिलने पर? — Ans: default चलता है
+165. Q: Array किस प्रकार का data रखता है? — Ans: एक ही type का (homogeneous), लगातार memory में
+166. Q: Array index कहाँ से शुरू? — Ans: 0
+167. Q: char ch[5] = "abcde"; में समस्या? — Ans: '\0' के लिए जगह नहीं
+168. Q: "abcde" के हर अक्षर में से 'a' घटाकर योग? — Ans: 10
+169. Q: C string किससे ख़त्म होती है? — Ans: Null character '\0'
+170. Q: Function को मान भेजने के दो तरीके? — Ans: Call by value और call by reference
+171. Q: Function prototype क्या है? — Ans: Function की पहले से की गई घोषणा (return type, नाम, parameters)
+172. Q: Function के फ़ायदे? — Ans: काम को भागों में बाँटना और code reuse
+173. Q: LED के साथ resistor? — Ans: 220 Ω या 330 Ω
+174. Q: IR obstacle sensor object मिलने पर output? — Ans: LOW (active low)
+175. Q: 16×2 LCD में कितने अक्षर? — Ans: 32
+176. Q: LCD के लिए library? — Ans: LiquidCrystal
+177. Q: I2C LCD में कितने wires? — Ans: 4 (VCC, GND, SDA, SCL)
+178. Q: 4×4 keypad में keys और pins? — Ans: 16 keys, 8 pins
+179. Q: HC-05 क्या है? — Ans: Bluetooth module
+180. Q: HC-05 की default baud rate? — Ans: 9600
+181. Q: HC-05 का default password? — Ans: 1234 (या 0000)
+182. Q: HC-05 master/slave? — Ans: दोनों; HC-06 केवल slave
+183. Q: Relay के terminals? — Ans: COM, NO (Normally Open), NC (Normally Closed)
+184. Q: Arduino से 220V AC bulb चलाने के लिए? — Ans: Relay module
+185. Q: NodeMCU में कौन-सा chip? — Ans: ESP8266
+
+Unit 5: Security और Future of IoT
+
+186. Q: CIA triad का full form? — Ans: Confidentiality, Integrity, Availability
+187. Q: Data को गुप्त रखने का तरीका? — Ans: Encryption
+188. Q: AAA का full form? — Ans: Authentication, Authorization, Accounting
+189. Q: User की गतिविधि का record रखने वाला? — Ans: Accounting
+190. Q: किए गए काम से इनकार न कर पाना? — Ans: Non-repudiation (digital signature से)
+191. Q: Attacker के घुसने के सारे रास्तों का समूह? — Ans: Attack surface
+192. Q: Threat modelling methods? — Ans: STRIDE, DREAD, PASTA, OCTAVE ("NANO" नहीं)
+193. Q: STRIDE किसने बनाया? — Ans: Microsoft
+194. Q: Default password वाले cameras/routers से बना botnet? — Ans: Mirai (2016)
+195. Q: बहुत ज़्यादा traffic भेजकर system बंद करना? — Ans: DoS/DDoS attack
+196. Q: दो devices के बीच छुपकर बातचीत पढ़ना/बदलना? — Ans: Man-in-the-Middle (MITM)
+197. Q: हर संभव password आज़माना? — Ans: Brute force attack
+198. Q: नकली email से password चुराना? — Ans: Phishing
+199. Q: Data encrypt करके फिरौती माँगना? — Ans: Ransomware
+200. Q: खुद अपनी copy न बनाने वाला malware? — Ans: Trojan horse
+201. Q: Symmetric encryption का उदाहरण? — Ans: AES (एक ही key)
+202. Q: Asymmetric encryption का उदाहरण? — Ans: RSA (public और private key)
+203. Q: One-way algorithm? — Ans: Hashing
+204. Q: Secure algorithms के लिए किसकी ज़रूरत? — Ans: Powerful processor core
+205. Q: IoT की सबसे आम कमज़ोरी? — Ans: Default password न बदलना
+206. Q: Firmware दूर से update करना? — Ans: OTA (Over-The-Air) update
+207. Q: संदिग्ध गतिविधि पहचानने वाला system? — Ans: IDS (Intrusion Detection System)
+208. Q: Attack levels? — Ans: Low, Medium, High, Extremely High
+209. Q: Blockchain क्या है? — Ans: P2P network पर distributed ledger
+210. Q: पहली cryptocurrency? — Ans: Bitcoin (Satoshi Nakamoto)
+211. Q: Labelled data से सीखने वाली ML? — Ans: Supervised learning
+212. Q: इनाम-सज़ा से सीखने वाली ML? — Ans: Reinforcement learning
+213. Q: AI + IoT को क्या कहते हैं? — Ans: AIoT
+214. Q: असली machine की virtual live copy? — Ans: Digital twin
+215. Q: प्रमुख IoT cloud platforms? — Ans: AWS IoT, Microsoft Azure IoT, Google Cloud, IBM Watson
+216. Q: भारत का personal data protection कानून? — Ans: DPDP Act, 2023
+
+Unit 6: Soft Skills
+
+217. Q: Personality शब्द किससे बना? — Ans: Latin "persona" (मुखौटा)
+218. Q: Personality के factors? — Ans: Physical environment, Heredity, Culture, Particular experiences
+219. Q: Self-awareness के प्रकार? — Ans: Public और Private
+220. Q: Feedback माँगना किसका संकेत है? — Ans: Self-awareness
+221. Q: अपनी योग्यता और मूल्य के बारे में अच्छा महसूस करना? — Ans: Self-esteem
+222. Q: काम पूरा करने की क्षमता पर विश्वास? — Ans: Self-efficacy (Albert Bandura)
+223. Q: बिना बाहरी दबाव के अंदर से प्रेरणा? — Ans: Self-motivation
+224. Q: SWOT का full form? — Ans: Strengths, Weaknesses, Opportunities, Threats
+225. Q: SMART goals? — Ans: Specific, Measurable, Achievable, Relevant, Time-bound
+226. Q: Attitude के प्रकार? — Ans: Positive, Negative, Neutral
+227. Q: Attitude के घटक (ABC)? — Ans: Affective, Behavioural, Cognitive
+228. Q: Relaxation तकनीक का उदाहरण? — Ans: Autogenic training
+229. Q: काम टालने की आदत? — Ans: Procrastination
+230. Q: Urgent/important के आधार पर काम बाँटने का तरीका? — Ans: Eisenhower matrix
+231. Q: Etiquette क्या है? — Ans: समाज में अपेक्षित अच्छे व्यवहार का code
+232. Q: Communication के मुख्य प्रकार? — Ans: Verbal (बोलकर/लिखकर) और Non-verbal
+233. Q: Communication process का अंतिम चरण? — Ans: Feedback
+234. Q: Informal communication को क्या कहते हैं? — Ans: Grapevine
+235. Q: 7 C of communication? — Ans: Clear, Concise, Concrete, Correct, Coherent, Complete, Courteous
+236. Q: आत्मविश्वासी वक्ता क्या करता है? — Ans: Eye contact
+237. Q: कंधे उचकाना (shrug) क्या दिखाता है? — Ans: उदासीनता
+238. Q: उँगलियों के सिरे जोड़ना (steepling)? — Ans: आत्मविश्वास या घमंड
+239. Q: हाथ बाँधना (crossed arms)? — Ans: बचाव या असहमति
+240. Q: मज़बूत handshake क्या दिखाता है? — Ans: आत्मविश्वास
+241. Q: सुनते समय बात का मूल्यांकन करना? — Ans: Critical listening
+242. Q: अच्छा presenter क्या करता है? — Ans: विचारों को क्रम में रखता है और समय संभालता है
+243. Q: Presentation के भाग? — Ans: Introduction, Body, Conclusion
+244. Q: Letter का उद्देश्य बताने वाला भाग? — Ans: Subject line
+245. Q: Circular और notice में अंतर? — Ans: Circular खास समूह के लिए, notice सबके लिए
+246. Q: जाँच का परिणाम प्रस्तुत करने वाला document? — Ans: Report
+247. Q: BCC का full form? — Ans: Blind Carbon Copy
+248. Q: Interview से पहले company की जानकारी कहाँ से? — Ans: Company website और directories
+249. Q: Team बनने के चरण (Tuckman)? — Ans: Forming, Storming, Norming, Performing, Adjourning

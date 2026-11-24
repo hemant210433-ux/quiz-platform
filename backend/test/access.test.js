@@ -305,3 +305,60 @@ describe('Rate limit key', () => {
     assert.equal(clientIp({ headers: { 'x-forwarded-for': 'garbage' }, ip: '10.0.0.1' }), '10.0.0.1');
   });
 });
+
+describe('Public practice quizzes (with a Module) are unlimited', () => {
+  before(async () => {
+    await initStorage();
+    await setAdminCredentials(ADMIN.username, ADMIN.password);
+    app = createApp();
+    agent = request.agent(app);
+    await agent.post('/api/auth/login').set(H).send(ADMIN);
+  });
+
+  test('same person and device can attempt again and again; limit and end date are not shown or applied', async () => {
+    const { quiz } = await mk({ module: 'm2-r5', maxAttempts: 1, endAt: new Date(Date.now() + 60_000).toISOString() });
+    await publish(quiz.id);
+    for (let i = 0; i < 4; i += 1) {
+      const r = await start(quiz.slug, { studentName: 'Ravi Kumar', deviceId: 'd'.repeat(20), startKey: `k${i}`.padEnd(20, 'x') });
+      assert.equal(r.status, 201, JSON.stringify(r.body));
+    }
+    const view = await request(app).get(`/api/public/quizzes/${quiz.slug}`);
+    assert.equal(view.body.quiz.maxAttempts, null);
+    assert.equal(view.body.quiz.endAt, null);
+    assert.equal(view.body.availability.open, true);
+  });
+
+  test('a private-link quiz (no Module) keeps its limit', async () => {
+    const { quiz } = await mk({ maxAttempts: 1 });
+    await publish(quiz.id);
+    const a = await start(quiz.slug, { studentName: 'Ravi Kumar', startKey: 'a'.repeat(20) });
+    const b = await start(quiz.slug, { studentName: 'Ravi Kumar', startKey: 'b'.repeat(20) });
+    assert.equal(a.status, 201);
+    assert.equal(b.status, 403);
+  });
+});
+
+describe('Bot guard', () => {
+  before(async () => {
+    await initStorage();
+    await setAdminCredentials(ADMIN.username, ADMIN.password);
+    app = createApp();
+    agent = request.agent(app);
+    await agent.post('/api/auth/login').set(H).send(ADMIN);
+  });
+
+  test('command-line scrapers are refused, normal browsers are not', async () => {
+    const { quiz } = await mk({ module: 'm2-r5' });
+    await publish(quiz.id);
+    const bot = await request(app).post(`/api/public/quizzes/${quiz.slug}/start`).set('User-Agent', 'python-requests/2.31').send({ studentName: 'Ravi Kumar' });
+    assert.equal(bot.status, 403);
+    assert.equal(bot.body.error.code, 'AUTOMATED_ACCESS');
+    const curl = await request(app).get('/api/public/attempts/x').set('User-Agent', 'curl/8.0');
+    assert.equal(curl.status, 403);
+    const phone = await request(app).post(`/api/public/quizzes/${quiz.slug}/start`)
+      .set('User-Agent', 'Mozilla/5.0 (Linux; Android 13; SM-A135F) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36').send({ studentName: 'Ravi Kumar' });
+    assert.equal(phone.status, 201, JSON.stringify(phone.body));
+    const list = await request(app).get('/api/public/quizzes').set('User-Agent', 'curl/8.0');
+    assert.equal(list.status, 200); // the public list holds no questions, so it stays open
+  });
+});

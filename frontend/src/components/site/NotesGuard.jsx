@@ -1,17 +1,31 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
- * Discourages casual copying of the notes: no text selection, copy/cut/drag/right-click blocked, print hidden,
+ * Discourages casual copying: no text selection, copy/cut/drag/right-click blocked, print hidden,
  * and a faint tiled site-name watermark so screenshots carry the source.
  * This is a deterrent only. Text must stay in the page HTML for search engines, so anyone determined
  * (screenshot, view-source, JavaScript turned off) can still take it. Copyright text on the page is the legal protection.
+ *
+ * Owner mode: when the site owner is logged in to the admin panel (same browser), every restriction is lifted
+ * and a small toolbar lets them copy the page text or link.
  */
 export default function NotesGuard({ children, mark = 'olevelmocktest.in' }) {
   const ref = useRef(null);
+  const [owner, setOwner] = useState(false);
+  const [done, setDone] = useState('');
+
+  useEffect(() => {
+    let live = true;
+    fetch('/api/auth/me', { credentials: 'same-origin', cache: 'no-store' })
+      .then((r) => { if (live && r.ok) setOwner(true); })
+      .catch(() => {});
+    return () => { live = false; };
+  }, []);
+
   useEffect(() => {
     const el = ref.current;
-    if (!el) return undefined;
+    if (!el || owner) return undefined;
     const stop = (e) => e.preventDefault();
     const onCopy = (e) => {
       e.preventDefault();
@@ -37,13 +51,35 @@ export default function NotesGuard({ children, mark = 'olevelmocktest.in' }) {
       el.removeEventListener('selectstart', stop);
       document.removeEventListener('keydown', onKey);
     };
-  }, [mark]);
+  }, [mark, owner]);
+
+  const copy = async (what) => {
+    try {
+      await navigator.clipboard.writeText(what === 'link' ? window.location.href : ref.current?.innerText || '');
+      setDone(what);
+      setTimeout(() => setDone(''), 1800);
+    } catch {}
+  };
 
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='300' height='220'><text x='20' y='120' transform='rotate(-24 150 110)' font-family='sans-serif' font-size='17' font-weight='600' fill='%23500b22' fill-opacity='0.07'>${mark}</text></svg>`;
   return (
-    <div ref={ref} className="notes-protected relative select-none" style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10" style={{ backgroundImage: `url("data:image/svg+xml;utf8,${svg}")` }} />
-      <div className="relative">{children}</div>
+    <div>
+      {owner && (
+        <div className="mb-3 flex flex-wrap items-center gap-2 rounded-lg border border-mark-300 bg-mark-100/60 px-3 py-2 text-sm text-ink-800">
+          <b>Owner mode</b> <span>(admin logged in: copy, select and print are on for you only)</span>
+          <button type="button" onClick={() => copy('text')} className="ml-auto rounded-md bg-white px-3 py-1 font-semibold ring-1 ring-ink-300">{done === 'text' ? 'Copied' : 'Copy page text'}</button>
+          <button type="button" onClick={() => copy('link')} className="rounded-md bg-white px-3 py-1 font-semibold ring-1 ring-ink-300">{done === 'link' ? 'Copied' : 'Copy link'}</button>
+        </div>
+      )}
+      <div
+        ref={ref}
+        data-owner={owner ? 'true' : undefined}
+        className={`notes-protected relative ${owner ? '' : 'select-none'}`}
+        style={owner ? undefined : { WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
+      >
+        {!owner && <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10" style={{ backgroundImage: `url("data:image/svg+xml;utf8,${svg}")` }} />}
+        <div className="relative">{children}</div>
+      </div>
     </div>
   );
 }

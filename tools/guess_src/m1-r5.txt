@@ -1,0 +1,161 @@
+Unit 1: Internet, Email और Social Media
+Q: FSF का पूर्ण रूप? — Ans: Free Software Foundation
+Q: MITM attack का पूर्ण रूप? — Ans: Man in the Middle
+Q: Internet का जनक (Father of Internet) किसे कहते हैं? — Ans: Vint Cerf (Robert Kahn के साथ)
+Q: पहली email किसने भेजी? — Ans: Ray Tomlinson (1971)
+Q: Mosaic browser किसने बनाया? — Ans: Marc Andreessen (1993); दुनिया का पहला web browser "WorldWideWeb" (1990) Tim Berners-Lee ने बनाया था
+Q: CSS का पूर्ण रूप? — Ans: Cascading Style Sheets
+Q: WWW का पूर्ण रूप? — Ans: World Wide Web
+Q: Gmail में email attachment की अधिकतम सीमा? — Ans: 25 MB
+Q: Gmail में मुफ़्त storage कितना मिलता है? — Ans: 15 GB (Google account में साझा)
+Q: Email address (user@domain) में @ के दोनों ओर क्या होता है? — Ans: User name और domain name
+Q: Wi-Fi का प्रचलित full form? — Ans: Wireless Fidelity
+Q: Email में CC का पूर्ण रूप और काम? — Ans: Carbon Copy; एक ही email कई लोगों को भेजने के लिए
+Q: Email में BCC का पूर्ण रूप? — Ans: Blind Carbon Copy (बाकी प्राप्तकर्ताओं को पता नहीं चलता)
+Q: Twitter पर trending topic का symbol? — Ans: # (Hashtag)
+Q: Micro blogging का उदाहरण? — Ans: Twitter (अब X)
+Q: Instagram किस कंपनी का हिस्सा है? — Ans: Meta (पहले Facebook)
+Q: Facebook कब शुरू हुआ? — Ans: 2004
+Q: Twitter कब शुरू हुआ और सह-संस्थापक कौन? — Ans: 2006; Jack Dorsey (सह-संस्थापक)
+Q: Alibaba के संस्थापक? — Ans: Jack Ma
+Q: भारत में बना web browser? — Ans: Epic (2010)
+Q: Ubuntu का default web browser? — Ans: Firefox
+Q: Ubuntu का default email client? — Ans: Thunderbird
+Q: OLX किस e-commerce model का उदाहरण है? — Ans: C2C (Consumer to Consumer)
+Q: P2P एक client-server architecture है, सही या गलत? — Ans: गलत
+Q: Netiquette क्या है? — Ans: Internet पर शिष्ट व्यवहार के नियम
+Q: HTTP और HTTPS के default port? — Ans: HTTP 80, HTTPS 443
+Q: TLS और SSL का पूर्ण रूप? — Ans: Transport Layer Security और Secure Sockets Layer (cryptography में उपयोग)
+Q: PNG का पूर्ण रूप? — Ans: Portable Network Graphics
+Q: WhatsApp group में अधिकतम कितने लोग जुड़ सकते हैं? — Ans: वर्तमान में 1024 (पुराने papers में 256 आता था)
+Q: Search engine का उदाहरण? — Ans: Google, Bing
+
+Unit 2: Digital Payment और Banking
+Q: UPI का पूर्ण रूप? — Ans: Unified Payments Interface
+Q: UPI कब शुरू हुआ? — Ans: 2016 (April)
+Q: UPI ID को और क्या कहते हैं? — Ans: Virtual Payment Address (VPA)
+Q: UPI ID से भुगतान में क्या ज़रूरी नहीं होता? — Ans: IFSC code और account number
+Q: UPI PIN कितने अंक का होता है? — Ans: 4 या 6 अंक
+Q: UPI की सामान्य दैनिक सीमा? — Ans: लगभग 1 लाख रुपये प्रतिदिन (बैंक और app के अनुसार बदल सकती है)
+Q: BHIM का पूर्ण रूप? — Ans: Bharat Interface for Money (2016 में launch)
+Q: USSD का पूर्ण रूप? — Ans: Unstructured Supplementary Service Data
+Q: USSD किस पर काम करता है? — Ans: Mobile phone पर, internet के बिना भी
+Q: AEPS का पूर्ण रूप? — Ans: Aadhaar Enabled Payment System
+Q: ECS का पूर्ण रूप? — Ans: Electronic Clearing Service
+Q: IMPS का पूर्ण रूप और ख़ास बात? — Ans: Immediate Payment Service; 24×7 तुरंत पैसे भेजना (2010 में शुरू)
+Q: NEFT का पूर्ण रूप और वर्ष? — Ans: National Electronic Funds Transfer; 2005
+Q: RTGS का पूर्ण रूप, वर्ष और न्यूनतम राशि? — Ans: Real Time Gross Settlement; 2004; न्यूनतम 2 लाख रुपये
+Q: विदेश में पैसा भेजने के लिए कौन-सा code उपयोग होता है? — Ans: SWIFT code
+Q: PPI का पूर्ण रूप? — Ans: Prepaid Payment Instrument
+Q: किस card में पहले से पैसा जमा करना पड़ता है? — Ans: Prepaid card
+Q: POS का पूर्ण रूप? — Ans: Point of Sale (PIN डालकर card से भुगतान)
+Q: Credit card का आविष्कारक किसे माना जाता है? — Ans: John Biggins
+Q: Paytm कब शुरू हुआ और किसने शुरू किया? — Ans: 2010; Vijay Shekhar Sharma
+Q: PhonePe क्या है? — Ans: Digital payment app (UPI आधारित e-wallet)
+Q: e-Wallet क्या है? — Ans: मोबाइल/इंटरनेट पर पैसा रखने और भुगतान करने की digital सुविधा
+Q: Demat account किसलिए होता है? — Ans: Shares रखने और trading के लिए
+Q: OTP का पूर्ण रूप? — Ans: One Time Password (प्रमाणीकरण के लिए)
+Q: IMEI का पूर्ण रूप और अंक? — Ans: International Mobile Equipment Identity; 15 अंक
+Q: CaaS का पूर्ण रूप? — Ans: Communication as a Service
+Q: PMJJBY की आयु सीमा? — Ans: 18 से 50 वर्ष
+Q: PMSBY की आयु सीमा? — Ans: 18 से 70 वर्ष
+Q: EPFO का पूर्ण रूप? — Ans: Employees' Provident Fund Organisation
+
+Unit 3: E-Governance और Online Services
+Q: E-Governance क्या है? — Ans: IT की मदद से सरकार और नागरिकों के बीच सेवाएँ और संवाद
+Q: भारत की राष्ट्रीय E-Governance योजना? — Ans: NeGP (National e-Governance Plan)
+Q: E-Governance के चार प्रकार? — Ans: G2C, G2G, G2B, G2E
+Q: G2C का पूर्ण रूप? — Ans: Government to Citizen
+Q: G2B का पूर्ण रूप? — Ans: Government to Business
+Q: G2E का पूर्ण रूप? — Ans: Government to Employee
+Q: E-Mitra किस राज्य की E-Governance परियोजना है? — Ans: Rajasthan
+Q: Aadhaar जारी करने वाली संस्था? — Ans: UIDAI
+Q: Passport सेवा किस मंत्रालय के अंतर्गत है? — Ans: MEA (Ministry of External Affairs)
+Q: UMANG का पूर्ण रूप? — Ans: Unified Mobile Application for New-age Governance (2017 में MeitY और NeGD द्वारा विकसित)
+Q: DigiLocker कब शुरू हुआ? — Ans: 2015
+Q: UTS का पूर्ण रूप? — Ans: Unreserved Ticketing System
+Q: IRCTC पर e-ticket के लिए कौन-सी website? — Ans: www.irctc.co.in
+Q: ORS का पूर्ण रूप? — Ans: Online Registration System (e-Hospital सेवा)
+
+Unit 4: LibreOffice Writer
+Q: Number list का shortcut? — Ans: F12
+Q: Bullet list का shortcut? — Ans: Shift + F12
+Q: Manual line break का shortcut? — Ans: Shift + Enter
+Q: Column break का shortcut? — Ans: Ctrl + Shift + Enter
+Q: Page break का shortcut? — Ans: Ctrl + Enter
+Q: AutoText का shortcut? — Ans: Ctrl + F3
+Q: Options dialog का shortcut? — Ans: Alt + F12
+Q: Thesaurus का shortcut? — Ans: Ctrl + F7
+Q: Automatic spell check on/off का shortcut? — Ans: Shift + F7
+Q: Spelling dialog का shortcut? — Ans: F7
+Q: AutoRecovery का default अंतराल? — Ans: 10 मिनट
+Q: Writer में नई table का default नाम? — Ans: Table1
+Q: Writer में नई table का default size? — Ans: 2 columns और 2 rows
+Q: Writer का अधिकतम और न्यूनतम zoom? — Ans: अधिकतम 600%, न्यूनतम 20%
+Q: Paste Special का shortcut? — Ans: Ctrl + Shift + V
+Q: LibreOffice का default page orientation? — Ans: Portrait
+Q: LibreOffice extension की file extension? — Ans: .oxt
+Q: Manage Templates का shortcut? — Ans: Ctrl + Shift + N
+Q: Full screen का shortcut? — Ans: Ctrl + Shift + J
+Q: Text box tool का shortcut? — Ans: F2
+Q: Position and Size dialog का shortcut? — Ans: F4
+
+Unit 5: LibreOffice Calc
+Q: LibreOffice का spreadsheet program? — Ans: Calc
+Q: Calc में column का default width? — Ans: 0.89 inch (2.26 cm)
+Q: Calc में अधिकतम columns? — Ans: 16,384 (XFD) — LibreOffice 7.4 और बाद में; पुराने versions में 1024
+Q: Calc का अधिकतम zoom? — Ans: 400%
+Q: Calc में inequality (not equal) operator? — Ans: <>
+Q: Calc में आज की date डालने का shortcut? — Ans: Ctrl + ;
+Q: Calc में current time डालने का shortcut? — Ans: Ctrl + Shift + ;
+Q: A1 से A3 में सबसे बड़ा मान निकालने का formula? — Ans: =MAX(A1:A3)
+Q: =CEILING(120;11) का मान? — Ans: 121
+Q: Calc में Filter क्या करता है? — Ans: चुनी हुई शर्त वाली rows दिखाता है
+Q: Calc में text और number का default alignment? — Ans: Text बाईं ओर, number दाईं ओर
+Q: नई Calc file में default कितनी sheets होती हैं? — Ans: 1
+Q: Calc में Full Screen का shortcut? — Ans: Ctrl + Shift + J
+
+Unit 6: LibreOffice Impress
+Q: नई slide जोड़ने का shortcut? — Ans: Ctrl + M
+Q: Slide show पहली slide से शुरू करने की key? — Ans: F5
+Q: Slide show वर्तमान slide से शुरू करने की key? — Ans: Shift + F5
+Q: अगली slide पर जाने की key? — Ans: Page Down
+Q: पिछली slide पर जाने की key? — Ans: Page Up
+Q: पहली slide पर जाने की key? — Ans: Home
+Q: आख़िरी slide पर जाने की key? — Ans: End
+Q: Slide को सबसे ऊपर (शुरू में) ले जाने का shortcut? — Ans: Ctrl + Shift + Home
+Q: Slide को सबसे नीचे (अंत में) ले जाने का shortcut? — Ans: Ctrl + Shift + End
+Q: Slide Sorter view क्या दिखाता है? — Ans: केवल slides (thumbnails)
+Q: Slide Master में कौन-सी चीज़ें रखी जाती हैं? — Ans: Header, footer और slide number
+Q: Handout master में एक page पर कितनी slides के विकल्प मिलते हैं? — Ans: 1, 2, 3, 4, 6 और 9
+Q: Warm boot क्या है? — Ans: Computer को चालू रखकर restart करना
+Q: Cold boot क्या है? — Ans: Computer को बंद करके फिर चालू करना
+
+Unit 7: Linux (Ubuntu) Basics
+Q: Linux में कुल कितने run level होते हैं? — Ans: 7 (0 से 6)
+Q: Linux में file/directory का owner बदलने की command? — Ans: chown
+Q: Hidden files दिखाने की command? — Ans: ls -a
+Q: वर्तमान process का ID दिखाने की command? — Ans: echo $$
+Q: Linux में init process का ID? — Ans: 1
+Q: Background job को foreground में लाने की command? — Ans: fg
+Q: Linux से Windows share access करने के लिए? — Ans: smbclient
+Q: Kernel image की file का नाम? — Ans: vmlinux (compressed रूप में vmlinuz)
+Q: Linux permission 764 का मतलब? — Ans: Owner: read+write+execute; Group: read+write; Others: केवल read
+Q: Pattern खोजने की command? — Ans: grep
+Q: File print करने की command? — Ans: lpr
+Q: /dev directory में क्या होता है? — Ans: Device files
+Q: /etc directory में क्या होता है? — Ans: System configuration files
+Q: vi editor में एक character हटाने की key? — Ans: x
+Q: Ubuntu में Super key दबाने पर क्या खुलता है? — Ans: Activities overview
+Q: Windows NT में NT का मतलब? — Ans: New Technology
+
+Unit 8: Networking, Security और Computer Basics
+Q: Hub किस प्रकार का device है? — Ans: Broadcast device
+Q: Switch किस प्रकार का device है? — Ans: Unicast; MAC address table (memory) रखता है
+Q: MAC address कितने bits का होता है? — Ans: 48 bits (12 hexadecimal अंक)
+Q: IDS का पूर्ण रूप? — Ans: Intrusion Detection System
+Q: Cipher text क्या है? — Ans: Encrypt किया हुआ text
+Q: RDP का पूर्ण रूप? — Ans: Remote Desktop Protocol
+Q: Herman Hollerith का योगदान? — Ans: Punch card
+Q: VLSI किस generation की technology है? — Ans: Fourth generation
+Q: Screen पर दो रंगीन pixels के बीच की दूरी को क्या कहते हैं? — Ans: Dot pitch

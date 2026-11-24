@@ -1,0 +1,3623 @@
+{
+"m1-r5": [
+{
+"n": 1,
+"title": "Internet, Email और Social Media",
+"items": [
+[
+"FSF का पूर्ण रूप?",
+"Free Software Foundation"
+],
+[
+"MITM attack का पूर्ण रूप?",
+"Man in the Middle"
+],
+[
+"Internet का जनक (Father of Internet) किसे कहते हैं?",
+"Vint Cerf (Robert Kahn के साथ)"
+],
+[
+"पहली email किसने भेजी?",
+"Ray Tomlinson (1971)"
+],
+[
+"Mosaic browser किसने बनाया?",
+"Marc Andreessen (1993); दुनिया का पहला web browser \"WorldWideWeb\" (1990) Tim Berners-Lee ने बनाया था"
+],
+[
+"CSS का पूर्ण रूप?",
+"Cascading Style Sheets"
+],
+[
+"WWW का पूर्ण रूप?",
+"World Wide Web"
+],
+[
+"Gmail में email attachment की अधिकतम सीमा?",
+"25 MB"
+],
+[
+"Gmail में मुफ़्त storage कितना मिलता है?",
+"15 GB (Google account में साझा)"
+],
+[
+"Email address (user@domain) में @ के दोनों ओर क्या होता है?",
+"User name और domain name"
+],
+[
+"Wi-Fi का प्रचलित full form?",
+"Wireless Fidelity"
+],
+[
+"Email में CC का पूर्ण रूप और काम?",
+"Carbon Copy; एक ही email कई लोगों को भेजने के लिए"
+],
+[
+"Email में BCC का पूर्ण रूप?",
+"Blind Carbon Copy (बाकी प्राप्तकर्ताओं को पता नहीं चलता)"
+],
+[
+"Twitter पर trending topic का symbol?",
+"# (Hashtag)"
+],
+[
+"Micro blogging का उदाहरण?",
+"Twitter (अब X)"
+],
+[
+"Instagram किस कंपनी का हिस्सा है?",
+"Meta (पहले Facebook)"
+],
+[
+"Facebook कब शुरू हुआ?",
+"2004"
+],
+[
+"Twitter कब शुरू हुआ और सह-संस्थापक कौन?",
+"2006; Jack Dorsey (सह-संस्थापक)"
+],
+[
+"Alibaba के संस्थापक?",
+"Jack Ma"
+],
+[
+"भारत में बना web browser?",
+"Epic (2010)"
+],
+[
+"Ubuntu का default web browser?",
+"Firefox"
+],
+[
+"Ubuntu का default email client?",
+"Thunderbird"
+],
+[
+"OLX किस e-commerce model का उदाहरण है?",
+"C2C (Consumer to Consumer)"
+],
+[
+"P2P एक client-server architecture है, सही या गलत?",
+"गलत"
+],
+[
+"Netiquette क्या है?",
+"Internet पर शिष्ट व्यवहार के नियम"
+],
+[
+"HTTP और HTTPS के default port?",
+"HTTP 80, HTTPS 443"
+],
+[
+"TLS और SSL का पूर्ण रूप?",
+"Transport Layer Security और Secure Sockets Layer (cryptography में उपयोग)"
+],
+[
+"PNG का पूर्ण रूप?",
+"Portable Network Graphics"
+],
+[
+"WhatsApp group में अधिकतम कितने लोग जुड़ सकते हैं?",
+"वर्तमान में 1024 (पुराने papers में 256 आता था)"
+],
+[
+"Search engine का उदाहरण?",
+"Google, Bing"
+]
+],
+"slug": "1-internet-email-social-media"
+},
+{
+"n": 2,
+"title": "Digital Payment और Banking",
+"items": [
+[
+"UPI का पूर्ण रूप?",
+"Unified Payments Interface"
+],
+[
+"UPI कब शुरू हुआ?",
+"2016 (April)"
+],
+[
+"UPI ID को और क्या कहते हैं?",
+"Virtual Payment Address (VPA)"
+],
+[
+"UPI ID से भुगतान में क्या ज़रूरी नहीं होता?",
+"IFSC code और account number"
+],
+[
+"UPI PIN कितने अंक का होता है?",
+"4 या 6 अंक"
+],
+[
+"UPI की सामान्य दैनिक सीमा?",
+"लगभग 1 लाख रुपये प्रतिदिन (बैंक और app के अनुसार बदल सकती है)"
+],
+[
+"BHIM का पूर्ण रूप?",
+"Bharat Interface for Money (2016 में launch)"
+],
+[
+"USSD का पूर्ण रूप?",
+"Unstructured Supplementary Service Data"
+],
+[
+"USSD किस पर काम करता है?",
+"Mobile phone पर, internet के बिना भी"
+],
+[
+"AEPS का पूर्ण रूप?",
+"Aadhaar Enabled Payment System"
+],
+[
+"ECS का पूर्ण रूप?",
+"Electronic Clearing Service"
+],
+[
+"IMPS का पूर्ण रूप और ख़ास बात?",
+"Immediate Payment Service; 24×7 तुरंत पैसे भेजना (2010 में शुरू)"
+],
+[
+"NEFT का पूर्ण रूप और वर्ष?",
+"National Electronic Funds Transfer; 2005"
+],
+[
+"RTGS का पूर्ण रूप, वर्ष और न्यूनतम राशि?",
+"Real Time Gross Settlement; 2004; न्यूनतम 2 लाख रुपये"
+],
+[
+"विदेश में पैसा भेजने के लिए कौन-सा code उपयोग होता है?",
+"SWIFT code"
+],
+[
+"PPI का पूर्ण रूप?",
+"Prepaid Payment Instrument"
+],
+[
+"किस card में पहले से पैसा जमा करना पड़ता है?",
+"Prepaid card"
+],
+[
+"POS का पूर्ण रूप?",
+"Point of Sale (PIN डालकर card से भुगतान)"
+],
+[
+"Credit card का आविष्कारक किसे माना जाता है?",
+"John Biggins"
+],
+[
+"Paytm कब शुरू हुआ और किसने शुरू किया?",
+"2010; Vijay Shekhar Sharma"
+],
+[
+"PhonePe क्या है?",
+"Digital payment app (UPI आधारित e-wallet)"
+],
+[
+"e-Wallet क्या है?",
+"मोबाइल/इंटरनेट पर पैसा रखने और भुगतान करने की digital सुविधा"
+],
+[
+"Demat account किसलिए होता है?",
+"Shares रखने और trading के लिए"
+],
+[
+"OTP का पूर्ण रूप?",
+"One Time Password (प्रमाणीकरण के लिए)"
+],
+[
+"IMEI का पूर्ण रूप और अंक?",
+"International Mobile Equipment Identity; 15 अंक"
+],
+[
+"CaaS का पूर्ण रूप?",
+"Communication as a Service"
+],
+[
+"PMJJBY की आयु सीमा?",
+"18 से 50 वर्ष"
+],
+[
+"PMSBY की आयु सीमा?",
+"18 से 70 वर्ष"
+],
+[
+"EPFO का पूर्ण रूप?",
+"Employees' Provident Fund Organisation"
+]
+],
+"slug": "2-digital-payment-banking"
+},
+{
+"n": 3,
+"title": "E-Governance और Online Services",
+"items": [
+[
+"E-Governance क्या है?",
+"IT की मदद से सरकार और नागरिकों के बीच सेवाएँ और संवाद"
+],
+[
+"भारत की राष्ट्रीय E-Governance योजना?",
+"NeGP (National e-Governance Plan)"
+],
+[
+"E-Governance के चार प्रकार?",
+"G2C, G2G, G2B, G2E"
+],
+[
+"G2C का पूर्ण रूप?",
+"Government to Citizen"
+],
+[
+"G2B का पूर्ण रूप?",
+"Government to Business"
+],
+[
+"G2E का पूर्ण रूप?",
+"Government to Employee"
+],
+[
+"E-Mitra किस राज्य की E-Governance परियोजना है?",
+"Rajasthan"
+],
+[
+"Aadhaar जारी करने वाली संस्था?",
+"UIDAI"
+],
+[
+"Passport सेवा किस मंत्रालय के अंतर्गत है?",
+"MEA (Ministry of External Affairs)"
+],
+[
+"UMANG का पूर्ण रूप?",
+"Unified Mobile Application for New-age Governance (2017 में MeitY और NeGD द्वारा विकसित)"
+],
+[
+"DigiLocker कब शुरू हुआ?",
+"2015"
+],
+[
+"UTS का पूर्ण रूप?",
+"Unreserved Ticketing System"
+],
+[
+"IRCTC पर e-ticket के लिए कौन-सी website?",
+"www.irctc.co.in"
+],
+[
+"ORS का पूर्ण रूप?",
+"Online Registration System (e-Hospital सेवा)"
+]
+],
+"slug": "3-e-governance-online-services"
+},
+{
+"n": 4,
+"title": "LibreOffice Writer",
+"items": [
+[
+"Number list का shortcut?",
+"F12"
+],
+[
+"Bullet list का shortcut?",
+"Shift + F12"
+],
+[
+"Manual line break का shortcut?",
+"Shift + Enter"
+],
+[
+"Column break का shortcut?",
+"Ctrl + Shift + Enter"
+],
+[
+"Page break का shortcut?",
+"Ctrl + Enter"
+],
+[
+"AutoText का shortcut?",
+"Ctrl + F3"
+],
+[
+"Options dialog का shortcut?",
+"Alt + F12"
+],
+[
+"Thesaurus का shortcut?",
+"Ctrl + F7"
+],
+[
+"Automatic spell check on/off का shortcut?",
+"Shift + F7"
+],
+[
+"Spelling dialog का shortcut?",
+"F7"
+],
+[
+"AutoRecovery का default अंतराल?",
+"10 मिनट"
+],
+[
+"Writer में नई table का default नाम?",
+"Table1"
+],
+[
+"Writer में नई table का default size?",
+"2 columns और 2 rows"
+],
+[
+"Writer का अधिकतम और न्यूनतम zoom?",
+"अधिकतम 600%, न्यूनतम 20%"
+],
+[
+"Paste Special का shortcut?",
+"Ctrl + Shift + V"
+],
+[
+"LibreOffice का default page orientation?",
+"Portrait"
+],
+[
+"LibreOffice extension की file extension?",
+".oxt"
+],
+[
+"Manage Templates का shortcut?",
+"Ctrl + Shift + N"
+],
+[
+"Full screen का shortcut?",
+"Ctrl + Shift + J"
+],
+[
+"Text box tool का shortcut?",
+"F2"
+],
+[
+"Position and Size dialog का shortcut?",
+"F4"
+]
+],
+"slug": "4-libreoffice-writer"
+},
+{
+"n": 5,
+"title": "LibreOffice Calc",
+"items": [
+[
+"LibreOffice का spreadsheet program?",
+"Calc"
+],
+[
+"Calc में column का default width?",
+"0.89 inch (2.26 cm)"
+],
+[
+"Calc में अधिकतम columns?",
+"16,384 (XFD) — LibreOffice 7.4 और बाद में; पुराने versions में 1024"
+],
+[
+"Calc का अधिकतम zoom?",
+"400%"
+],
+[
+"Calc में inequality (not equal) operator?",
+"<>"
+],
+[
+"Calc में आज की date डालने का shortcut?",
+"Ctrl + ;"
+],
+[
+"Calc में current time डालने का shortcut?",
+"Ctrl + Shift + ;"
+],
+[
+"A1 से A3 में सबसे बड़ा मान निकालने का formula?",
+"=MAX(A1:A3)"
+],
+[
+"=CEILING(120;11) का मान?",
+"121"
+],
+[
+"Calc में Filter क्या करता है?",
+"चुनी हुई शर्त वाली rows दिखाता है"
+],
+[
+"Calc में text और number का default alignment?",
+"Text बाईं ओर, number दाईं ओर"
+],
+[
+"नई Calc file में default कितनी sheets होती हैं?",
+"1"
+],
+[
+"Calc में Full Screen का shortcut?",
+"Ctrl + Shift + J"
+]
+],
+"slug": "5-libreoffice-calc"
+},
+{
+"n": 6,
+"title": "LibreOffice Impress",
+"items": [
+[
+"नई slide जोड़ने का shortcut?",
+"Ctrl + M"
+],
+[
+"Slide show पहली slide से शुरू करने की key?",
+"F5"
+],
+[
+"Slide show वर्तमान slide से शुरू करने की key?",
+"Shift + F5"
+],
+[
+"अगली slide पर जाने की key?",
+"Page Down"
+],
+[
+"पिछली slide पर जाने की key?",
+"Page Up"
+],
+[
+"पहली slide पर जाने की key?",
+"Home"
+],
+[
+"आख़िरी slide पर जाने की key?",
+"End"
+],
+[
+"Slide को सबसे ऊपर (शुरू में) ले जाने का shortcut?",
+"Ctrl + Shift + Home"
+],
+[
+"Slide को सबसे नीचे (अंत में) ले जाने का shortcut?",
+"Ctrl + Shift + End"
+],
+[
+"Slide Sorter view क्या दिखाता है?",
+"केवल slides (thumbnails)"
+],
+[
+"Slide Master में कौन-सी चीज़ें रखी जाती हैं?",
+"Header, footer और slide number"
+],
+[
+"Handout master में एक page पर कितनी slides के विकल्प मिलते हैं?",
+"1, 2, 3, 4, 6 और 9"
+],
+[
+"Warm boot क्या है?",
+"Computer को चालू रखकर restart करना"
+],
+[
+"Cold boot क्या है?",
+"Computer को बंद करके फिर चालू करना"
+]
+],
+"slug": "6-libreoffice-impress"
+},
+{
+"n": 7,
+"title": "Linux (Ubuntu) Basics",
+"items": [
+[
+"Linux में कुल कितने run level होते हैं?",
+"7 (0 से 6)"
+],
+[
+"Linux में file/directory का owner बदलने की command?",
+"chown"
+],
+[
+"Hidden files दिखाने की command?",
+"ls -a"
+],
+[
+"वर्तमान process का ID दिखाने की command?",
+"echo $$"
+],
+[
+"Linux में init process का ID?",
+"1"
+],
+[
+"Background job को foreground में लाने की command?",
+"fg"
+],
+[
+"Linux से Windows share access करने के लिए?",
+"smbclient"
+],
+[
+"Kernel image की file का नाम?",
+"vmlinux (compressed रूप में vmlinuz)"
+],
+[
+"Linux permission 764 का मतलब?",
+"Owner: read+write+execute; Group: read+write; Others: केवल read"
+],
+[
+"Pattern खोजने की command?",
+"grep"
+],
+[
+"File print करने की command?",
+"lpr"
+],
+[
+"/dev directory में क्या होता है?",
+"Device files"
+],
+[
+"/etc directory में क्या होता है?",
+"System configuration files"
+],
+[
+"vi editor में एक character हटाने की key?",
+"x"
+],
+[
+"Ubuntu में Super key दबाने पर क्या खुलता है?",
+"Activities overview"
+],
+[
+"Windows NT में NT का मतलब?",
+"New Technology"
+]
+],
+"slug": "7-linux-ubuntu-basics"
+},
+{
+"n": 8,
+"title": "Networking, Security और Computer Basics",
+"items": [
+[
+"Hub किस प्रकार का device है?",
+"Broadcast device"
+],
+[
+"Switch किस प्रकार का device है?",
+"Unicast; MAC address table (memory) रखता है"
+],
+[
+"MAC address कितने bits का होता है?",
+"48 bits (12 hexadecimal अंक)"
+],
+[
+"IDS का पूर्ण रूप?",
+"Intrusion Detection System"
+],
+[
+"Cipher text क्या है?",
+"Encrypt किया हुआ text"
+],
+[
+"RDP का पूर्ण रूप?",
+"Remote Desktop Protocol"
+],
+[
+"Herman Hollerith का योगदान?",
+"Punch card"
+],
+[
+"VLSI किस generation की technology है?",
+"Fourth generation"
+],
+[
+"Screen पर दो रंगीन pixels के बीच की दूरी को क्या कहते हैं?",
+"Dot pitch"
+]
+],
+"slug": "8-networking-security-computer-basics"
+}
+],
+"m2-r5": [
+{
+"n": 1,
+"title": "Introduction to Web Design",
+"items": [
+[
+"WWW का full form?",
+"World Wide Web"
+],
+[
+"WWW का आविष्कार किसने किया?",
+"Tim Berners-Lee (1989–1990, CERN)"
+],
+[
+"Internet किसका network है?",
+"Networks का network (global network of networks)"
+],
+[
+"Website क्या है?",
+"एक domain के अंतर्गत आपस में जुड़े web pages का समूह"
+],
+[
+"Website के पहले page को क्या कहते हैं?",
+"Home page"
+],
+[
+"Web page किस language में बनता है?",
+"HTML"
+],
+[
+"URL का full form?",
+"Uniform Resource Locator"
+],
+[
+"HTTP का full form?",
+"HyperText Transfer Protocol"
+],
+[
+"HTTP का default port?",
+"80; HTTPS का 443"
+],
+[
+"Browser और server के बीच web page मँगाने के लिए कौन-सा protocol?",
+"HTTP/HTTPS"
+],
+[
+"Front end किसे कहते हैं?",
+"Website का वह भाग जो user को दिखता है (HTML, CSS, JavaScript)"
+],
+[
+"Back end किसे कहते हैं?",
+"Server, database और logic वाला भाग (PHP, Python, Node.js, MySQL)"
+],
+[
+"Client side scripting language का उदाहरण?",
+"JavaScript"
+],
+[
+"Server side scripting language के उदाहरण?",
+"PHP, ASP.NET, JSP, Python, Node.js"
+],
+[
+"Responsive web design क्या है?",
+"Website का हर screen size (mobile, tablet, desktop) पर अपने आप ठीक दिखना"
+],
+[
+"Responsive design के लिए CSS की कौन-सी technique उपयोग होती है?",
+"Media queries"
+],
+[
+"Static website क्या है?",
+"जिसका content हर user के लिए एक जैसा और fixed रहता है"
+],
+[
+"Dynamic website क्या है?",
+"जिसका content database या user के अनुसार बदलता है"
+],
+[
+"Web browser के उदाहरण?",
+"Chrome, Firefox, Edge, Safari, Opera"
+],
+[
+"DNS का काम?",
+"Domain name को IP address में बदलना"
+]
+],
+"slug": "1-introduction-to-web-design"
+},
+{
+"n": 2,
+"title": "Editors",
+"items": [
+[
+"HTML file किस editor में लिख सकते हैं?",
+"किसी भी text editor में, जैसे Notepad, Notepad++, Sublime Text, VS Code"
+],
+[
+"Notepad++ किस operating system के लिए है?",
+"Windows"
+],
+[
+"Notepad++ और Sublime Text की ख़ास सुविधा?",
+"Syntax highlighting और auto-completion"
+],
+[
+"HTML file का extension?",
+".html या .htm"
+],
+[
+"HTML file को देखने के लिए क्या करते हैं?",
+"उसे browser में खोलते हैं"
+],
+[
+"WYSIWYG का full form?",
+"What You See Is What You Get"
+],
+[
+"WYSIWYG editor का उदाहरण?",
+"Adobe Dreamweaver"
+],
+[
+"CSS file का extension?",
+".css"
+],
+[
+"JavaScript file का extension?",
+".js"
+]
+],
+"slug": "2-editors"
+},
+{
+"n": 3,
+"title": "HTML Basics",
+"items": [
+[
+"HTML का full form?",
+"HyperText Markup Language"
+],
+[
+"HTML किस प्रकार की language है?",
+"Markup language (programming language नहीं)"
+],
+[
+"HTML का जनक?",
+"Tim Berners-Lee"
+],
+[
+"HTML5 document की पहली line?",
+"<!DOCTYPE html>"
+],
+[
+"HTML document का root element?",
+"<html>"
+],
+[
+"Page का title कहाँ लिखते हैं?",
+"<head> के अंदर <title> tag में"
+],
+[
+"Page पर दिखने वाला content किस tag में?",
+"<body>"
+],
+[
+"सबसे बड़ी heading का tag?",
+"<h1>; सबसे छोटी <h6>"
+],
+[
+"HTML में कितनी headings होती हैं?",
+"6"
+],
+[
+"Paragraph का tag?",
+"<p>"
+],
+[
+"Line break का tag?",
+"<br> (empty tag)"
+],
+[
+"Horizontal line का tag?",
+"<hr>"
+],
+[
+"Empty (closing tag न होने वाले) tags के उदाहरण?",
+"<br>, <hr>, <img>, <input>, <meta>"
+],
+[
+"Bold text के tags?",
+"<b> और <strong>"
+],
+[
+"Italic text के tags?",
+"<i> और <em>"
+],
+[
+"Underline का tag?",
+"<u>"
+],
+[
+"Strikethrough का tag?",
+"<s> या <del>"
+],
+[
+"Superscript (जैसे x²) का tag?",
+"<sup>; subscript (H₂O) के लिए <sub>"
+],
+[
+"Preformatted text (spaces जैसे के तैसे) का tag?",
+"<pre>"
+],
+[
+"Block level element का उदाहरण?",
+"<div>, <p>, <h1>"
+],
+[
+"Inline element का उदाहरण?",
+"<span>, <a>, <b>"
+],
+[
+"Hyperlink बनाने का tag?",
+"<a> (anchor tag)"
+],
+[
+"Link का पता किस attribute में?",
+"href"
+],
+[
+"Link को नए tab में खोलने के लिए?",
+"target=\"_blank\""
+],
+[
+"Same page के किसी भाग पर जाने वाला link?",
+"Named anchor: <a href=\"#id\">"
+],
+[
+"Email link कैसे बनाते हैं?",
+"<a href=\"mailto:abc@xyz.com\">"
+],
+[
+"Image लगाने का tag?",
+"<img>"
+],
+[
+"Image का path किस attribute में?",
+"src"
+],
+[
+"Image न दिखने पर दिखने वाला text?",
+"alt attribute"
+],
+[
+"Table बनाने का tag?",
+"<table>"
+],
+[
+"Table row का tag?",
+"<tr>"
+],
+[
+"Table data (cell) का tag?",
+"<td>; heading cell के लिए <th>"
+],
+[
+"<th> का text default में कैसा दिखता है?",
+"Bold और center"
+],
+[
+"दो या ज़्यादा columns मिलाने का attribute?",
+"colspan"
+],
+[
+"दो या ज़्यादा rows मिलाने का attribute?",
+"rowspan"
+],
+[
+"Cell की border और content के बीच की जगह?",
+"cellpadding"
+],
+[
+"दो cells के बीच की जगह?",
+"cellspacing"
+],
+[
+"Table का शीर्षक (caption) लगाने का tag?",
+"<caption>"
+],
+[
+"Ordered list का tag?",
+"<ol>"
+],
+[
+"Unordered (bullet) list का tag?",
+"<ul>"
+],
+[
+"List item का tag?",
+"<li>"
+],
+[
+"Ordered list में Roman numbers के लिए?",
+"type=\"I\" या type=\"i\""
+],
+[
+"Ordered list को 5 से शुरू करने का attribute?",
+"start=\"5\""
+],
+[
+"Definition list के tags?",
+"<dl>, <dt> (term), <dd> (description)"
+],
+[
+"Form बनाने का tag?",
+"<form>"
+],
+[
+"Form data भेजने का पता किस attribute में?",
+"action"
+],
+[
+"Form के method attribute के मान?",
+"GET और POST"
+],
+[
+"Password जैसे गुप्त data के लिए कौन-सा method बेहतर?",
+"POST (data URL में नहीं दिखता)"
+],
+[
+"Text box का tag?",
+"<input type=\"text\">"
+],
+[
+"Password field?",
+"<input type=\"password\">"
+],
+[
+"कई options में से एक चुनने के लिए?",
+"Radio button (type=\"radio\")"
+],
+[
+"कई options चुनने के लिए?",
+"Checkbox (type=\"checkbox\")"
+],
+[
+"Radio buttons को एक group में रखने के लिए?",
+"सबका name एक जैसा रखते हैं"
+],
+[
+"Dropdown list का tag?",
+"<select> और उसके अंदर <option>"
+],
+[
+"कई lines का text लिखने का tag?",
+"<textarea>"
+],
+[
+"Form submit button?",
+"<input type=\"submit\">"
+],
+[
+"Form साफ़ करने वाला button?",
+"<input type=\"reset\">"
+],
+[
+"Frames किस tag से बनते थे?",
+"<frameset> और <frame> (HTML5 में हटा दिए गए)"
+],
+[
+"एक page के अंदर दूसरा page दिखाने का tag?",
+"<iframe>"
+],
+[
+"HTML5 के नए semantic tags?",
+"<header>, <nav>, <section>, <article>, <aside>, <footer>"
+],
+[
+"HTML5 में audio लगाने का tag?",
+"<audio>"
+],
+[
+"HTML5 में video लगाने का tag?",
+"<video>"
+],
+[
+"Audio/video पर play-pause buttons दिखाने का attribute?",
+"controls"
+],
+[
+"Field को भरना अनिवार्य करने का attribute?",
+"required"
+],
+[
+"Input box में हल्का संकेत text?",
+"placeholder"
+],
+[
+"Page खुलते ही cursor किसी field पर लाने का attribute?",
+"autofocus"
+],
+[
+"Input के pattern (जैसे 10 अंक) की जाँच का attribute?",
+"pattern"
+],
+[
+"HTML5 में email input?",
+"<input type=\"email\">"
+],
+[
+"Slider बनाने का input type?",
+"type=\"range\""
+],
+[
+"Date चुनने का input type?",
+"type=\"date\""
+],
+[
+"Number input में न्यूनतम/अधिकतम मान?",
+"min और max attributes"
+],
+[
+"YouTube video या map page में लगाने के लिए?",
+"<iframe> (embed code)"
+],
+[
+"HTML comment कैसे लिखते हैं?",
+"<!-- comment -->"
+],
+[
+"Copyright symbol © का entity?",
+"&copy;"
+],
+[
+"Non-breaking space का entity?",
+"&nbsp;"
+],
+[
+"< चिह्न का entity?",
+"&lt;; > के लिए &gt;"
+]
+],
+"slug": "3-html-basics"
+},
+{
+"n": 4,
+"title": "CSS",
+"items": [
+[
+"CSS का full form?",
+"Cascading Style Sheets"
+],
+[
+"CSS का उपयोग?",
+"Web page की design (रंग, font, layout) के लिए"
+],
+[
+"CSS के प्रकार?",
+"Inline, Internal और External"
+],
+[
+"Inline CSS किस attribute में लिखते हैं?",
+"style"
+],
+[
+"Internal CSS कहाँ लिखते हैं?",
+"<head> में <style> tag के अंदर"
+],
+[
+"External CSS file कैसे जोड़ते हैं?",
+"<link rel=\"stylesheet\" href=\"style.css\">"
+],
+[
+"सबसे ज़्यादा priority किस CSS की?",
+"Inline CSS"
+],
+[
+"CSS rule के दो भाग?",
+"Selector और Declaration (property: value)"
+],
+[
+"Universal selector?",
+"* (सभी elements)"
+],
+[
+"ID selector किस चिह्न से?",
+"# (जैसे #main)"
+],
+[
+"Class selector किस चिह्न से?",
+". (जैसे .box)"
+],
+[
+"एक ID page पर कितनी बार?",
+"केवल एक बार; class कई बार उपयोग हो सकती है"
+],
+[
+"Group selector कैसे लिखते हैं?",
+"Comma से: h1, h2, p {...}"
+],
+[
+"Attribute selector का उदाहरण?",
+"input[type=\"text\"]"
+],
+[
+"CSS में comment?",
+"/* comment */"
+],
+[
+"Background रंग की property?",
+"background-color"
+],
+[
+"Background image की property?",
+"background-image: url(\"a.jpg\")"
+],
+[
+"Background image को दोहराने से रोकने के लिए?",
+"background-repeat: no-repeat"
+],
+[
+"Text का रंग बदलने की property?",
+"color"
+],
+[
+"Font size की property?",
+"font-size"
+],
+[
+"Font बदलने की property?",
+"font-family"
+],
+[
+"Text को bold करने की property?",
+"font-weight: bold"
+],
+[
+"Text को center करने की property?",
+"text-align: center"
+],
+[
+"Link का underline हटाने के लिए?",
+"text-decoration: none"
+],
+[
+"Text को capital letters में बदलने के लिए?",
+"text-transform: uppercase"
+],
+[
+"Box model के चार भाग (अंदर से बाहर)?",
+"Content, Padding, Border, Margin"
+],
+[
+"Content और border के बीच की जगह?",
+"Padding"
+],
+[
+"Border के बाहर की जगह?",
+"Margin"
+],
+[
+"Element को छुपाने के लिए?",
+"display: none (जगह भी हट जाती है) या visibility: hidden (जगह रहती है)"
+],
+[
+"Position property के मान?",
+"static (default), relative, absolute, fixed, sticky"
+],
+[
+"Scroll करने पर भी element अपनी जगह रहे, इसके लिए?",
+"position: fixed"
+],
+[
+"Elements की परतों (ऊपर-नीचे) का क्रम?",
+"z-index"
+],
+[
+"Element को बाएँ या दाएँ खिसकाने के लिए?",
+"float: left/right"
+],
+[
+"Mouse ऊपर आने पर style बदलने का pseudo-class?",
+":hover"
+],
+[
+"Visited link का pseudo-class?",
+":visited"
+],
+[
+"List के bullet बदलने की property?",
+"list-style-type"
+],
+[
+"Table borders को एक line करने के लिए?",
+"border-collapse: collapse"
+],
+[
+"CSS से menu (navigation bar) कैसे बनाते हैं?",
+"<ul> list को display: inline या float और link styling से"
+],
+[
+"Image gallery बनाने के लिए?",
+"Images को float या flex/grid के साथ बराबर size में रखकर"
+],
+[
+"Rounded corners की property?",
+"border-radius"
+]
+],
+"slug": "4-css"
+},
+{
+"n": 5,
+"title": "CSS Framework (W3.CSS)",
+"items": [
+[
+"W3.CSS क्या है?",
+"W3Schools का मुफ़्त, हल्का CSS framework"
+],
+[
+"W3.CSS को page में जोड़ने के लिए?",
+"<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">"
+],
+[
+"W3.CSS में JavaScript की ज़रूरत?",
+"नहीं, यह केवल CSS है"
+],
+[
+"W3.CSS में container class?",
+"w3-container"
+],
+[
+"W3.CSS में card जैसा shadow box?",
+"w3-card (w3-card-4 गहरी shadow)"
+],
+[
+"W3.CSS में लाल background?",
+"w3-red"
+],
+[
+"W3.CSS में text का रंग नीला?",
+"w3-text-blue"
+],
+[
+"W3.CSS में panel class?",
+"w3-panel"
+],
+[
+"W3.CSS में border class?",
+"w3-border"
+],
+[
+"W3.CSS में बड़ा font?",
+"w3-large, w3-xlarge, w3-xxlarge"
+],
+[
+"W3.CSS में table class?",
+"w3-table (w3-striped, w3-bordered)"
+],
+[
+"W3.CSS में rounded image?",
+"w3-round या w3-circle"
+],
+[
+"W3.CSS grid में row और column?",
+"w3-row और w3-col (w3-half, w3-third, w3-quarter)"
+],
+[
+"W3.CSS grid कितने columns का है?",
+"12"
+],
+[
+"W3.CSS में button class?",
+"w3-button"
+]
+],
+"slug": "5-css-framework-w3-css"
+},
+{
+"n": 6,
+"title": "JavaScript और AngularJS",
+"items": [
+[
+"JavaScript किस प्रकार की language है?",
+"Client side scripting language"
+],
+[
+"JavaScript किसने बनाई?",
+"Brendan Eich (Netscape, 1995)"
+],
+[
+"JavaScript का पुराना नाम?",
+"LiveScript (शुरू में Mocha)"
+],
+[
+"JavaScript को HTML में किस tag में लिखते हैं?",
+"<script>"
+],
+[
+"External JavaScript file जोड़ने के लिए?",
+"<script src=\"app.js\"></script>"
+],
+[
+"JavaScript में variable घोषित करने के keywords?",
+"var, let और const"
+],
+[
+"JavaScript case-sensitive है?",
+"हाँ"
+],
+[
+"== और === में अंतर?",
+"== केवल मान जाँचता है; === मान और type दोनों"
+],
+[
+"typeof \"5\" का output?",
+"\"string\""
+],
+[
+"\"5\" + 3 का output?",
+"\"53\" (string जुड़ती है)"
+],
+[
+"\"5\" - 3 का output?",
+"2"
+],
+[
+"Alert box दिखाने का function?",
+"alert()"
+],
+[
+"OK/Cancel वाला box?",
+"confirm() (true/false देता है)"
+],
+[
+"User से input लेने वाला box?",
+"prompt()"
+],
+[
+"Page पर लिखने का तरीका?",
+"document.write()"
+],
+[
+"ID से element पकड़ने का तरीका?",
+"document.getElementById(\"id\")"
+],
+[
+"Element का content बदलने के लिए?",
+"innerHTML"
+],
+[
+"Button click पर function चलाने का event?",
+"onclick"
+],
+[
+"Page load होने पर चलने वाला event?",
+"onload"
+],
+[
+"Mouse ऊपर आने का event?",
+"onmouseover"
+],
+[
+"Form submit होने पर validation किस event में?",
+"onsubmit"
+],
+[
+"Input का मान बदलने पर event?",
+"onchange"
+],
+[
+"Form validation में field खाली है, कैसे जाँचें?",
+"if (x == \"\") और return false"
+],
+[
+"JavaScript में comment?",
+"// (एक line) और /* */ (कई lines)"
+],
+[
+"Console में output के लिए?",
+"console.log()"
+],
+[
+"AngularJS किसने बनाया?",
+"Google (Miško Hevery)"
+],
+[
+"AngularJS किस language पर आधारित framework है?",
+"JavaScript"
+],
+[
+"AngularJS application शुरू करने का directive?",
+"ng-app"
+],
+[
+"Input को data से जोड़ने (two-way binding) का directive?",
+"ng-model"
+],
+[
+"Data दिखाने वाला directive?",
+"ng-bind"
+],
+[
+"Variables को शुरुआती मान देने का directive?",
+"ng-init"
+],
+[
+"List को दोहराने (loop) का directive?",
+"ng-repeat"
+],
+[
+"AngularJS expression कैसे लिखते हैं?",
+"Double curly braces में: {{ 5 + 5 }}"
+],
+[
+"{{ 5 + 5 }} का output?",
+"10"
+],
+[
+"AngularJS में controller का directive?",
+"ng-controller"
+],
+[
+"AngularJS के module बनाने का तरीका?",
+"angular.module(\"myApp\", [])"
+]
+],
+"slug": "6-javascript-angularjs"
+},
+{
+"n": 7,
+"title": "Photo Editor",
+"items": [
+[
+"Photo editing software के उदाहरण?",
+"Adobe Photoshop, GIMP (मुफ़्त), Paint.NET"
+],
+[
+"GIMP का full form?",
+"GNU Image Manipulation Program"
+],
+[
+"Photoshop file का extension?",
+".psd"
+],
+[
+"GIMP file का extension?",
+".xcf"
+],
+[
+"Image का कोई भाग चुनने वाले tools?",
+"Selection tools (Rectangle, Ellipse, Lasso/Free select, Magic Wand/Fuzzy select)"
+],
+[
+"एक जैसे रंग वाला क्षेत्र चुनने का tool?",
+"Magic Wand (GIMP में Fuzzy Select)"
+],
+[
+"Image का अनचाहा भाग काटने का tool?",
+"Crop tool"
+],
+[
+"Image को घुमाने, size बदलने वाले tools?",
+"Transform tools (Rotate, Scale, Flip, Move)"
+],
+[
+"Image के दाग़ हटाने का tool?",
+"Clone stamp या Healing tool"
+],
+[
+"Paint tools के उदाहरण?",
+"Brush, Pencil, Eraser, Bucket fill, Gradient"
+],
+[
+"Layer क्या है?",
+"Image की पारदर्शी परत, जिस पर अलग से काम किया जा सकता है"
+],
+[
+"Image की चमक बदलने की setting?",
+"Brightness/Contrast"
+],
+[
+"Red-eye हटाने के लिए?",
+"Red eye removal tool/filter"
+],
+[
+"Image धुंधली (blur) करने के लिए?",
+"Blur filter"
+],
+[
+"Web के लिए photos का सबसे आम format?",
+"JPEG; पारदर्शी background के लिए PNG; animation के लिए GIF"
+]
+],
+"slug": "7-photo-editor"
+},
+{
+"n": 8,
+"title": "Web Publishing और Browsing",
+"items": [
+[
+"SGML का full form?",
+"Standard Generalized Markup Language"
+],
+[
+"HTML किससे निकली है?",
+"SGML से"
+],
+[
+"XML का full form?",
+"eXtensible Markup Language"
+],
+[
+"Web hosting क्या है?",
+"Website की files को internet से जुड़े server पर रखना"
+],
+[
+"Web hosting के प्रकार?",
+"Shared, VPS, Dedicated, Cloud और Free hosting"
+],
+[
+"Website files server पर upload करने का protocol?",
+"FTP (File Transfer Protocol)"
+],
+[
+"FTP का default port?",
+"21"
+],
+[
+"FTP client software का उदाहरण?",
+"FileZilla"
+],
+[
+"Domain name खरीदने वाली संस्था को क्या कहते हैं?",
+"Domain registrar"
+],
+[
+".in किस देश का domain है?",
+"India"
+],
+[
+".edu, .gov, .org किसके लिए?",
+"शिक्षा, सरकार और संस्थाओं (non-profit) के लिए"
+],
+[
+"Document interchange standards के उदाहरण?",
+"HTML, XML, PDF, RTF"
+],
+[
+"Web page का description और keywords किस tag में?",
+"<meta> tag"
+],
+[
+"SEO का full form?",
+"Search Engine Optimization"
+],
+[
+"Search engine के उदाहरण?",
+"Google, Bing, Yahoo, DuckDuckGo"
+],
+[
+"पहला graphical web browser?",
+"Mosaic (1993)"
+],
+[
+"Publishing tools के उदाहरण?",
+"WordPress, Blogger, Dreamweaver"
+],
+[
+"CMS का full form?",
+"Content Management System (जैसे WordPress)"
+],
+[
+"Web page design के सिद्धांत?",
+"सरल navigation, एक जैसा layout, पढ़ने योग्य font, तेज़ loading और responsive design"
+]
+],
+"slug": "8-web-publishing-browsing"
+}
+],
+"m3-r5": [
+{
+"n": 1,
+"title": "Introduction to Programming",
+"items": [
+[
+"Algorithm क्या है?",
+"किसी समस्या को हल करने के क्रमबद्ध, सीमित steps"
+],
+[
+"Algorithm की विशेषताएँ?",
+"Input, Output, Definiteness, Finiteness, Effectiveness"
+],
+[
+"Flowchart क्या है?",
+"Algorithm का चित्र (symbols) द्वारा प्रदर्शन"
+],
+[
+"Pseudocode क्या है?",
+"साधारण भाषा जैसे शब्दों में लिखा algorithm"
+],
+[
+"Compiler क्या करता है?",
+"पूरे program को एक साथ machine code में बदलता है"
+],
+[
+"Interpreter क्या करता है?",
+"Program को line by line translate और execute करता है"
+],
+[
+"Python compiled है या interpreted?",
+"Interpreted (पहले bytecode, फिर PVM पर चलता है)"
+],
+[
+"Assembly language को machine code में बदलने वाला?",
+"Assembler"
+],
+[
+"Program की गलतियाँ ढूँढने और ठीक करने को कहते हैं?",
+"Debugging"
+],
+[
+"Errors के प्रकार?",
+"Syntax error, Runtime error और Logical error"
+],
+[
+"गलत output देने वाली, पर बिना रुके चलने वाली error?",
+"Logical error"
+],
+[
+"Low level language के उदाहरण?",
+"Machine language और Assembly language"
+],
+[
+"High level language के उदाहरण?",
+"Python, C, Java"
+],
+[
+"Program की जानकारी लिखकर रखना?",
+"Documentation"
+],
+[
+"Testing का उद्देश्य?",
+"Program में errors ढूँढना और सही output की जाँच करना"
+]
+],
+"slug": "1-introduction-to-programming"
+},
+{
+"n": 2,
+"title": "Algorithms और Flowcharts",
+"items": [
+[
+"Flowchart में Start/Stop का symbol?",
+"Oval (Terminal)"
+],
+[
+"Input/Output का symbol?",
+"Parallelogram"
+],
+[
+"Process (गणना) का symbol?",
+"Rectangle"
+],
+[
+"Decision (शर्त) का symbol?",
+"Diamond (Rhombus)"
+],
+[
+"Flow की दिशा दिखाने वाला symbol?",
+"Arrow (Flow line)"
+],
+[
+"Flowchart को दूसरे page से जोड़ने का symbol?",
+"Connector (Circle)"
+],
+[
+"Decision box से कितने रास्ते निकलते हैं?",
+"आमतौर पर दो (Yes/No)"
+],
+[
+"Processing के तीन प्रकार?",
+"Sequential, Decision based (selection) और Iterative (loop)"
+],
+[
+"बिना तीसरे variable के a और b का मान बदलना?",
+"a = a + b; b = a - b; a = a - b (Python में a, b = b, a)"
+],
+[
+"Decimal 10 का binary?",
+"1010"
+],
+[
+"Decimal 25 का binary?",
+"11001"
+],
+[
+"Decimal को binary में बदलने का तरीका?",
+"2 से बार-बार भाग देकर शेषफल नीचे से ऊपर पढ़ना"
+],
+[
+"संख्या 1234 को उल्टा करने के लिए कौन-से operators?",
+"% 10 (अंतिम अंक) और // 10 (अंक हटाना)"
+],
+[
+"GCD(12, 18)?",
+"6"
+],
+[
+"GCD का प्रसिद्ध तरीका?",
+"Euclid का algorithm (बार-बार शेषफल लेना)"
+],
+[
+"Prime number की जाँच?",
+"2 से √n तक किसी से पूरा भाग न जाए तो prime"
+],
+[
+"5! (factorial) का मान?",
+"120"
+],
+[
+"0! का मान?",
+"1"
+],
+[
+"Fibonacci series के पहले 7 पद?",
+"0, 1, 1, 2, 3, 5, 8"
+],
+[
+"sin x की series?",
+"x − x³/3! + x⁵/5! − x⁷/7! + …"
+],
+[
+"Array में सबसे बड़ी संख्या कैसे ढूँढते हैं?",
+"पहले element को max मानकर बाकी सबसे तुलना करके"
+],
+[
+"Upper triangular matrix के elements?",
+"जहाँ column ≥ row (i ≤ j)"
+]
+],
+"slug": "2-algorithms-flowcharts"
+},
+{
+"n": 3,
+"title": "Introduction to Python",
+"items": [
+[
+"Python किसने बनाई?",
+"Guido van Rossum"
+],
+[
+"Python कब release हुई?",
+"1991"
+],
+[
+"Python का नाम किससे लिया गया?",
+"BBC comedy show \"Monty Python's Flying Circus\""
+],
+[
+"Python file का extension?",
+".py"
+],
+[
+"Python का default IDE?",
+"IDLE"
+],
+[
+"IDLE का full form?",
+"Integrated Development and Learning Environment"
+],
+[
+"Python shell का prompt?",
+">>>"
+],
+[
+"Python के दो modes?",
+"Interactive mode और Script mode"
+],
+[
+"Python में single line comment?",
+"#"
+],
+[
+"Multi-line comment/docstring?",
+"Triple quotes ''' ''' या \"\"\" \"\"\""
+],
+[
+"Python में block (code group) कैसे बनता है?",
+"Indentation से"
+],
+[
+"Python case-sensitive है?",
+"हाँ"
+],
+[
+"Valid identifier कौन-सा है: 2abc, _abc, a-b?",
+"_abc"
+],
+[
+"Python में keyword की सूची कैसे देखें?",
+"import keyword; keyword.kwlist"
+],
+[
+"Python 3 में keywords की संख्या?",
+"35 (Python 3.8+)"
+],
+[
+"True, False, None क्या हैं?",
+"Keywords (और constants)"
+],
+[
+"type(10) का output?",
+"<class 'int'>"
+],
+[
+"type(10.0)?",
+"<class 'float'>"
+],
+[
+"Complex number का उदाहरण?",
+"3 + 4j"
+],
+[
+"(3+4j).real का मान?",
+"3.0"
+],
+[
+"Python के built-in data types?",
+"int, float, complex, str, bool, list, tuple, set, dict"
+],
+[
+"Immutable data types?",
+"int, float, str, tuple, bool"
+],
+[
+"Mutable data types?",
+"list, dict, set"
+],
+[
+"Set की विशेषता?",
+"Unordered, duplicates नहीं रखता"
+],
+[
+"खाली set कैसे बनाते हैं?",
+"set() ({} खाली dictionary है)"
+],
+[
+"User से input लेने का function?",
+"input()"
+],
+[
+"input() किस type का मान देता है?",
+"हमेशा string"
+],
+[
+"Integer input लेने के लिए?",
+"int(input())"
+],
+[
+"print(\"A\", \"B\", sep=\"-\") का output?",
+"A-B"
+],
+[
+"print(\"A\", end=\" \") में end का काम?",
+"Line के अंत में newline की जगह दिया गया text"
+],
+[
+"\"Hello\"[1] का output?",
+"'e'"
+],
+[
+"\"Hello\"[-1]?",
+"'o'"
+],
+[
+"\"Python\"[1:4]?",
+"'yth'"
+],
+[
+"\"Python\"[::-1]?",
+"'nohtyP'"
+],
+[
+"\"Hi\" * 3?",
+"'HiHiHi'"
+],
+[
+"\"Hi\" + \"5\"?",
+"'Hi5'"
+],
+[
+"len(\"Python\")?",
+"6"
+],
+[
+"String immutable है, इसका मतलब?",
+"s[0] = 'J' से error आती है"
+]
+],
+"slug": "3-introduction-to-python"
+},
+{
+"n": 4,
+"title": "Operators, Expressions और Statements",
+"items": [
+[
+"7 / 2 का output?",
+"3.5"
+],
+[
+"7 // 2 का output (floor division)?",
+"3"
+],
+[
+"-7 // 2?",
+"-4"
+],
+[
+"7 % 3?",
+"1"
+],
+[
+"2 ** 3?",
+"8"
+],
+[
+"2 ** 3 ** 2?",
+"512 (** दाएँ से बाएँ)"
+],
+[
+"सबसे ऊँची precedence वाला operator?",
+"** (brackets के बाद)"
+],
+[
+"10 > 5 and 3 > 8?",
+"False"
+],
+[
+"not True?",
+"False"
+],
+[
+"5 & 3 (bitwise AND)?",
+"1"
+],
+[
+"5 | 3 (bitwise OR)?",
+"7"
+],
+[
+"5 ^ 3 (XOR)?",
+"6"
+],
+[
+"~5?",
+"-6"
+],
+[
+"8 >> 2?",
+"2"
+],
+[
+"3 << 2?",
+"12"
+],
+[
+"is operator क्या जाँचता है?",
+"दोनों एक ही object हैं या नहीं (identity)"
+],
+[
+"in operator?",
+"Membership (कोई item sequence में है या नहीं)"
+],
+[
+"a += 5 का अर्थ?",
+"a = a + 5"
+],
+[
+"Python में ++ operator है?",
+"नहीं"
+],
+[
+"Multiple assignment का उदाहरण?",
+"a, b = 1, 2 या a = b = 0"
+],
+[
+"else if को Python में क्या लिखते हैं?",
+"elif"
+],
+[
+"range(5) कौन-सी संख्याएँ देता है?",
+"0, 1, 2, 3, 4"
+],
+[
+"range(1, 10, 2)?",
+"1, 3, 5, 7, 9"
+],
+[
+"range(10, 0, -3)?",
+"10, 7, 4, 1"
+],
+[
+"Loop तुरंत रोकने का statement?",
+"break"
+],
+[
+"Loop का बाकी भाग छोड़कर अगली iteration?",
+"continue"
+],
+[
+"कुछ न करने वाला statement?",
+"pass"
+],
+[
+"Loop के साथ else कब चलता है?",
+"जब loop बिना break के पूरा हो"
+],
+[
+"assert का उपयोग?",
+"शर्त झूठी होने पर AssertionError देना"
+],
+[
+"Python में do-while loop है?",
+"नहीं; केवल for और while"
+],
+[
+"Infinite loop का उदाहरण?",
+"while True:"
+]
+],
+"slug": "4-operators-expressions-statements"
+},
+{
+"n": 5,
+"title": "Sequence Data Types (List, Tuple, Dictionary)",
+"items": [
+[
+"List किस bracket में बनती है?",
+"[ ]"
+],
+[
+"Tuple किस bracket में?",
+"( )"
+],
+[
+"Dictionary किस bracket में?",
+"{ } (key: value)"
+],
+[
+"एक item वाला tuple?",
+"(5,) (comma ज़रूरी)"
+],
+[
+"List के अंत में item जोड़ने का method?",
+"append()"
+],
+[
+"किसी position पर item जोड़ने का method?",
+"insert(index, item)"
+],
+[
+"एक list में दूसरी list के सारे items जोड़ने का method?",
+"extend()"
+],
+[
+"मान से item हटाने का method?",
+"remove()"
+],
+[
+"Index से item हटाकर लौटाने का method?",
+"pop() (default अंतिम item)"
+],
+[
+"List को क्रम में लगाने का method?",
+"sort() (उल्टे क्रम के लिए reverse=True)"
+],
+[
+"sorted(L) और L.sort() में अंतर?",
+"sorted() नई list देता है; sort() उसी list को बदलता है"
+],
+[
+"किसी item की गिनती का method?",
+"count()"
+],
+[
+"[1, 2] * 2?",
+"[1, 2, 1, 2]"
+],
+[
+"[1, 2] + [3]?",
+"[1, 2, 3]"
+],
+[
+"L = [10, 20, 30]; L[-1]?",
+"30"
+],
+[
+"max([3, 9, 2])?",
+"9"
+],
+[
+"sum([1, 2, 3]) / len([1, 2, 3])?",
+"2.0 (mean)"
+],
+[
+"Tuple mutable है?",
+"नहीं, immutable"
+],
+[
+"Tuple के केवल दो methods?",
+"count() और index()"
+],
+[
+"Dictionary की keys कैसी होनी चाहिए?",
+"Unique और immutable"
+],
+[
+"Dictionary की सारी keys?",
+"d.keys(); मान d.values(), जोड़े d.items()"
+],
+[
+"Key न होने पर error के बिना मान लेने के लिए?",
+"d.get(key) (न मिले तो None)"
+],
+[
+"Dictionary में नया item?",
+"d[\"key\"] = value"
+],
+[
+"List में items की frequency गिनने के लिए किसका उपयोग?",
+"Dictionary (d[x] = d.get(x, 0) + 1)"
+],
+[
+"Linear search क्या है?",
+"List के हर item को शुरू से एक-एक करके जाँचना"
+],
+[
+"del L[0] क्या करता है?",
+"पहला item हटाता है"
+]
+],
+"slug": "5-sequence-data-types-list-tuple-dictionary"
+},
+{
+"n": 6,
+"title": "Functions",
+"items": [
+[
+"Function बनाने का keyword?",
+"def"
+],
+[
+"Function से मान लौटाने का statement?",
+"return"
+],
+[
+"return न हो तो function क्या लौटाता है?",
+"None"
+],
+[
+"Top-down approach क्या है?",
+"बड़ी समस्या को छोटे-छोटे भागों (functions) में बाँटना"
+],
+[
+"Modular programming का फ़ायदा?",
+"Code reuse, आसान debugging और समझना आसान"
+],
+[
+"Function के अंदर बना variable?",
+"Local variable"
+],
+[
+"Function के अंदर global variable बदलने के लिए?",
+"global keyword"
+],
+[
+"Docstring कहाँ लिखते हैं?",
+"Function की पहली line में triple quotes में; func.__doc__ से दिखता है"
+],
+[
+"Default argument का उदाहरण?",
+"def f(a, b=5):"
+],
+[
+"Keyword argument का उदाहरण?",
+"f(b=2, a=1)"
+],
+[
+"Variable number of arguments (tuple)?",
+"*args"
+],
+[
+"Variable keyword arguments (dictionary)?",
+"**kwargs"
+],
+[
+"Anonymous (बिना नाम का) function?",
+"lambda (जैसे lambda x: x * 2)"
+],
+[
+"Function का खुद को बुलाना?",
+"Recursion"
+],
+[
+"Recursion में रुकने की शर्त?",
+"Base case"
+],
+[
+"eval(\"2 + 3 * 4\")?",
+"14"
+],
+[
+"\"hello world\".title()?",
+"'Hello World'"
+],
+[
+"\"hello\".capitalize()?",
+"'Hello'"
+],
+[
+"\"Hello\".swapcase()?",
+"'hELLO'"
+],
+[
+"\"banana\".count(\"a\")?",
+"3"
+],
+[
+"\"banana\".find(\"n\")?",
+"2"
+],
+[
+"\"banana\".rfind(\"n\")?",
+"4"
+],
+[
+"\"banana\".find(\"z\")?",
+"-1"
+],
+[
+"\"a,b,c\".split(\",\")?",
+"['a', 'b', 'c']"
+],
+[
+"\"-\".join([\"a\", \"b\"])?",
+"'a-b'"
+],
+[
+"\"  hi  \".strip()?",
+"'hi' (lstrip बाएँ, rstrip दाएँ से)"
+],
+[
+"\"hello\".replace(\"l\", \"L\")?",
+"'heLLo'"
+],
+[
+"\"a-b-c\".partition(\"-\")?",
+"('a', '-', 'b-c')"
+],
+[
+"\"123\".isdigit()?",
+"True"
+],
+[
+"\"abc1\".isalpha()?",
+"False"
+],
+[
+"\"abc1\".isalnum()?",
+"True"
+],
+[
+"\"Python\".startswith(\"Py\")?",
+"True"
+],
+[
+"\"hi\".encode()?",
+"b'hi' (bytes)"
+],
+[
+"round(3.567, 2)?",
+"3.57"
+],
+[
+"round(2.5)?",
+"2 (बराबर दूरी पर even की ओर)"
+],
+[
+"int(3.9)?",
+"3"
+],
+[
+"math.ceil(4.2)?",
+"5; math.floor(4.8) = 4"
+],
+[
+"math.sqrt(16)?",
+"4.0"
+],
+[
+"pow(2, 5)?",
+"32"
+],
+[
+"random.randint(1, 6) क्या देता है?",
+"1 से 6 तक (दोनों शामिल) random integer"
+],
+[
+"random.random() का range?",
+"0.0 से 1.0 (1.0 शामिल नहीं)"
+],
+[
+"आज की तारीख़?",
+"datetime.date.today()"
+],
+[
+"Pattern matching के लिए module?",
+"re (regular expressions)"
+]
+],
+"slug": "6-functions"
+},
+{
+"n": 7,
+"title": "File Processing",
+"items": [
+[
+"File खोलने का function?",
+"open()"
+],
+[
+"Default file mode?",
+"'r' (read)"
+],
+[
+"'w' mode में file पहले से हो तो?",
+"पुराना content मिट जाता है"
+],
+[
+"File के अंत में जोड़ने का mode?",
+"'a' (append)"
+],
+[
+"File न हो तो 'r' mode में error?",
+"FileNotFoundError"
+],
+[
+"Binary file पढ़ने का mode?",
+"'rb'"
+],
+[
+"Read और write दोनों का mode?",
+"'r+'"
+],
+[
+"पूरी file एक string में पढ़ने का method?",
+"read()"
+],
+[
+"एक line पढ़ने का method?",
+"readline()"
+],
+[
+"सारी lines list में पढ़ने का method?",
+"readlines()"
+],
+[
+"File में string लिखने का method?",
+"write()"
+],
+[
+"List of strings लिखने का method?",
+"writelines()"
+],
+[
+"File pointer की वर्तमान स्थिति?",
+"tell()"
+],
+[
+"File pointer को किसी स्थिति पर ले जाना?",
+"seek(offset)"
+],
+[
+"File बंद करने का method?",
+"close()"
+],
+[
+"File अपने आप बंद करने का तरीका?",
+"with open(\"a.txt\") as f:"
+],
+[
+"Command line arguments किस module से?",
+"sys (sys.argv)"
+],
+[
+"sys.argv[0] में क्या होता है?",
+"Script (program) का नाम"
+]
+],
+"slug": "7-file-processing"
+},
+{
+"n": 8,
+"title": "Scope और Modules",
+"items": [
+[
+"LEGB rule का full form?",
+"Local, Enclosing, Global, Built-in"
+],
+[
+"Python variable का नाम किस क्रम में ढूँढता है?",
+"Local → Enclosing → Global → Built-in"
+],
+[
+"Nested function में बाहरी function का variable बदलने के लिए?",
+"nonlocal keyword"
+],
+[
+"Module क्या है?",
+"Functions और variables वाली .py file"
+],
+[
+"Module जोड़ने के तरीके?",
+"import math, from math import sqrt, import math as m"
+],
+[
+"Module के सारे नाम देखने का function?",
+"dir(module)"
+],
+[
+"Module दोबारा load करने का तरीका?",
+"importlib.reload(module)"
+],
+[
+"File सीधे चलाने पर __name__ का मान?",
+"\"__main__\""
+],
+[
+"Package क्या है?",
+"Modules का folder (पहले __init__.py के साथ)"
+],
+[
+"Module एक namespace है, इसका मतलब?",
+"उसके नाम module.name से अलग पहचाने जाते हैं"
+]
+],
+"slug": "8-scope-modules"
+},
+{
+"n": 9,
+"title": "NumPy Basics",
+"items": [
+[
+"NumPy का full form?",
+"Numerical Python"
+],
+[
+"NumPy import करने का आम तरीका?",
+"import numpy as np"
+],
+[
+"NumPy का मुख्य object?",
+"ndarray"
+],
+[
+"NumPy array में सभी elements का type?",
+"एक जैसा (homogeneous)"
+],
+[
+"List से array बनाना?",
+"np.array([1, 2, 3])"
+],
+[
+"Array के dimensions की संख्या?",
+"ndim"
+],
+[
+"Array का आकार (rows, columns)?",
+"shape"
+],
+[
+"कुल elements?",
+"size"
+],
+[
+"Elements का data type?",
+"dtype"
+],
+[
+"एक element के bytes?",
+"itemsize"
+],
+[
+"शून्यों वाला array?",
+"np.zeros((2, 3))"
+],
+[
+"एक (1) वाला array?",
+"np.ones()"
+],
+[
+"Identity matrix?",
+"np.eye(3) या np.identity(3)"
+],
+[
+"np.arange(0, 10, 2)?",
+"[0 2 4 6 8]"
+],
+[
+"np.linspace(0, 1, 5)?",
+"[0. 0.25 0.5 0.75 1.]"
+],
+[
+"Array का आकार बदलना?",
+"reshape()"
+],
+[
+"np.asarray() का काम?",
+"मौजूदा data (list/tuple) से array बनाना"
+],
+[
+"a = np.array([10, 20, 30, 40]); a[1:3]?",
+"[20 30]"
+],
+[
+"2D array में row 0, column 1 का element?",
+"a[0, 1] या a[0][1]"
+],
+[
+"np.array([1, 2]) * 2?",
+"[2 4] (element-wise)"
+],
+[
+"np.array([1, 2, 3]).sum()?",
+"6"
+]
+],
+"slug": "9-numpy-basics"
+}
+],
+"m4-r5": [
+{
+"n": 1,
+"title": "Introduction to IoT",
+"items": [
+[
+"IoT का full form?",
+"Internet of Things"
+],
+[
+"\"Internet of Things\" शब्द किसने दिया?",
+"Kevin Ashton (1999)"
+],
+[
+"पहला IoT device किसे माना जाता है?",
+"Carnegie Mellon University की Coca-Cola vending machine"
+],
+[
+"M2M का full form?",
+"Machine to Machine"
+],
+[
+"IoT के मुख्य components?",
+"Sensors/devices, connectivity, data processing (cloud) और user interface"
+],
+[
+"IoT की विशेषताएँ?",
+"Connectivity, Sensing, Intelligence, Dynamic nature, Enormous scale, Heterogeneity, Security"
+],
+[
+"IoT के building blocks?",
+"Things (sensors/actuators), Gateway, Cloud और Application"
+],
+[
+"IoT architecture की सबसे सरल layers?",
+"तीन: Perception, Network, Application"
+],
+[
+"Five-layer architecture में और कौन-सी layers?",
+"Processing और Business layer"
+],
+[
+"IoT में data कहाँ store और analyse होता है?",
+"Cloud"
+],
+[
+"IoT में cloud की भूमिका?",
+"Complementary (सहायक): storage, processing और analytics"
+],
+[
+"Edge computing क्या है?",
+"Data को device या उसके पास ही process करना"
+],
+[
+"Fog computing क्या है?",
+"Cloud और edge devices के बीच (gateway/router पर) processing"
+],
+[
+"IoT के कितने levels हैं?",
+"6 (Level 1 से 6)"
+],
+[
+"IoT Level 1 में?",
+"एक node, local storage और analysis; जैसे home automation"
+],
+[
+"IoT design methodology के कितने steps?",
+"10 (Purpose & requirements से Application development तक)"
+],
+[
+"Design methodology का पहला step?",
+"Purpose and requirements specification"
+],
+[
+"Physical design में क्या आता है?",
+"Things (devices) और IoT protocols"
+],
+[
+"Logical design में क्या आता है?",
+"Functional blocks, communication models और APIs"
+],
+[
+"IoT के functional blocks?",
+"Device, Communication, Services, Management, Security, Application"
+],
+[
+"IoT communication models?",
+"Request-Response, Publish-Subscribe, Push-Pull, Exclusive Pair"
+],
+[
+"IoT के दो मुख्य APIs?",
+"REST-based और WebSocket-based"
+],
+[
+"WebSocket किस प्रकार का communication देता है?",
+"Full-duplex, लगातार connection"
+],
+[
+"MQTT किस model पर आधारित है?",
+"Publish-Subscribe"
+],
+[
+"MQTT में message पहुँचाने वाला server?",
+"Broker (जैसे Mosquitto)"
+],
+[
+"MQTT का default port?",
+"1883 (TLS के साथ 8883)"
+],
+[
+"CoAP किस protocol पर चलता है?",
+"UDP"
+],
+[
+"CoAP का full form?",
+"Constrained Application Protocol"
+],
+[
+"XMPP का full form?",
+"Extensible Messaging and Presence Protocol"
+],
+[
+"AMQP का full form?",
+"Advanced Message Queuing Protocol"
+],
+[
+"TCP का full form?",
+"Transmission Control Protocol"
+],
+[
+"UDP connection-oriented है या connectionless?",
+"Connectionless"
+],
+[
+"6LoWPAN का full form?",
+"IPv6 over Low-power Wireless Personal Area Networks"
+],
+[
+"IPv4 और IPv6 address कितने bits के?",
+"32 और 128 bits"
+],
+[
+"WoT का full form?",
+"Web of Things"
+],
+[
+"IoE (Internet of Everything) के चार तत्व?",
+"People, Process, Data, Things"
+],
+[
+"IIoT का full form?",
+"Industrial Internet of Things"
+],
+[
+"IoT development tools के उदाहरण?",
+"Arduino IDE, Raspbian, Eclipse IoT, PlatformIO, Kaa, Home Assistant"
+],
+[
+"Smart home का उदाहरण?",
+"Mobile से lights, AC और door lock control"
+],
+[
+"IoT का सबसे बड़ा challenge?",
+"Security"
+]
+],
+"slug": "1-introduction-to-iot"
+},
+{
+"n": 2,
+"title": "Things and Connections",
+"items": [
+[
+"Open loop और closed loop में अंतर?",
+"Closed loop में feedback होता है, open loop में नहीं"
+],
+[
+"Feedback loop के भाग?",
+"Sensor, Controller और Actuator"
+],
+[
+"Refrigerator/AC का thermostat किसका उदाहरण?",
+"Closed loop (feedback) control system"
+],
+[
+"Washing machine का timer किसका उदाहरण?",
+"Open loop system"
+],
+[
+"System को स्थिर रखने वाला feedback?",
+"Negative feedback"
+],
+[
+"Hard real-time system का उदाहरण?",
+"Airbag, pacemaker"
+],
+[
+"Soft real-time system का उदाहरण?",
+"Video streaming"
+],
+[
+"OSI model में कितनी layers?",
+"7"
+],
+[
+"TCP/IP model में कितनी layers?",
+"4"
+],
+[
+"OSI model किसने बनाया?",
+"ISO"
+],
+[
+"OSI layers क्रम से (नीचे से)?",
+"Physical, Data Link, Network, Transport, Session, Presentation, Application"
+],
+[
+"Routing किस layer का काम?",
+"Network layer"
+],
+[
+"Encryption/compression किस layer का काम?",
+"Presentation layer"
+],
+[
+"MAC address किस layer पर?",
+"Data Link layer"
+],
+[
+"Simplex mode का उदाहरण?",
+"Keyboard, TV broadcast"
+],
+[
+"Half-duplex का उदाहरण?",
+"Walkie-talkie"
+],
+[
+"Full-duplex का उदाहरण?",
+"Telephone"
+],
+[
+"Guided media के उदाहरण?",
+"Twisted pair, Coaxial cable, Optical fiber"
+],
+[
+"सबसे ज़्यादा bandwidth वाला medium?",
+"Optical fiber"
+],
+[
+"Fiber में प्रकाश को बाहर निकलने से कौन रोकता है?",
+"Cladding (total internal reflection)"
+],
+[
+"I2C में कितने wires?",
+"2 (SDA और SCL)"
+],
+[
+"SPI में कितने wires?",
+"4 (MOSI, MISO, SCK, SS)"
+],
+[
+"UART की lines?",
+"TX और RX"
+],
+[
+"Wi-Fi का IEEE standard?",
+"IEEE 802.11"
+],
+[
+"Bluetooth का IEEE standard?",
+"IEEE 802.15.1"
+],
+[
+"Zigbee का IEEE standard?",
+"IEEE 802.15.4"
+],
+[
+"BLE का full form?",
+"Bluetooth Low Energy"
+],
+[
+"NFC की range?",
+"लगभग 4 cm"
+],
+[
+"सबसे कम दूरी वाला network?",
+"PAN (Personal Area Network)"
+],
+[
+"LPWAN के उदाहरण?",
+"LoRaWAN, Sigfox, NB-IoT"
+],
+[
+"LoRa का full form?",
+"Long Range"
+],
+[
+"RFID का full form?",
+"Radio Frequency Identification"
+],
+[
+"FASTag किस technology पर काम करता है?",
+"RFID"
+],
+[
+"Serial को parallel में बदलने वाला?",
+"Shift register (SIPO)"
+],
+[
+"IoT application का process flow?",
+"Sense → Transmit → Process/Store → Analyse → Act/Display"
+]
+],
+"slug": "2-things-and-connections"
+},
+{
+"n": 3,
+"title": "Sensors, Actuators और Microcontrollers",
+"items": [
+[
+"Sensor क्या करता है?",
+"Physical मात्रा को नापकर electrical signal में बदलता है"
+],
+[
+"Actuator क्या करता है?",
+"Electrical signal को गति या काम में बदलता है"
+],
+[
+"Sensor input device है या output?",
+"Input; actuator output device है"
+],
+[
+"एक ऊर्जा को दूसरी में बदलने वाला device?",
+"Transducer"
+],
+[
+"Sensor की प्रभावशीलता किस पर निर्भर?",
+"Sensitivity, range, resolution, accuracy"
+],
+[
+"ज़्यादातर sensors का transfer function?",
+"Linear"
+],
+[
+"LDR का full form?",
+"Light Dependent Resistor"
+],
+[
+"LDR किस सिद्धांत पर काम करता है?",
+"Photoconductivity (रोशनी बढ़ने पर resistance घटता है)"
+],
+[
+"DHT11 क्या नापता है?",
+"तापमान और नमी (humidity)"
+],
+[
+"LM35 का output?",
+"10 mV प्रति °C"
+],
+[
+"MQ-135 किस प्रकार का sensor?",
+"Gas/air quality sensor"
+],
+[
+"PIR sensor क्या पहचानता है?",
+"इंसान की हलचल (motion)"
+],
+[
+"IR sensor का उपयोग?",
+"Obstacle (रुकावट) पहचानना"
+],
+[
+"Ultrasonic sensor (HC-SR04) क्या नापता है?",
+"दूरी (ध्वनि तरंगों से)"
+],
+[
+"Magnetic field पहचानने वाला sensor?",
+"Hall sensor"
+],
+[
+"DC motor की दिशा किस नियम से?",
+"Fleming's Left Hand Rule"
+],
+[
+"Maximum power पर DC motor की efficiency?",
+"50%"
+],
+[
+"तय कोण (0–180°) तक घूमने वाली motor?",
+"Servo motor"
+],
+[
+"तय steps में घूमने वाली motor?",
+"Stepper motor"
+],
+[
+"Motor driver IC के उदाहरण?",
+"L293D, L298N"
+],
+[
+"छोटे signal से 220V load चलाने वाला switch?",
+"Relay"
+],
+[
+"IoT में प्रयुक्त actuators?",
+"Relay, DC motor, servo, stepper, solenoid, buzzer"
+],
+[
+"Hydraulic actuator किससे चलता है?",
+"दबाव वाले तेल (liquid) से"
+],
+[
+"Pneumatic actuator किससे चलता है?",
+"दबाव वाली हवा से"
+],
+[
+"Microcontroller में एक chip पर क्या-क्या होता है?",
+"CPU, RAM, ROM, I/O ports और timers"
+],
+[
+"Microprocessor और microcontroller में मुख्य अंतर?",
+"Microprocessor में RAM/ROM/I/O बाहर से लगते हैं"
+],
+[
+"Sensors और actuators के बीच gateway का काम कौन करता है?",
+"Microcontroller"
+],
+[
+"Embedded system क्या है?",
+"Hardware और software का मेल, जो एक खास काम करता है"
+],
+[
+"Floating point गणना के लिए?",
+"Coprocessor (FPU)"
+],
+[
+"Embedded systems में सबसे ज़्यादा प्रयुक्त memory?",
+"Flash और EEPROM"
+],
+[
+"8051 microcontroller कितने bit का?",
+"8-bit"
+],
+[
+"8051 में RAM, ROM, ports, timers, pins?",
+"128 bytes RAM, 4 KB ROM, 4 ports, 2 timers, 40 pins"
+],
+[
+"8051 किस company ने बनाया?",
+"Intel (1980)"
+],
+[
+"Arduino Uno का microcontroller?",
+"ATmega328P"
+],
+[
+"ATmega328P में Flash, SRAM, EEPROM?",
+"32 KB, 2 KB, 1 KB"
+],
+[
+"ESP8266/ESP32 की ख़ास बात?",
+"Built-in Wi-Fi (ESP32 में Bluetooth भी)"
+],
+[
+"Raspberry Pi क्या है?",
+"Single Board Computer (SBC)"
+],
+[
+"Raspberry Pi को power?",
+"USB से 5V"
+],
+[
+"पहला microprocessor?",
+"Intel 4004 (4-bit, 1971)"
+],
+[
+"Harvard architecture में?",
+"Program और data की अलग memory"
+],
+[
+"RISC का full form?",
+"Reduced Instruction Set Computer"
+],
+[
+"Timer के काम?",
+"Counting, delay, compare-capture और PWM"
+],
+[
+"Embedded systems में task swapping का तरीका?",
+"Time slicing"
+]
+],
+"slug": "3-sensors-actuators-microcontrollers"
+},
+{
+"n": 4,
+"title": "Building IoT Applications",
+"items": [
+[
+"Arduino क्या है?",
+"Open-source hardware और software platform"
+],
+[
+"Arduino program को क्या कहते हैं?",
+"Sketch"
+],
+[
+"Sketch file का extension?",
+".ino"
+],
+[
+"Arduino IDE (1.x) किस language में बना?",
+"Java (Processing पर आधारित)"
+],
+[
+"Sketch compile करने वाला compiler?",
+"avr-gcc; upload के लिए avrdude"
+],
+[
+"हर sketch के दो ज़रूरी functions?",
+"setup() और loop()"
+],
+[
+"setup() कितनी बार चलता है?",
+"केवल एक बार"
+],
+[
+"loop() कितनी बार चलता है?",
+"लगातार बार-बार"
+],
+[
+"Arduino Uno में digital और analog pins?",
+"14 digital, 6 analog"
+],
+[
+"Uno के PWM pins?",
+"3, 5, 6, 9, 10, 11"
+],
+[
+"Arduino Mega में analog pins?",
+"16"
+],
+[
+"Built-in LED किस pin पर?",
+"Pin 13"
+],
+[
+"Uno के crystal की frequency?",
+"16 MHz"
+],
+[
+"analogRead() का range?",
+"0 से 1023 (10-bit ADC)"
+],
+[
+"analogWrite() का range?",
+"0 से 255 (PWM)"
+],
+[
+"delay(1000) कितना रोकता है?",
+"1 second"
+],
+[
+"micros() की resolution (16 MHz board)?",
+"4 microseconds"
+],
+[
+"millis() क्या देता है?",
+"Board चालू होने से अब तक के milliseconds"
+],
+[
+"Pin को output बनाने का function?",
+"pinMode(pin, OUTPUT)"
+],
+[
+"Internal pull-up चालू करने के लिए?",
+"pinMode(pin, INPUT_PULLUP)"
+],
+[
+"Serial communication शुरू करने का function?",
+"Serial.begin(9600)"
+],
+[
+"Serial data देखने की window?",
+"Serial Monitor"
+],
+[
+"Serial.write(20) और Serial.print(20) में अंतर?",
+"write raw byte 20 भेजता है; print अक्षर '2' और '0'"
+],
+[
+"map(512, 0, 1023, 0, 255) लगभग?",
+"127"
+],
+[
+"Uno पर EEPROM.length()?",
+"1024"
+],
+[
+"Uno के interrupt pins?",
+"2 और 3"
+],
+[
+"Interrupt पर चलने वाला function?",
+"ISR (Interrupt Service Routine)"
+],
+[
+"ISR में shared variable किस प्रकार का?",
+"volatile"
+],
+[
+"Embedded C क्या है?",
+"Microcontrollers के लिए C language का extension (hardware dependent)"
+],
+[
+"Program बनने का क्रम?",
+"Editor → Preprocessor → Compiler → Linker → Loader"
+],
+[
+"Preprocessor directive किस चिह्न से शुरू?",
+"#"
+],
+[
+"Compilation रोकने वाला directive?",
+"#error"
+],
+[
+"Constant बनाने के तरीके?",
+"#define और const"
+],
+[
+"Keil 8051 में जो data type नहीं है?",
+"dbit (sbit, bit, sfr होते हैं)"
+],
+[
+"Uno पर int का size?",
+"2 bytes"
+],
+[
+"Uno पर double का size?",
+"4 bytes (Due पर 8)"
+],
+[
+"Function calls के बीच मान बनाए रखने वाला variable?",
+"static"
+],
+[
+"R & 0xFE क्या करता है?",
+"Bit 0 को clear (0) करता है"
+],
+[
+"Bit toggle करने का operator?",
+"XOR (^)"
+],
+[
+"7 / 2 (int) का मान C में?",
+"3"
+],
+[
+"7 % 3?",
+"1"
+],
+[
+"5 << 1?",
+"10"
+],
+[
+"b++ + ++b का परिणाम?",
+"Undefined behaviour"
+],
+[
+"Infinite loop?",
+"for(;;) या while(1)"
+],
+[
+"कम से कम एक बार चलने वाला loop?",
+"do-while"
+],
+[
+"switch में case न मिलने पर?",
+"default चलता है"
+],
+[
+"Array किस प्रकार का data रखता है?",
+"एक ही type का (homogeneous), लगातार memory में"
+],
+[
+"Array index कहाँ से शुरू?",
+"0"
+],
+[
+"char ch[5] = \"abcde\"; में समस्या?",
+"'\\0' के लिए जगह नहीं"
+],
+[
+"\"abcde\" के हर अक्षर में से 'a' घटाकर योग?",
+"10"
+],
+[
+"C string किससे ख़त्म होती है?",
+"Null character '\\0'"
+],
+[
+"Function को मान भेजने के दो तरीके?",
+"Call by value और call by reference"
+],
+[
+"Function prototype क्या है?",
+"Function की पहले से की गई घोषणा (return type, नाम, parameters)"
+],
+[
+"Function के फ़ायदे?",
+"काम को भागों में बाँटना और code reuse"
+],
+[
+"LED के साथ resistor?",
+"220 Ω या 330 Ω"
+],
+[
+"IR obstacle sensor object मिलने पर output?",
+"LOW (active low)"
+],
+[
+"16×2 LCD में कितने अक्षर?",
+"32"
+],
+[
+"LCD के लिए library?",
+"LiquidCrystal"
+],
+[
+"I2C LCD में कितने wires?",
+"4 (VCC, GND, SDA, SCL)"
+],
+[
+"4×4 keypad में keys और pins?",
+"16 keys, 8 pins"
+],
+[
+"HC-05 क्या है?",
+"Bluetooth module"
+],
+[
+"HC-05 की default baud rate?",
+"9600"
+],
+[
+"HC-05 का default password?",
+"1234 (या 0000)"
+],
+[
+"HC-05 master/slave?",
+"दोनों; HC-06 केवल slave"
+],
+[
+"Relay के terminals?",
+"COM, NO (Normally Open), NC (Normally Closed)"
+],
+[
+"Arduino से 220V AC bulb चलाने के लिए?",
+"Relay module"
+],
+[
+"NodeMCU में कौन-सा chip?",
+"ESP8266"
+]
+],
+"slug": "4-building-iot-applications"
+},
+{
+"n": 5,
+"title": "Security और Future of IoT",
+"items": [
+[
+"CIA triad का full form?",
+"Confidentiality, Integrity, Availability"
+],
+[
+"Data को गुप्त रखने का तरीका?",
+"Encryption"
+],
+[
+"AAA का full form?",
+"Authentication, Authorization, Accounting"
+],
+[
+"User की गतिविधि का record रखने वाला?",
+"Accounting"
+],
+[
+"किए गए काम से इनकार न कर पाना?",
+"Non-repudiation (digital signature से)"
+],
+[
+"Attacker के घुसने के सारे रास्तों का समूह?",
+"Attack surface"
+],
+[
+"Threat modelling methods?",
+"STRIDE, DREAD, PASTA, OCTAVE (\"NANO\" नहीं)"
+],
+[
+"STRIDE किसने बनाया?",
+"Microsoft"
+],
+[
+"Default password वाले cameras/routers से बना botnet?",
+"Mirai (2016)"
+],
+[
+"बहुत ज़्यादा traffic भेजकर system बंद करना?",
+"DoS/DDoS attack"
+],
+[
+"दो devices के बीच छुपकर बातचीत पढ़ना/बदलना?",
+"Man-in-the-Middle (MITM)"
+],
+[
+"हर संभव password आज़माना?",
+"Brute force attack"
+],
+[
+"नकली email से password चुराना?",
+"Phishing"
+],
+[
+"Data encrypt करके फिरौती माँगना?",
+"Ransomware"
+],
+[
+"खुद अपनी copy न बनाने वाला malware?",
+"Trojan horse"
+],
+[
+"Symmetric encryption का उदाहरण?",
+"AES (एक ही key)"
+],
+[
+"Asymmetric encryption का उदाहरण?",
+"RSA (public और private key)"
+],
+[
+"One-way algorithm?",
+"Hashing"
+],
+[
+"Secure algorithms के लिए किसकी ज़रूरत?",
+"Powerful processor core"
+],
+[
+"IoT की सबसे आम कमज़ोरी?",
+"Default password न बदलना"
+],
+[
+"Firmware दूर से update करना?",
+"OTA (Over-The-Air) update"
+],
+[
+"संदिग्ध गतिविधि पहचानने वाला system?",
+"IDS (Intrusion Detection System)"
+],
+[
+"Attack levels?",
+"Low, Medium, High, Extremely High"
+],
+[
+"Blockchain क्या है?",
+"P2P network पर distributed ledger"
+],
+[
+"पहली cryptocurrency?",
+"Bitcoin (Satoshi Nakamoto)"
+],
+[
+"Labelled data से सीखने वाली ML?",
+"Supervised learning"
+],
+[
+"इनाम-सज़ा से सीखने वाली ML?",
+"Reinforcement learning"
+],
+[
+"AI + IoT को क्या कहते हैं?",
+"AIoT"
+],
+[
+"असली machine की virtual live copy?",
+"Digital twin"
+],
+[
+"प्रमुख IoT cloud platforms?",
+"AWS IoT, Microsoft Azure IoT, Google Cloud, IBM Watson"
+],
+[
+"भारत का personal data protection कानून?",
+"DPDP Act, 2023"
+]
+],
+"slug": "5-security-future-of-iot"
+},
+{
+"n": 6,
+"title": "Soft Skills",
+"items": [
+[
+"Personality शब्द किससे बना?",
+"Latin \"persona\" (मुखौटा)"
+],
+[
+"Personality के factors?",
+"Physical environment, Heredity, Culture, Particular experiences"
+],
+[
+"Self-awareness के प्रकार?",
+"Public और Private"
+],
+[
+"Feedback माँगना किसका संकेत है?",
+"Self-awareness"
+],
+[
+"अपनी योग्यता और मूल्य के बारे में अच्छा महसूस करना?",
+"Self-esteem"
+],
+[
+"काम पूरा करने की क्षमता पर विश्वास?",
+"Self-efficacy (Albert Bandura)"
+],
+[
+"बिना बाहरी दबाव के अंदर से प्रेरणा?",
+"Self-motivation"
+],
+[
+"SWOT का full form?",
+"Strengths, Weaknesses, Opportunities, Threats"
+],
+[
+"SMART goals?",
+"Specific, Measurable, Achievable, Relevant, Time-bound"
+],
+[
+"Attitude के प्रकार?",
+"Positive, Negative, Neutral"
+],
+[
+"Attitude के घटक (ABC)?",
+"Affective, Behavioural, Cognitive"
+],
+[
+"Relaxation तकनीक का उदाहरण?",
+"Autogenic training"
+],
+[
+"काम टालने की आदत?",
+"Procrastination"
+],
+[
+"Urgent/important के आधार पर काम बाँटने का तरीका?",
+"Eisenhower matrix"
+],
+[
+"Etiquette क्या है?",
+"समाज में अपेक्षित अच्छे व्यवहार का code"
+],
+[
+"Communication के मुख्य प्रकार?",
+"Verbal (बोलकर/लिखकर) और Non-verbal"
+],
+[
+"Communication process का अंतिम चरण?",
+"Feedback"
+],
+[
+"Informal communication को क्या कहते हैं?",
+"Grapevine"
+],
+[
+"7 C of communication?",
+"Clear, Concise, Concrete, Correct, Coherent, Complete, Courteous"
+],
+[
+"आत्मविश्वासी वक्ता क्या करता है?",
+"Eye contact"
+],
+[
+"कंधे उचकाना (shrug) क्या दिखाता है?",
+"उदासीनता"
+],
+[
+"उँगलियों के सिरे जोड़ना (steepling)?",
+"आत्मविश्वास या घमंड"
+],
+[
+"हाथ बाँधना (crossed arms)?",
+"बचाव या असहमति"
+],
+[
+"मज़बूत handshake क्या दिखाता है?",
+"आत्मविश्वास"
+],
+[
+"सुनते समय बात का मूल्यांकन करना?",
+"Critical listening"
+],
+[
+"अच्छा presenter क्या करता है?",
+"विचारों को क्रम में रखता है और समय संभालता है"
+],
+[
+"Presentation के भाग?",
+"Introduction, Body, Conclusion"
+],
+[
+"Letter का उद्देश्य बताने वाला भाग?",
+"Subject line"
+],
+[
+"Circular और notice में अंतर?",
+"Circular खास समूह के लिए, notice सबके लिए"
+],
+[
+"जाँच का परिणाम प्रस्तुत करने वाला document?",
+"Report"
+],
+[
+"BCC का full form?",
+"Blind Carbon Copy"
+],
+[
+"Interview से पहले company की जानकारी कहाँ से?",
+"Company website और directories"
+],
+[
+"Team बनने के चरण (Tuckman)?",
+"Forming, Storming, Norming, Performing, Adjourning"
+]
+],
+"slug": "6-soft-skills"
+}
+]
+}

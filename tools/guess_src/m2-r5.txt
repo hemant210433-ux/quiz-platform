@@ -1,0 +1,257 @@
+O Level M2-R5: Web Designing and Publishing — Important Guess Paper (One Liner Q&A)
+
+हर सवाल के आगे उसका उत्तर दिया गया है। Units NIELIT के M2-R5 syllabus के क्रम में हैं।
+
+Unit 1: Introduction to Web Design
+
+1.  Q: WWW का full form? — Ans: World Wide Web
+2.  Q: WWW का आविष्कार किसने किया? — Ans: Tim Berners-Lee (1989–1990, CERN)
+3.  Q: Internet किसका network है? — Ans: Networks का network (global network of networks)
+4.  Q: Website क्या है? — Ans: एक domain के अंतर्गत आपस में जुड़े web pages का समूह
+5.  Q: Website के पहले page को क्या कहते हैं? — Ans: Home page
+6.  Q: Web page किस language में बनता है? — Ans: HTML
+7.  Q: URL का full form? — Ans: Uniform Resource Locator
+8.  Q: HTTP का full form? — Ans: HyperText Transfer Protocol
+9.  Q: HTTP का default port? — Ans: 80; HTTPS का 443
+10. Q: Browser और server के बीच web page मँगाने के लिए कौन-सा protocol? — Ans: HTTP/HTTPS
+11. Q: Front end किसे कहते हैं? — Ans: Website का वह भाग जो user को दिखता है (HTML, CSS, JavaScript)
+12. Q: Back end किसे कहते हैं? — Ans: Server, database और logic वाला भाग (PHP, Python, Node.js, MySQL)
+13. Q: Client side scripting language का उदाहरण? — Ans: JavaScript
+14. Q: Server side scripting language के उदाहरण? — Ans: PHP, ASP.NET, JSP, Python, Node.js
+15. Q: Responsive web design क्या है? — Ans: Website का हर screen size (mobile, tablet, desktop) पर अपने आप ठीक दिखना
+16. Q: Responsive design के लिए CSS की कौन-सी technique उपयोग होती है? — Ans: Media queries
+17. Q: Static website क्या है? — Ans: जिसका content हर user के लिए एक जैसा और fixed रहता है
+18. Q: Dynamic website क्या है? — Ans: जिसका content database या user के अनुसार बदलता है
+19. Q: Web browser के उदाहरण? — Ans: Chrome, Firefox, Edge, Safari, Opera
+20. Q: DNS का काम? — Ans: Domain name को IP address में बदलना
+
+Unit 2: Editors
+
+21. Q: HTML file किस editor में लिख सकते हैं? — Ans: किसी भी text editor में, जैसे Notepad, Notepad++, Sublime Text, VS Code
+22. Q: Notepad++ किस operating system के लिए है? — Ans: Windows
+23. Q: Notepad++ और Sublime Text की ख़ास सुविधा? — Ans: Syntax highlighting और auto-completion
+24. Q: HTML file का extension? — Ans: .html या .htm
+25. Q: HTML file को देखने के लिए क्या करते हैं? — Ans: उसे browser में खोलते हैं
+26. Q: WYSIWYG का full form? — Ans: What You See Is What You Get
+27. Q: WYSIWYG editor का उदाहरण? — Ans: Adobe Dreamweaver
+28. Q: CSS file का extension? — Ans: .css
+29. Q: JavaScript file का extension? — Ans: .js
+
+Unit 3: HTML Basics
+
+30. Q: HTML का full form? — Ans: HyperText Markup Language
+31. Q: HTML किस प्रकार की language है? — Ans: Markup language (programming language नहीं)
+32. Q: HTML का जनक? — Ans: Tim Berners-Lee
+33. Q: HTML5 document की पहली line? — Ans: <!DOCTYPE html>
+34. Q: HTML document का root element? — Ans: <html>
+35. Q: Page का title कहाँ लिखते हैं? — Ans: <head> के अंदर <title> tag में
+36. Q: Page पर दिखने वाला content किस tag में? — Ans: <body>
+37. Q: सबसे बड़ी heading का tag? — Ans: <h1>; सबसे छोटी <h6>
+38. Q: HTML में कितनी headings होती हैं? — Ans: 6
+39. Q: Paragraph का tag? — Ans: <p>
+40. Q: Line break का tag? — Ans: <br> (empty tag)
+41. Q: Horizontal line का tag? — Ans: <hr>
+42. Q: Empty (closing tag न होने वाले) tags के उदाहरण? — Ans: <br>, <hr>, <img>, <input>, <meta>
+43. Q: Bold text के tags? — Ans: <b> और <strong>
+44. Q: Italic text के tags? — Ans: <i> और <em>
+45. Q: Underline का tag? — Ans: <u>
+46. Q: Strikethrough का tag? — Ans: <s> या <del>
+47. Q: Superscript (जैसे x²) का tag? — Ans: <sup>; subscript (H₂O) के लिए <sub>
+48. Q: Preformatted text (spaces जैसे के तैसे) का tag? — Ans: <pre>
+49. Q: Block level element का उदाहरण? — Ans: <div>, <p>, <h1>
+50. Q: Inline element का उदाहरण? — Ans: <span>, <a>, <b>
+51. Q: Hyperlink बनाने का tag? — Ans: <a> (anchor tag)
+52. Q: Link का पता किस attribute में? — Ans: href
+53. Q: Link को नए tab में खोलने के लिए? — Ans: target="_blank"
+54. Q: Same page के किसी भाग पर जाने वाला link? — Ans: Named anchor: <a href="#id">
+55. Q: Email link कैसे बनाते हैं? — Ans: <a href="mailto:abc@xyz.com">
+56. Q: Image लगाने का tag? — Ans: <img>
+57. Q: Image का path किस attribute में? — Ans: src
+58. Q: Image न दिखने पर दिखने वाला text? — Ans: alt attribute
+59. Q: Table बनाने का tag? — Ans: <table>
+60. Q: Table row का tag? — Ans: <tr>
+61. Q: Table data (cell) का tag? — Ans: <td>; heading cell के लिए <th>
+62. Q: <th> का text default में कैसा दिखता है? — Ans: Bold और center
+63. Q: दो या ज़्यादा columns मिलाने का attribute? — Ans: colspan
+64. Q: दो या ज़्यादा rows मिलाने का attribute? — Ans: rowspan
+65. Q: Cell की border और content के बीच की जगह? — Ans: cellpadding
+66. Q: दो cells के बीच की जगह? — Ans: cellspacing
+67. Q: Table का शीर्षक (caption) लगाने का tag? — Ans: <caption>
+68. Q: Ordered list का tag? — Ans: <ol>
+69. Q: Unordered (bullet) list का tag? — Ans: <ul>
+70. Q: List item का tag? — Ans: <li>
+71. Q: Ordered list में Roman numbers के लिए? — Ans: type="I" या type="i"
+72. Q: Ordered list को 5 से शुरू करने का attribute? — Ans: start="5"
+73. Q: Definition list के tags? — Ans: <dl>, <dt> (term), <dd> (description)
+74. Q: Form बनाने का tag? — Ans: <form>
+75. Q: Form data भेजने का पता किस attribute में? — Ans: action
+76. Q: Form के method attribute के मान? — Ans: GET और POST
+77. Q: Password जैसे गुप्त data के लिए कौन-सा method बेहतर? — Ans: POST (data URL में नहीं दिखता)
+78. Q: Text box का tag? — Ans: <input type="text">
+79. Q: Password field? — Ans: <input type="password">
+80. Q: कई options में से एक चुनने के लिए? — Ans: Radio button (type="radio")
+81. Q: कई options चुनने के लिए? — Ans: Checkbox (type="checkbox")
+82. Q: Radio buttons को एक group में रखने के लिए? — Ans: सबका name एक जैसा रखते हैं
+83. Q: Dropdown list का tag? — Ans: <select> और उसके अंदर <option>
+84. Q: कई lines का text लिखने का tag? — Ans: <textarea>
+85. Q: Form submit button? — Ans: <input type="submit">
+86. Q: Form साफ़ करने वाला button? — Ans: <input type="reset">
+87. Q: Frames किस tag से बनते थे? — Ans: <frameset> और <frame> (HTML5 में हटा दिए गए)
+88. Q: एक page के अंदर दूसरा page दिखाने का tag? — Ans: <iframe>
+89. Q: HTML5 के नए semantic tags? — Ans: <header>, <nav>, <section>, <article>, <aside>, <footer>
+90. Q: HTML5 में audio लगाने का tag? — Ans: <audio>
+91. Q: HTML5 में video लगाने का tag? — Ans: <video>
+92. Q: Audio/video पर play-pause buttons दिखाने का attribute? — Ans: controls
+93. Q: Field को भरना अनिवार्य करने का attribute? — Ans: required
+94. Q: Input box में हल्का संकेत text? — Ans: placeholder
+95. Q: Page खुलते ही cursor किसी field पर लाने का attribute? — Ans: autofocus
+96. Q: Input के pattern (जैसे 10 अंक) की जाँच का attribute? — Ans: pattern
+97. Q: HTML5 में email input? — Ans: <input type="email">
+98. Q: Slider बनाने का input type? — Ans: type="range"
+99. Q: Date चुनने का input type? — Ans: type="date"
+100. Q: Number input में न्यूनतम/अधिकतम मान? — Ans: min और max attributes
+101. Q: YouTube video या map page में लगाने के लिए? — Ans: <iframe> (embed code)
+102. Q: HTML comment कैसे लिखते हैं? — Ans: <!-- comment -->
+103. Q: Copyright symbol © का entity? — Ans: &copy;
+104. Q: Non-breaking space का entity? — Ans: &nbsp;
+105. Q: < चिह्न का entity? — Ans: &lt;; > के लिए &gt;
+
+Unit 4: CSS
+
+106. Q: CSS का full form? — Ans: Cascading Style Sheets
+107. Q: CSS का उपयोग? — Ans: Web page की design (रंग, font, layout) के लिए
+108. Q: CSS के प्रकार? — Ans: Inline, Internal और External
+109. Q: Inline CSS किस attribute में लिखते हैं? — Ans: style
+110. Q: Internal CSS कहाँ लिखते हैं? — Ans: <head> में <style> tag के अंदर
+111. Q: External CSS file कैसे जोड़ते हैं? — Ans: <link rel="stylesheet" href="style.css">
+112. Q: सबसे ज़्यादा priority किस CSS की? — Ans: Inline CSS
+113. Q: CSS rule के दो भाग? — Ans: Selector और Declaration (property: value)
+114. Q: Universal selector? — Ans: * (सभी elements)
+115. Q: ID selector किस चिह्न से? — Ans: # (जैसे #main)
+116. Q: Class selector किस चिह्न से? — Ans: . (जैसे .box)
+117. Q: एक ID page पर कितनी बार? — Ans: केवल एक बार; class कई बार उपयोग हो सकती है
+118. Q: Group selector कैसे लिखते हैं? — Ans: Comma से: h1, h2, p {...}
+119. Q: Attribute selector का उदाहरण? — Ans: input[type="text"]
+120. Q: CSS में comment? — Ans: /* comment */
+121. Q: Background रंग की property? — Ans: background-color
+122. Q: Background image की property? — Ans: background-image: url("a.jpg")
+123. Q: Background image को दोहराने से रोकने के लिए? — Ans: background-repeat: no-repeat
+124. Q: Text का रंग बदलने की property? — Ans: color
+125. Q: Font size की property? — Ans: font-size
+126. Q: Font बदलने की property? — Ans: font-family
+127. Q: Text को bold करने की property? — Ans: font-weight: bold
+128. Q: Text को center करने की property? — Ans: text-align: center
+129. Q: Link का underline हटाने के लिए? — Ans: text-decoration: none
+130. Q: Text को capital letters में बदलने के लिए? — Ans: text-transform: uppercase
+131. Q: Box model के चार भाग (अंदर से बाहर)? — Ans: Content, Padding, Border, Margin
+132. Q: Content और border के बीच की जगह? — Ans: Padding
+133. Q: Border के बाहर की जगह? — Ans: Margin
+134. Q: Element को छुपाने के लिए? — Ans: display: none (जगह भी हट जाती है) या visibility: hidden (जगह रहती है)
+135. Q: Position property के मान? — Ans: static (default), relative, absolute, fixed, sticky
+136. Q: Scroll करने पर भी element अपनी जगह रहे, इसके लिए? — Ans: position: fixed
+137. Q: Elements की परतों (ऊपर-नीचे) का क्रम? — Ans: z-index
+138. Q: Element को बाएँ या दाएँ खिसकाने के लिए? — Ans: float: left/right
+139. Q: Mouse ऊपर आने पर style बदलने का pseudo-class? — Ans: :hover
+140. Q: Visited link का pseudo-class? — Ans: :visited
+141. Q: List के bullet बदलने की property? — Ans: list-style-type
+142. Q: Table borders को एक line करने के लिए? — Ans: border-collapse: collapse
+143. Q: CSS से menu (navigation bar) कैसे बनाते हैं? — Ans: <ul> list को display: inline या float और link styling से
+144. Q: Image gallery बनाने के लिए? — Ans: Images को float या flex/grid के साथ बराबर size में रखकर
+145. Q: Rounded corners की property? — Ans: border-radius
+
+Unit 5: CSS Framework (W3.CSS)
+
+146. Q: W3.CSS क्या है? — Ans: W3Schools का मुफ़्त, हल्का CSS framework
+147. Q: W3.CSS को page में जोड़ने के लिए? — Ans: <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+148. Q: W3.CSS में JavaScript की ज़रूरत? — Ans: नहीं, यह केवल CSS है
+149. Q: W3.CSS में container class? — Ans: w3-container
+150. Q: W3.CSS में card जैसा shadow box? — Ans: w3-card (w3-card-4 गहरी shadow)
+151. Q: W3.CSS में लाल background? — Ans: w3-red
+152. Q: W3.CSS में text का रंग नीला? — Ans: w3-text-blue
+153. Q: W3.CSS में panel class? — Ans: w3-panel
+154. Q: W3.CSS में border class? — Ans: w3-border
+155. Q: W3.CSS में बड़ा font? — Ans: w3-large, w3-xlarge, w3-xxlarge
+156. Q: W3.CSS में table class? — Ans: w3-table (w3-striped, w3-bordered)
+157. Q: W3.CSS में rounded image? — Ans: w3-round या w3-circle
+158. Q: W3.CSS grid में row और column? — Ans: w3-row और w3-col (w3-half, w3-third, w3-quarter)
+159. Q: W3.CSS grid कितने columns का है? — Ans: 12
+160. Q: W3.CSS में button class? — Ans: w3-button
+
+Unit 6: JavaScript और AngularJS
+
+161. Q: JavaScript किस प्रकार की language है? — Ans: Client side scripting language
+162. Q: JavaScript किसने बनाई? — Ans: Brendan Eich (Netscape, 1995)
+163. Q: JavaScript का पुराना नाम? — Ans: LiveScript (शुरू में Mocha)
+164. Q: JavaScript को HTML में किस tag में लिखते हैं? — Ans: <script>
+165. Q: External JavaScript file जोड़ने के लिए? — Ans: <script src="app.js"></script>
+166. Q: JavaScript में variable घोषित करने के keywords? — Ans: var, let और const
+167. Q: JavaScript case-sensitive है? — Ans: हाँ
+168. Q: == और === में अंतर? — Ans: == केवल मान जाँचता है; === मान और type दोनों
+169. Q: typeof "5" का output? — Ans: "string"
+170. Q: "5" + 3 का output? — Ans: "53" (string जुड़ती है)
+171. Q: "5" - 3 का output? — Ans: 2
+172. Q: Alert box दिखाने का function? — Ans: alert()
+173. Q: OK/Cancel वाला box? — Ans: confirm() (true/false देता है)
+174. Q: User से input लेने वाला box? — Ans: prompt()
+175. Q: Page पर लिखने का तरीका? — Ans: document.write()
+176. Q: ID से element पकड़ने का तरीका? — Ans: document.getElementById("id")
+177. Q: Element का content बदलने के लिए? — Ans: innerHTML
+178. Q: Button click पर function चलाने का event? — Ans: onclick
+179. Q: Page load होने पर चलने वाला event? — Ans: onload
+180. Q: Mouse ऊपर आने का event? — Ans: onmouseover
+181. Q: Form submit होने पर validation किस event में? — Ans: onsubmit
+182. Q: Input का मान बदलने पर event? — Ans: onchange
+183. Q: Form validation में field खाली है, कैसे जाँचें? — Ans: if (x == "") और return false
+184. Q: JavaScript में comment? — Ans: // (एक line) और /* */ (कई lines)
+185. Q: Console में output के लिए? — Ans: console.log()
+186. Q: AngularJS किसने बनाया? — Ans: Google (Miško Hevery)
+187. Q: AngularJS किस language पर आधारित framework है? — Ans: JavaScript
+188. Q: AngularJS application शुरू करने का directive? — Ans: ng-app
+189. Q: Input को data से जोड़ने (two-way binding) का directive? — Ans: ng-model
+190. Q: Data दिखाने वाला directive? — Ans: ng-bind
+191. Q: Variables को शुरुआती मान देने का directive? — Ans: ng-init
+192. Q: List को दोहराने (loop) का directive? — Ans: ng-repeat
+193. Q: AngularJS expression कैसे लिखते हैं? — Ans: Double curly braces में: {{ 5 + 5 }}
+194. Q: {{ 5 + 5 }} का output? — Ans: 10
+195. Q: AngularJS में controller का directive? — Ans: ng-controller
+196. Q: AngularJS के module बनाने का तरीका? — Ans: angular.module("myApp", [])
+
+Unit 7: Photo Editor
+
+197. Q: Photo editing software के उदाहरण? — Ans: Adobe Photoshop, GIMP (मुफ़्त), Paint.NET
+198. Q: GIMP का full form? — Ans: GNU Image Manipulation Program
+199. Q: Photoshop file का extension? — Ans: .psd
+200. Q: GIMP file का extension? — Ans: .xcf
+201. Q: Image का कोई भाग चुनने वाले tools? — Ans: Selection tools (Rectangle, Ellipse, Lasso/Free select, Magic Wand/Fuzzy select)
+202. Q: एक जैसे रंग वाला क्षेत्र चुनने का tool? — Ans: Magic Wand (GIMP में Fuzzy Select)
+203. Q: Image का अनचाहा भाग काटने का tool? — Ans: Crop tool
+204. Q: Image को घुमाने, size बदलने वाले tools? — Ans: Transform tools (Rotate, Scale, Flip, Move)
+205. Q: Image के दाग़ हटाने का tool? — Ans: Clone stamp या Healing tool
+206. Q: Paint tools के उदाहरण? — Ans: Brush, Pencil, Eraser, Bucket fill, Gradient
+207. Q: Layer क्या है? — Ans: Image की पारदर्शी परत, जिस पर अलग से काम किया जा सकता है
+208. Q: Image की चमक बदलने की setting? — Ans: Brightness/Contrast
+209. Q: Red-eye हटाने के लिए? — Ans: Red eye removal tool/filter
+210. Q: Image धुंधली (blur) करने के लिए? — Ans: Blur filter
+211. Q: Web के लिए photos का सबसे आम format? — Ans: JPEG; पारदर्शी background के लिए PNG; animation के लिए GIF
+
+Unit 8: Web Publishing और Browsing
+
+212. Q: SGML का full form? — Ans: Standard Generalized Markup Language
+213. Q: HTML किससे निकली है? — Ans: SGML से
+214. Q: XML का full form? — Ans: eXtensible Markup Language
+215. Q: Web hosting क्या है? — Ans: Website की files को internet से जुड़े server पर रखना
+216. Q: Web hosting के प्रकार? — Ans: Shared, VPS, Dedicated, Cloud और Free hosting
+217. Q: Website files server पर upload करने का protocol? — Ans: FTP (File Transfer Protocol)
+218. Q: FTP का default port? — Ans: 21
+219. Q: FTP client software का उदाहरण? — Ans: FileZilla
+220. Q: Domain name खरीदने वाली संस्था को क्या कहते हैं? — Ans: Domain registrar
+221. Q: .in किस देश का domain है? — Ans: India
+222. Q: .edu, .gov, .org किसके लिए? — Ans: शिक्षा, सरकार और संस्थाओं (non-profit) के लिए
+223. Q: Document interchange standards के उदाहरण? — Ans: HTML, XML, PDF, RTF
+224. Q: Web page का description और keywords किस tag में? — Ans: <meta> tag
+225. Q: SEO का full form? — Ans: Search Engine Optimization
+226. Q: Search engine के उदाहरण? — Ans: Google, Bing, Yahoo, DuckDuckGo
+227. Q: पहला graphical web browser? — Ans: Mosaic (1993)
+228. Q: Publishing tools के उदाहरण? — Ans: WordPress, Blogger, Dreamweaver
+229. Q: CMS का full form? — Ans: Content Management System (जैसे WordPress)
+230. Q: Web page design के सिद्धांत? — Ans: सरल navigation, एक जैसा layout, पढ़ने योग्य font, तेज़ loading और responsive design

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from '@/lib/router.jsx';
 import { publicApi } from '../services/api.js';
+import NotesGuard from '../components/site/NotesGuard.jsx';
 import ResultView from '../components/quiz/ResultView.jsx';
 import { ErrorState, PageLoader } from '../components/common/ui.jsx';
 
@@ -25,10 +26,10 @@ export default function StudentResult() {
       <div className="no-print mb-4 flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-ink-500">Bookmark this page – it is your private result link.</p>
         <div className="flex gap-2">
-          <button className="btn-secondary btn-sm" onClick={() => window.print()}>Print / save PDF</button>
           <Link className="btn-secondary btn-sm" to={`/quiz/${result.quiz.slug}`}>Back to quiz</Link>
         </div>
       </div>
+      <NotesGuard mark="olevelmocktest.in">
       <ResultView
         result={result}
         heading={
@@ -38,6 +39,7 @@ export default function StudentResult() {
           </>
         }
       />
+      </NotesGuard>
     </div>
   );
 }

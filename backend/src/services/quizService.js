@@ -381,9 +381,9 @@ export function publicQuizView(quiz) {
     maxMarks: quiz.questionCount * quiz.marksPerQuestion,
     negativeMarking: quiz.negativeMarking,
     negativeMarks: quiz.negativeMarks,
-    maxAttempts: quiz.maxAttempts,
-    startAt: quiz.startAt,
-    endAt: quiz.endAt,
+    maxAttempts: isOpenPractice(quiz) ? null : quiz.maxAttempts,
+    startAt: isOpenPractice(quiz) ? null : quiz.startAt,
+    endAt: isOpenPractice(quiz) ? null : quiz.endAt,
     module: quiz.module ?? null,
     topic: quiz.topic ?? null,
     year: quiz.year ?? null,
@@ -416,12 +416,20 @@ export async function listPublicQuizzes({ module } = {}) {
     }));
 }
 
+/**
+ * A quiz with a Module is listed on the public practice site. Public practice has no attempt limit,
+ * no device lock and no start/end window: anyone can take it as many times as they like.
+ * Quizzes without a Module (the institute's private links) keep every limit exactly as configured.
+ */
+export const isOpenPractice = (quiz) => Boolean(quiz && quiz.module);
+
 /** Is the quiz open for students right now? Returns { open, reason }. */
 export function availability(quiz) {
   if (!quiz || quiz.status === 'draft' || quiz.status === 'archived') {
     return { open: false, reason: 'NOT_FOUND', message: 'This quiz does not exist or is not published.' };
   }
   if (quiz.status === 'closed') return { open: false, reason: 'CLOSED', message: 'This quiz has been closed by the organiser.' };
+  if (isOpenPractice(quiz)) return { open: true };
   const t = now();
   if (quiz.startAt && t < new Date(quiz.startAt).getTime()) {
     return { open: false, reason: 'NOT_STARTED', message: 'This quiz has not started yet.' };

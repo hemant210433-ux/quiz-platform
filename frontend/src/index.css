@@ -50,6 +50,6 @@
 /* Notes: nothing from the notes is printed (see NotesGuard). */
 .notes-print-note { display: none; }
 @media print {
-  .notes-protected { display: none !important; }
+  .notes-protected:not([data-owner]) { display: none !important; }
   .notes-print-note { display: block; padding: 2rem; font-size: 1.1rem; }
 }

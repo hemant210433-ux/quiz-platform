@@ -9,6 +9,7 @@ import {
   getQuiz,
   getStoredQuestions,
   availability,
+  isOpenPractice,
   publicQuizView,
   listQuizzes,
   QUIZ_ID_RE,
@@ -127,7 +128,9 @@ export async function startAttempt(slug, body) {
   }
   if (studentName.length < 2) throw fieldError('studentName', 'Please enter your name (at least 2 characters).');
 
-  const useDevice = mode !== 'code' && quiz.lockDevice !== false && Boolean(quiz.maxAttempts) && Boolean(body.deviceId);
+  // Public practice quizzes (with a Module) are unlimited; private-link quizzes keep their configured limit.
+  const attemptLimit = isOpenPractice(quiz) ? null : quiz.maxAttempts;
+  const useDevice = mode !== 'code' && quiz.lockDevice !== false && Boolean(attemptLimit) && Boolean(body.deviceId);
   const deviceHash = body.deviceId ? sha256(`${quiz.id}:${body.deviceId}`) : '';
   const startKeyHash = body.startKey ? sha256(`${quiz.id}:${body.startKey}`) : '';
 
@@ -135,7 +138,7 @@ export async function startAttempt(slug, body) {
   const accessToken = randomToken(24);
   const startedAt = now();
   let deadline = startedAt + quiz.durationMinutes * 60 * 1000;
-  if (quiz.endAt) deadline = Math.min(deadline, new Date(quiz.endAt).getTime());
+  if (quiz.endAt && !isOpenPractice(quiz)) deadline = Math.min(deadline, new Date(quiz.endAt).getTime());
 
   let resumed = null; // existing index row when this request repeats an earlier one
   const attemptNumber = await updateJson(indexFile(quiz.id), { attempts: [] }, (index, ctx) => {
@@ -146,9 +149,9 @@ export async function startAttempt(slug, body) {
       ctx.skipWrite = true;
       return;
     }
-    if (quiz.maxAttempts) {
+    if (attemptLimit) {
       const mine = index.attempts.filter((a) => a.studentKey === key || (useDevice && a.deviceHash === deviceHash));
-      if (mine.length >= quiz.maxAttempts) {
+      if (mine.length >= attemptLimit) {
         // 2) Code holders may continue an unfinished attempt (lost phone, cleared browser). The code is the secret.
         const open = mode === 'code' && mine.find((a) => a.status === 'in_progress' && new Date(a.deadline).getTime() > startedAt);
         if (open) {
@@ -162,7 +165,7 @@ export async function startAttempt(slug, body) {
           'ATTEMPT_LIMIT_REACHED',
           sameDevice
             ? `An attempt for this quiz was already made from this device. If you are a different student, ask your teacher for your own access.`
-            : `You have already used the maximum number of attempts (${quiz.maxAttempts}) for this quiz. If your internet dropped while starting, ask your teacher to reset your attempt.`,
+            : `You have already used the maximum number of attempts (${attemptLimit}) for this quiz. If your internet dropped while starting, ask your teacher to reset your attempt.`,
         );
       }
     }

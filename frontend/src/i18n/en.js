@@ -2,6 +2,7 @@ export default {
   comingSoon: 'Coming soon',
   modules: 'Modules', explore: 'Explore', new: 'New', viewTests: 'View tests',
   shortNotes: 'Short notes',
+  guessPaper: 'Guess paper',
   practical: 'Practical',
   syllabus: 'Syllabus',
   home: 'Home', tests: 'Mock tests', about: 'About', privacy: 'Privacy', contact: 'Contact',

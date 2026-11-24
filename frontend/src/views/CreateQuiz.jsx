@@ -188,7 +188,7 @@ export default function CreateQuiz() {
             <Field label="Marks per question *" htmlFor="marks" error={errors.marksPerQuestion}>
               <input id="marks" type="number" min="0.25" step="0.25" className="input" value={form.marksPerQuestion} onChange={set('marksPerQuestion')} />
             </Field>
-            <Field label="Max attempts per student" htmlFor="maxAttempts" hint="Leave empty for unlimited." error={errors.maxAttempts}>
+            <Field label="Max attempts per student" htmlFor="maxAttempts" hint="Leave empty for unlimited. Ignored for public quizzes (those with a Module): they are always unlimited." error={errors.maxAttempts}>
               <input id="maxAttempts" type="number" min="1" className="input" value={form.maxAttempts} onChange={set('maxAttempts')} placeholder="Unlimited" />
             </Field>
           </div>

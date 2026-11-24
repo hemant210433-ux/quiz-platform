@@ -1,0 +1,254 @@
+O Level M3-R5: Programming and Problem Solving through Python — Important Guess Paper (One Liner Q&A)
+
+हर सवाल के आगे उसका उत्तर दिया गया है। Units NIELIT के M3-R5 syllabus के क्रम में हैं। Code के output Python 3 के अनुसार हैं।
+
+Unit 1: Introduction to Programming
+
+1.  Q: Algorithm क्या है? — Ans: किसी समस्या को हल करने के क्रमबद्ध, सीमित steps
+2.  Q: Algorithm की विशेषताएँ? — Ans: Input, Output, Definiteness, Finiteness, Effectiveness
+3.  Q: Flowchart क्या है? — Ans: Algorithm का चित्र (symbols) द्वारा प्रदर्शन
+4.  Q: Pseudocode क्या है? — Ans: साधारण भाषा जैसे शब्दों में लिखा algorithm
+5.  Q: Compiler क्या करता है? — Ans: पूरे program को एक साथ machine code में बदलता है
+6.  Q: Interpreter क्या करता है? — Ans: Program को line by line translate और execute करता है
+7.  Q: Python compiled है या interpreted? — Ans: Interpreted (पहले bytecode, फिर PVM पर चलता है)
+8.  Q: Assembly language को machine code में बदलने वाला? — Ans: Assembler
+9.  Q: Program की गलतियाँ ढूँढने और ठीक करने को कहते हैं? — Ans: Debugging
+10. Q: Errors के प्रकार? — Ans: Syntax error, Runtime error और Logical error
+11. Q: गलत output देने वाली, पर बिना रुके चलने वाली error? — Ans: Logical error
+12. Q: Low level language के उदाहरण? — Ans: Machine language और Assembly language
+13. Q: High level language के उदाहरण? — Ans: Python, C, Java
+14. Q: Program की जानकारी लिखकर रखना? — Ans: Documentation
+15. Q: Testing का उद्देश्य? — Ans: Program में errors ढूँढना और सही output की जाँच करना
+
+Unit 2: Algorithms और Flowcharts
+
+16. Q: Flowchart में Start/Stop का symbol? — Ans: Oval (Terminal)
+17. Q: Input/Output का symbol? — Ans: Parallelogram
+18. Q: Process (गणना) का symbol? — Ans: Rectangle
+19. Q: Decision (शर्त) का symbol? — Ans: Diamond (Rhombus)
+20. Q: Flow की दिशा दिखाने वाला symbol? — Ans: Arrow (Flow line)
+21. Q: Flowchart को दूसरे page से जोड़ने का symbol? — Ans: Connector (Circle)
+22. Q: Decision box से कितने रास्ते निकलते हैं? — Ans: आमतौर पर दो (Yes/No)
+23. Q: Processing के तीन प्रकार? — Ans: Sequential, Decision based (selection) और Iterative (loop)
+24. Q: बिना तीसरे variable के a और b का मान बदलना? — Ans: a = a + b; b = a - b; a = a - b (Python में a, b = b, a)
+25. Q: Decimal 10 का binary? — Ans: 1010
+26. Q: Decimal 25 का binary? — Ans: 11001
+27. Q: Decimal को binary में बदलने का तरीका? — Ans: 2 से बार-बार भाग देकर शेषफल नीचे से ऊपर पढ़ना
+28. Q: संख्या 1234 को उल्टा करने के लिए कौन-से operators? — Ans: % 10 (अंतिम अंक) और // 10 (अंक हटाना)
+29. Q: GCD(12, 18)? — Ans: 6
+30. Q: GCD का प्रसिद्ध तरीका? — Ans: Euclid का algorithm (बार-बार शेषफल लेना)
+31. Q: Prime number की जाँच? — Ans: 2 से √n तक किसी से पूरा भाग न जाए तो prime
+32. Q: 5! (factorial) का मान? — Ans: 120
+33. Q: 0! का मान? — Ans: 1
+34. Q: Fibonacci series के पहले 7 पद? — Ans: 0, 1, 1, 2, 3, 5, 8
+35. Q: sin x की series? — Ans: x − x³/3! + x⁵/5! − x⁷/7! + …
+36. Q: Array में सबसे बड़ी संख्या कैसे ढूँढते हैं? — Ans: पहले element को max मानकर बाकी सबसे तुलना करके
+37. Q: Upper triangular matrix के elements? — Ans: जहाँ column ≥ row (i ≤ j)
+
+Unit 3: Introduction to Python
+
+38. Q: Python किसने बनाई? — Ans: Guido van Rossum
+39. Q: Python कब release हुई? — Ans: 1991
+40. Q: Python का नाम किससे लिया गया? — Ans: BBC comedy show "Monty Python's Flying Circus"
+41. Q: Python file का extension? — Ans: .py
+42. Q: Python का default IDE? — Ans: IDLE
+43. Q: IDLE का full form? — Ans: Integrated Development and Learning Environment
+44. Q: Python shell का prompt? — Ans: >>>
+45. Q: Python के दो modes? — Ans: Interactive mode और Script mode
+46. Q: Python में single line comment? — Ans: #
+47. Q: Multi-line comment/docstring? — Ans: Triple quotes ''' ''' या """ """
+48. Q: Python में block (code group) कैसे बनता है? — Ans: Indentation से
+49. Q: Python case-sensitive है? — Ans: हाँ
+50. Q: Valid identifier कौन-सा है: 2abc, _abc, a-b? — Ans: _abc
+51. Q: Python में keyword की सूची कैसे देखें? — Ans: import keyword; keyword.kwlist
+52. Q: Python 3 में keywords की संख्या? — Ans: 35 (Python 3.8+)
+53. Q: True, False, None क्या हैं? — Ans: Keywords (और constants)
+54. Q: type(10) का output? — Ans: <class 'int'>
+55. Q: type(10.0)? — Ans: <class 'float'>
+56. Q: Complex number का उदाहरण? — Ans: 3 + 4j
+57. Q: (3+4j).real का मान? — Ans: 3.0
+58. Q: Python के built-in data types? — Ans: int, float, complex, str, bool, list, tuple, set, dict
+59. Q: Immutable data types? — Ans: int, float, str, tuple, bool
+60. Q: Mutable data types? — Ans: list, dict, set
+61. Q: Set की विशेषता? — Ans: Unordered, duplicates नहीं रखता
+62. Q: खाली set कैसे बनाते हैं? — Ans: set() ({} खाली dictionary है)
+63. Q: User से input लेने का function? — Ans: input()
+64. Q: input() किस type का मान देता है? — Ans: हमेशा string
+65. Q: Integer input लेने के लिए? — Ans: int(input())
+66. Q: print("A", "B", sep="-") का output? — Ans: A-B
+67. Q: print("A", end=" ") में end का काम? — Ans: Line के अंत में newline की जगह दिया गया text
+68. Q: "Hello"[1] का output? — Ans: 'e'
+69. Q: "Hello"[-1]? — Ans: 'o'
+70. Q: "Python"[1:4]? — Ans: 'yth'
+71. Q: "Python"[::-1]? — Ans: 'nohtyP'
+72. Q: "Hi" * 3? — Ans: 'HiHiHi'
+73. Q: "Hi" + "5"? — Ans: 'Hi5'
+74. Q: len("Python")? — Ans: 6
+75. Q: String immutable है, इसका मतलब? — Ans: s[0] = 'J' से error आती है
+
+Unit 4: Operators, Expressions और Statements
+
+76. Q: 7 / 2 का output? — Ans: 3.5
+77. Q: 7 // 2 का output (floor division)? — Ans: 3
+78. Q: -7 // 2? — Ans: -4
+79. Q: 7 % 3? — Ans: 1
+80. Q: 2 ** 3? — Ans: 8
+81. Q: 2 ** 3 ** 2? — Ans: 512 (** दाएँ से बाएँ)
+82. Q: सबसे ऊँची precedence वाला operator? — Ans: ** (brackets के बाद)
+83. Q: 10 > 5 and 3 > 8? — Ans: False
+84. Q: not True? — Ans: False
+85. Q: 5 & 3 (bitwise AND)? — Ans: 1
+86. Q: 5 | 3 (bitwise OR)? — Ans: 7
+87. Q: 5 ^ 3 (XOR)? — Ans: 6
+88. Q: ~5? — Ans: -6
+89. Q: 8 >> 2? — Ans: 2
+90. Q: 3 << 2? — Ans: 12
+91. Q: is operator क्या जाँचता है? — Ans: दोनों एक ही object हैं या नहीं (identity)
+92. Q: in operator? — Ans: Membership (कोई item sequence में है या नहीं)
+93. Q: a += 5 का अर्थ? — Ans: a = a + 5
+94. Q: Python में ++ operator है? — Ans: नहीं
+95. Q: Multiple assignment का उदाहरण? — Ans: a, b = 1, 2 या a = b = 0
+96. Q: else if को Python में क्या लिखते हैं? — Ans: elif
+97. Q: range(5) कौन-सी संख्याएँ देता है? — Ans: 0, 1, 2, 3, 4
+98. Q: range(1, 10, 2)? — Ans: 1, 3, 5, 7, 9
+99. Q: range(10, 0, -3)? — Ans: 10, 7, 4, 1
+100. Q: Loop तुरंत रोकने का statement? — Ans: break
+101. Q: Loop का बाकी भाग छोड़कर अगली iteration? — Ans: continue
+102. Q: कुछ न करने वाला statement? — Ans: pass
+103. Q: Loop के साथ else कब चलता है? — Ans: जब loop बिना break के पूरा हो
+104. Q: assert का उपयोग? — Ans: शर्त झूठी होने पर AssertionError देना
+105. Q: Python में do-while loop है? — Ans: नहीं; केवल for और while
+106. Q: Infinite loop का उदाहरण? — Ans: while True:
+
+Unit 5: Sequence Data Types (List, Tuple, Dictionary)
+
+107. Q: List किस bracket में बनती है? — Ans: [ ]
+108. Q: Tuple किस bracket में? — Ans: ( )
+109. Q: Dictionary किस bracket में? — Ans: { } (key: value)
+110. Q: एक item वाला tuple? — Ans: (5,) (comma ज़रूरी)
+111. Q: List के अंत में item जोड़ने का method? — Ans: append()
+112. Q: किसी position पर item जोड़ने का method? — Ans: insert(index, item)
+113. Q: एक list में दूसरी list के सारे items जोड़ने का method? — Ans: extend()
+114. Q: मान से item हटाने का method? — Ans: remove()
+115. Q: Index से item हटाकर लौटाने का method? — Ans: pop() (default अंतिम item)
+116. Q: List को क्रम में लगाने का method? — Ans: sort() (उल्टे क्रम के लिए reverse=True)
+117. Q: sorted(L) और L.sort() में अंतर? — Ans: sorted() नई list देता है; sort() उसी list को बदलता है
+118. Q: किसी item की गिनती का method? — Ans: count()
+119. Q: [1, 2] * 2? — Ans: [1, 2, 1, 2]
+120. Q: [1, 2] + [3]? — Ans: [1, 2, 3]
+121. Q: L = [10, 20, 30]; L[-1]? — Ans: 30
+122. Q: max([3, 9, 2])? — Ans: 9
+123. Q: sum([1, 2, 3]) / len([1, 2, 3])? — Ans: 2.0 (mean)
+124. Q: Tuple mutable है? — Ans: नहीं, immutable
+125. Q: Tuple के केवल दो methods? — Ans: count() और index()
+126. Q: Dictionary की keys कैसी होनी चाहिए? — Ans: Unique और immutable
+127. Q: Dictionary की सारी keys? — Ans: d.keys(); मान d.values(), जोड़े d.items()
+128. Q: Key न होने पर error के बिना मान लेने के लिए? — Ans: d.get(key) (न मिले तो None)
+129. Q: Dictionary में नया item? — Ans: d["key"] = value
+130. Q: List में items की frequency गिनने के लिए किसका उपयोग? — Ans: Dictionary (d[x] = d.get(x, 0) + 1)
+131. Q: Linear search क्या है? — Ans: List के हर item को शुरू से एक-एक करके जाँचना
+132. Q: del L[0] क्या करता है? — Ans: पहला item हटाता है
+
+Unit 6: Functions
+
+133. Q: Function बनाने का keyword? — Ans: def
+134. Q: Function से मान लौटाने का statement? — Ans: return
+135. Q: return न हो तो function क्या लौटाता है? — Ans: None
+136. Q: Top-down approach क्या है? — Ans: बड़ी समस्या को छोटे-छोटे भागों (functions) में बाँटना
+137. Q: Modular programming का फ़ायदा? — Ans: Code reuse, आसान debugging और समझना आसान
+138. Q: Function के अंदर बना variable? — Ans: Local variable
+139. Q: Function के अंदर global variable बदलने के लिए? — Ans: global keyword
+140. Q: Docstring कहाँ लिखते हैं? — Ans: Function की पहली line में triple quotes में; func.__doc__ से दिखता है
+141. Q: Default argument का उदाहरण? — Ans: def f(a, b=5):
+142. Q: Keyword argument का उदाहरण? — Ans: f(b=2, a=1)
+143. Q: Variable number of arguments (tuple)? — Ans: *args
+144. Q: Variable keyword arguments (dictionary)? — Ans: **kwargs
+145. Q: Anonymous (बिना नाम का) function? — Ans: lambda (जैसे lambda x: x * 2)
+146. Q: Function का खुद को बुलाना? — Ans: Recursion
+147. Q: Recursion में रुकने की शर्त? — Ans: Base case
+148. Q: eval("2 + 3 * 4")? — Ans: 14
+149. Q: "hello world".title()? — Ans: 'Hello World'
+150. Q: "hello".capitalize()? — Ans: 'Hello'
+151. Q: "Hello".swapcase()? — Ans: 'hELLO'
+152. Q: "banana".count("a")? — Ans: 3
+153. Q: "banana".find("n")? — Ans: 2
+154. Q: "banana".rfind("n")? — Ans: 4
+155. Q: "banana".find("z")? — Ans: -1
+156. Q: "a,b,c".split(",")? — Ans: ['a', 'b', 'c']
+157. Q: "-".join(["a", "b"])? — Ans: 'a-b'
+158. Q: "  hi  ".strip()? — Ans: 'hi' (lstrip बाएँ, rstrip दाएँ से)
+159. Q: "hello".replace("l", "L")? — Ans: 'heLLo'
+160. Q: "a-b-c".partition("-")? — Ans: ('a', '-', 'b-c')
+161. Q: "123".isdigit()? — Ans: True
+162. Q: "abc1".isalpha()? — Ans: False
+163. Q: "abc1".isalnum()? — Ans: True
+164. Q: "Python".startswith("Py")? — Ans: True
+165. Q: "hi".encode()? — Ans: b'hi' (bytes)
+166. Q: round(3.567, 2)? — Ans: 3.57
+167. Q: round(2.5)? — Ans: 2 (बराबर दूरी पर even की ओर)
+168. Q: int(3.9)? — Ans: 3
+169. Q: math.ceil(4.2)? — Ans: 5; math.floor(4.8) = 4
+170. Q: math.sqrt(16)? — Ans: 4.0
+171. Q: pow(2, 5)? — Ans: 32
+172. Q: random.randint(1, 6) क्या देता है? — Ans: 1 से 6 तक (दोनों शामिल) random integer
+173. Q: random.random() का range? — Ans: 0.0 से 1.0 (1.0 शामिल नहीं)
+174. Q: आज की तारीख़? — Ans: datetime.date.today()
+175. Q: Pattern matching के लिए module? — Ans: re (regular expressions)
+
+Unit 7: File Processing
+
+176. Q: File खोलने का function? — Ans: open()
+177. Q: Default file mode? — Ans: 'r' (read)
+178. Q: 'w' mode में file पहले से हो तो? — Ans: पुराना content मिट जाता है
+179. Q: File के अंत में जोड़ने का mode? — Ans: 'a' (append)
+180. Q: File न हो तो 'r' mode में error? — Ans: FileNotFoundError
+181. Q: Binary file पढ़ने का mode? — Ans: 'rb'
+182. Q: Read और write दोनों का mode? — Ans: 'r+'
+183. Q: पूरी file एक string में पढ़ने का method? — Ans: read()
+184. Q: एक line पढ़ने का method? — Ans: readline()
+185. Q: सारी lines list में पढ़ने का method? — Ans: readlines()
+186. Q: File में string लिखने का method? — Ans: write()
+187. Q: List of strings लिखने का method? — Ans: writelines()
+188. Q: File pointer की वर्तमान स्थिति? — Ans: tell()
+189. Q: File pointer को किसी स्थिति पर ले जाना? — Ans: seek(offset)
+190. Q: File बंद करने का method? — Ans: close()
+191. Q: File अपने आप बंद करने का तरीका? — Ans: with open("a.txt") as f:
+192. Q: Command line arguments किस module से? — Ans: sys (sys.argv)
+193. Q: sys.argv[0] में क्या होता है? — Ans: Script (program) का नाम
+
+Unit 8: Scope और Modules
+
+194. Q: LEGB rule का full form? — Ans: Local, Enclosing, Global, Built-in
+195. Q: Python variable का नाम किस क्रम में ढूँढता है? — Ans: Local → Enclosing → Global → Built-in
+196. Q: Nested function में बाहरी function का variable बदलने के लिए? — Ans: nonlocal keyword
+197. Q: Module क्या है? — Ans: Functions और variables वाली .py file
+198. Q: Module जोड़ने के तरीके? — Ans: import math, from math import sqrt, import math as m
+199. Q: Module के सारे नाम देखने का function? — Ans: dir(module)
+200. Q: Module दोबारा load करने का तरीका? — Ans: importlib.reload(module)
+201. Q: File सीधे चलाने पर __name__ का मान? — Ans: "__main__"
+202. Q: Package क्या है? — Ans: Modules का folder (पहले __init__.py के साथ)
+203. Q: Module एक namespace है, इसका मतलब? — Ans: उसके नाम module.name से अलग पहचाने जाते हैं
+
+Unit 9: NumPy Basics
+
+204. Q: NumPy का full form? — Ans: Numerical Python
+205. Q: NumPy import करने का आम तरीका? — Ans: import numpy as np
+206. Q: NumPy का मुख्य object? — Ans: ndarray
+207. Q: NumPy array में सभी elements का type? — Ans: एक जैसा (homogeneous)
+208. Q: List से array बनाना? — Ans: np.array([1, 2, 3])
+209. Q: Array के dimensions की संख्या? — Ans: ndim
+210. Q: Array का आकार (rows, columns)? — Ans: shape
+211. Q: कुल elements? — Ans: size
+212. Q: Elements का data type? — Ans: dtype
+213. Q: एक element के bytes? — Ans: itemsize
+214. Q: शून्यों वाला array? — Ans: np.zeros((2, 3))
+215. Q: एक (1) वाला array? — Ans: np.ones()
+216. Q: Identity matrix? — Ans: np.eye(3) या np.identity(3)
+217. Q: np.arange(0, 10, 2)? — Ans: [0 2 4 6 8]
+218. Q: np.linspace(0, 1, 5)? — Ans: [0. 0.25 0.5 0.75 1.]
+219. Q: Array का आकार बदलना? — Ans: reshape()
+220. Q: np.asarray() का काम? — Ans: मौजूदा data (list/tuple) से array बनाना
+221. Q: a = np.array([10, 20, 30, 40]); a[1:3]? — Ans: [20 30]
+222. Q: 2D array में row 0, column 1 का element? — Ans: a[0, 1] या a[0][1]
+223. Q: np.array([1, 2]) * 2? — Ans: [2 4] (element-wise)
+224. Q: np.array([1, 2, 3]).sum()? — Ans: 6
