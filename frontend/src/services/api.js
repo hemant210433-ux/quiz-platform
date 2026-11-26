@@ -150,6 +150,11 @@ export const adminApi = {
   generateCodes: (id, body) => api.post(`/api/admin/quizzes/${id}/codes`, body),
   deleteCode: (id, code) => api.del(`/api/admin/quizzes/${id}/codes/${encodeURIComponent(code)}`),
 
+  listContent: () => api.get('/api/admin/content'),
+  parseContent: (kind, module, text) => api.post(`/api/admin/content/${kind}/${module}/parse`, { text }),
+  saveContent: (kind, module, text, mode) => api.put(`/api/admin/content/${kind}/${module}`, { text, mode }),
+  removeContent: (kind, module, n) => api.del(`/api/admin/content/${kind}/${module}${n != null ? `?n=${n}` : ''}`),
+
   getSettings: () => api.get('/api/admin/settings'),
   updateSettings: (data) => api.put('/api/admin/settings', data),
   listBackups: () => api.get('/api/admin/backups'),

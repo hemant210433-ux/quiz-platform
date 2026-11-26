@@ -5,7 +5,7 @@ import RAW from './notes.json';
  * site owner's own note documents by tools/parse_notes_docx.py. Notes are for revision only: they are not
  * exam questions and say nothing about the exam pattern.
  */
-export const NOTES_UPDATED = '2026-11-23';
+export const NOTES_UPDATED = '2026-11-26';
 
 const HI_TITLES = {
   'm1-r5': ['कंप्यूटर का परिचय', 'ऑपरेटिंग सिस्टम का परिचय', 'वर्ड प्रोसेसिंग (LibreOffice Writer)', 'स्प्रेडशीट (LibreOffice Calc)', 'प्रेजेंटेशन (LibreOffice Impress)', 'इंटरनेट और WWW का परिचय', 'ईमेल, सोशल नेटवर्किंग और ई-गवर्नेंस', 'डिजिटल वित्तीय टूल्स और एप्लिकेशन', 'साइबर सुरक्षा की रूपरेखा', 'फ्यूचर स्किल्स और AI की रूपरेखा'],
@@ -22,12 +22,9 @@ const slugify = (s) =>
     .replace(/^-+|-+$/g, '')
     .slice(0, 60);
 
-const cache = new Map();
-
-/** Chapters of a module with numbered points and section anchors. */
-export function chaptersOf(mod) {
-  if (cache.has(mod.slug)) return cache.get(mod.slug);
-  const list = (RAW[mod.slug] || []).map((c, i) => {
+/** Turn raw chapters (static JSON or an admin-pasted override) into numbered chapters with section anchors. */
+export function buildChapters(mod, raw) {
+  return raw.map((c) => {
     let no = 0;
     const sections = c.sections.map((s, k) => ({
       id: `s${k + 1}`,
@@ -37,16 +34,18 @@ export function chaptersOf(mod) {
     }));
     return {
       n: c.n,
-      slug: `${c.n}-${slugify(c.title)}`,
+      slug: [c.n, slugify(c.title)].filter(Boolean).join('-'),
       en: c.title,
-      hi: HI_TITLES[mod.slug]?.[i] || c.title,
+      hi: c.hi || HI_TITLES[mod.slug]?.[c.n - 1] || c.title,
       sections,
       points: no,
     };
   });
-  cache.set(mod.slug, list);
-  return list;
 }
+
+/** Built-in chapters (no admin override). */
+export const staticRaw = (mod) => RAW[mod.slug] || [];
+export const chaptersOf = (mod) => buildChapters(mod, staticRaw(mod));
 
 export const totalPoints = (mods) => mods.reduce((a, m) => a + chaptersOf(m).reduce((x, c) => x + c.points, 0), 0);
 export const totalChapters = (mods) => mods.reduce((a, m) => a + chaptersOf(m).length, 0);

@@ -9,6 +9,7 @@ import { exists } from './storage/jsonStorage.js';
 import authRoutes from './routes/authRoutes.js';
 import quizRoutes from './routes/quizRoutes.js';
 import importRoutes from './routes/importRoutes.js';
+import contentRoutes from './routes/contentRoutes.js';
 import resultRoutes from './routes/resultRoutes.js';
 import publicRoutes from './routes/publicRoutes.js';
 import { requireAdmin, requireCsrfHeader } from './middleware/authMiddleware.js';
@@ -77,6 +78,7 @@ export function createApp() {
     },
     quizRoutes,
     importRoutes,
+    contentRoutes,
     resultRoutes,
   );
 

@@ -9,6 +9,7 @@ const NAV = [
   { to: '/admin/quizzes', label: 'Quizzes', icon: 'M4 6h16M4 12h16M4 18h10', end: false },
   { to: '/admin/quizzes/new', label: 'Create Quiz', icon: 'M12 5v14M5 12h14', end: true },
   { to: '/admin/import', label: 'Bulk Import', icon: 'M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3', end: true },
+  { to: '/admin/content', label: 'Notes & Guess Paper', icon: 'M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7', end: false },
   { to: '/admin/results', label: 'Results', icon: 'M5 20V10m7 10V4m7 16v-7', end: false },
   { to: '/admin/settings', label: 'Settings', icon: 'M12 15a3 3 0 100-6 3 3 0 000 6zm7.4-3a7.4 7.4 0 00-.1-1.2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 00-2-1.2L14.5 2h-4l-.4 2.6a7.6 7.6 0 00-2 1.2l-2.4-1-2 3.4 2 1.6a7.4 7.4 0 000 2.4l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 002 1.2l.4 2.6h4l.4-2.6a7.6 7.6 0 002-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z', end: true },
 ];

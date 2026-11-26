@@ -4,17 +4,17 @@ import SiteShell, { PageBand } from '@/components/site/SiteChrome.jsx';
 import JsonLd from '@/components/site/JsonLd.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES, getModule } from '@/content/modules.js';
-import { chaptersOf, NOTES_UPDATED } from '@/content/notes.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { NOTES_UPDATED } from '@/content/notes.js';
+import { SITE_URL, getChapters } from '@/lib/siteApi.js';
 import { pageMeta, currentYear } from '@/lib/seo.js';
 
-export const dynamicParams = false;
+export const revalidate = 60;
 export const generateStaticParams = () => MODULES.map((m) => ({ module: m.slug }));
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
   const m = getModule(params.module);
   if (!m) return {};
-  const ch = chaptersOf(m);
+  const ch = await getChapters(m);
   const pts = ch.reduce((a, c) => a + c.points, 0);
   return pageMeta({
     title: `${m.short} Short Notes हिंदी में ${currentYear()} – ${m.shortEn}`,
@@ -25,10 +25,10 @@ export function generateMetadata({ params }) {
   });
 }
 
-export default function ModuleNotes({ params }) {
+export default async function ModuleNotes({ params }) {
   const m = getModule(params.module);
   if (!m) notFound();
-  const chapters = chaptersOf(m);
+  const chapters = await getChapters(m);
   return (
     <SiteShell band={<PageBand title={<T hi={`${m.short} शॉर्ट नोट्स – चैप्टर वाइज़`} en={`${m.short} short notes – chapter wise`} />} sub={<T hi={m.hi} en={m.en} />} />}>
       <JsonLd

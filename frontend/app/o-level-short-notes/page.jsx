@@ -3,8 +3,8 @@ import SiteShell, { PageBand, SectionTitle } from '@/components/site/SiteChrome.
 import JsonLd from '@/components/site/JsonLd.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES } from '@/content/modules.js';
-import { chaptersOf, totalPoints, totalChapters, NOTES_UPDATED } from '@/content/notes.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { NOTES_UPDATED } from '@/content/notes.js';
+import { SITE_URL, getAllChapters } from '@/lib/siteApi.js';
 import { pageMeta, currentYear } from '@/lib/seo.js';
 
 const FAQ = [
@@ -23,9 +23,12 @@ export const metadata = pageMeta({
   keywords: ['O Level short notes in Hindi', 'O Level notes Hindi', 'O Level one liner notes', 'M1-R5 notes', 'M2-R5 notes', 'M3-R5 Python notes', 'M4-R5 IoT notes', 'O Level chapter wise notes'],
 });
 
-export default function ShortNotes() {
-  const chapters = totalChapters(MODULES);
-  const points = totalPoints(MODULES);
+export const revalidate = 60;
+
+export default async function ShortNotes() {
+  const all = await getAllChapters(MODULES);
+  const chapters = Object.values(all).reduce((a, l) => a + l.length, 0);
+  const points = Object.values(all).reduce((a, l) => a + l.reduce((x, c) => x + c.points, 0), 0);
   return (
     <SiteShell band={<PageBand title={<T hi="O Level शॉर्ट नोट्स हिंदी में – चैप्टर वाइज़" en="O Level short notes – chapter wise" />} sub={<T hi={`${MODULES.length} मॉड्यूल, ${chapters} चैप्टर, ${points.toLocaleString('en-IN')} one liner points. हिंदी और English साथ-साथ।`} en={`${MODULES.length} modules, ${chapters} chapters, ${points.toLocaleString('en-IN')} one-liner points. Hindi and English together.`} />} />}>
       <JsonLd
@@ -82,7 +85,7 @@ export default function ShortNotes() {
               <SectionTitle><T hi={`${m.short} शॉर्ट नोट्स: ${m.hi}`} en={`${m.short} short notes: ${m.en}`} /></SectionTitle>
             </div>
             <ol className="mt-6 grid max-w-4xl gap-3 sm:grid-cols-2">
-              {chaptersOf(m).map((c) => (
+              {all[m.slug].map((c) => (
                 <li key={c.slug}>
                   <Link href={`/o-level-short-notes/${m.slug}/${c.slug}`} className="flex h-full items-start gap-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-ink-200 transition hover:ring-brand-400">
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-blush-100 text-sm font-bold text-brand-800">{c.n}</span>

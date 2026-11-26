@@ -7,7 +7,7 @@ import RAW from './guess.json';
  */
 export const GUESS_UPDATED = '2026-11-24';
 
-export function unitsOf(mod) {
-  return (RAW[mod.slug] || []).map((u) => ({ ...u, count: u.items.length }));
-}
+export const buildUnits = (raw) => raw.map((u) => ({ ...u, count: u.items.length }));
+export const staticUnits = (mod) => RAW[mod.slug] || [];
+export const unitsOf = (mod) => buildUnits(staticUnits(mod));
 export const totalOf = (mod) => unitsOf(mod).reduce((a, u) => a + u.count, 0);

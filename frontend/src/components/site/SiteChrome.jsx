@@ -24,21 +24,21 @@ export function Ornament({ className = '' }) {
   );
 }
 
-const navLink = 'rounded-md px-3 py-2 text-[15px] font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800';
+const navLink = 'whitespace-nowrap rounded-md px-2.5 py-2 text-[15px] font-semibold text-ink-700 transition hover:bg-brand-50 hover:text-brand-800';
 
 export function SiteHeader() {
   const { lang, setLang, t } = useLang();
   return (
     <header className="no-print relative z-20 border-b border-ink-200/70 bg-ink-50/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3.5 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5 text-brand-800" aria-label="Home">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3.5 sm:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 text-brand-800" aria-label="Home">
           <Bubble className="h-9 w-9" />
           <span className="leading-none">
-            <span className="block font-display text-[22px] text-brand-900"><T hi={SITE_NAME_HI} en={SITE_NAME_EN} /></span>
+            <span className="block whitespace-nowrap font-display text-[22px] text-brand-900"><T hi={SITE_NAME_HI} en={SITE_NAME_EN} /></span>
             <span className="mt-1 block text-[11px] font-semibold text-ink-500"><T hi="मुफ़्त अभ्यास प्लेटफ़ॉर्म" en="Free practice platform" /></span>
           </span>
         </Link>
-        <nav aria-label="Main" className="ml-auto hidden items-center gap-1 md:flex">
+        <nav aria-label="Main" className="ml-auto hidden items-center gap-0.5 lg:flex">
           <Link className={navLink} href="/">{t('home')}</Link>
           <Link className={navLink} href="/o-level-mock-test">{t('tests')}</Link>
           <Link className={navLink} href="/o-level-short-notes">{t('shortNotes')}</Link>
@@ -48,7 +48,7 @@ export function SiteHeader() {
           <Link className={navLink} href="/about">{t('about')}</Link>
           <Link className={navLink} href="/contact">{t('contact')}</Link>
         </nav>
-        <div className="ml-auto flex items-center gap-2 md:ml-3">
+        <div className="ml-auto flex items-center gap-2 lg:ml-3">
           <div role="group" aria-label="Language" className="flex overflow-hidden rounded-md ring-1 ring-ink-300">
             {[['hi', 'हिं'], ['en', 'EN']].map(([code, label]) => (
               <button
@@ -62,8 +62,8 @@ export function SiteHeader() {
               </button>
             ))}
           </div>
-          <Link href="/o-level-mock-test" className="btn-primary hidden sm:inline-flex">{t('startPractice')}</Link>
-          <details className="relative md:hidden">
+          <Link href="/o-level-mock-test" className="btn-primary hidden whitespace-nowrap xl:inline-flex">{t('startPractice')}</Link>
+          <details className="relative lg:hidden">
             <summary className="grid h-9 w-9 cursor-pointer list-none place-items-center rounded-md ring-1 ring-ink-300" aria-label={t('menu')}>
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </summary>

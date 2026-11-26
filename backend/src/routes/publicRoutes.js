@@ -3,6 +3,7 @@ import * as pub from '../controllers/publicController.js';
 import { publicSite } from '../controllers/settingsController.js';
 import { asyncHandler as a } from '../utils/helpers.js';
 import { startLimiter } from '../middleware/rateLimiters.js';
+import { publicGet as contentGet } from '../controllers/contentController.js';
 import { botGuard } from '../middleware/botGuard.js';
 
 /** Public student API, mounted at /api/public. No admin data, no answers before submission. */
@@ -15,6 +16,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/site', a(publicSite));
+router.get('/content/:kind/:module', a(contentGet));
 router.get('/quizzes', a(pub.listQuizzes));
 router.get('/quizzes/:slug', a(pub.getQuiz));
 router.post('/quizzes/:slug/start', botGuard, startLimiter, a(pub.start));

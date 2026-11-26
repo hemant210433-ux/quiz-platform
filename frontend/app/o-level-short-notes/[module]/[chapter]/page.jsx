@@ -6,24 +6,24 @@ import NotesGuard from '@/components/site/NotesGuard.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES, getModule } from '@/content/modules.js';
 import { chaptersOf, NOTES_UPDATED } from '@/content/notes.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { SITE_URL, getChapters } from '@/lib/siteApi.js';
 import { pageMeta, currentYear, SITE_NAME } from '@/lib/seo.js';
 
-export const dynamicParams = false;
+export const revalidate = 60;
 export const generateStaticParams = () => MODULES.flatMap((m) => chaptersOf(m).map((c) => ({ module: m.slug, chapter: c.slug })));
 
-function find(params) {
+async function find(params) {
   const m = getModule(params.module);
   if (!m) return {};
-  const list = chaptersOf(m);
+  const list = await getChapters(m);
   const i = list.findIndex((c) => c.slug === params.chapter);
   return i < 0 ? {} : { m, list, i, c: list[i] };
 }
 
 const cut = (s, n) => (s.length <= n ? s : `${s.slice(0, n - 1).replace(/[\s,·]+\S*$/, '')}…`);
 
-export function generateMetadata({ params }) {
-  const { m, c } = find(params);
+export async function generateMetadata({ params }) {
+  const { m, c } = await find(params);
   if (!c) return {};
   const topics = c.sections.slice(0, 4).map((s) => s.hi).join(', ');
   return pageMeta({
@@ -56,8 +56,8 @@ function Table({ rows }) {
   );
 }
 
-export default function ChapterNotes({ params }) {
-  const { m, list, i, c } = find(params);
+export default async function ChapterNotes({ params }) {
+  const { m, list, i, c } = await find(params);
   if (!c) notFound();
   const prev = list[i - 1];
   const next = list[i + 1];

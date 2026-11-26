@@ -6,23 +6,23 @@ import NotesGuard from '@/components/site/NotesGuard.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES, getModule } from '@/content/modules.js';
 import { unitsOf, GUESS_UPDATED } from '@/content/guess.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { SITE_URL, getUnits } from '@/lib/siteApi.js';
 import { pageMeta, currentYear, SITE_NAME } from '@/lib/seo.js';
 
-export const dynamicParams = false;
+export const revalidate = 60;
 export const generateStaticParams = () => MODULES.flatMap((m) => unitsOf(m).map((u) => ({ module: m.slug, unit: u.slug })));
 
-function find(params) {
+async function find(params) {
   const m = getModule(params.module);
   if (!m) return {};
-  const list = unitsOf(m);
+  const list = await getUnits(m);
   const i = list.findIndex((u) => u.slug === params.unit);
   return i < 0 ? {} : { m, list, i, u: list[i] };
 }
 const cut = (s, n) => (s.length <= n ? s : `${s.slice(0, n - 1).replace(/[\s,·]+\S*$/, '')}…`);
 
-export function generateMetadata({ params }) {
-  const { m, u } = find(params);
+export async function generateMetadata({ params }) {
+  const { m, u } = await find(params);
   if (!u) return {};
   return pageMeta({
     title: cut(`${u.title} – ${m.short} Guess Paper | Unit ${u.n} Questions`, 66),
@@ -34,8 +34,8 @@ export function generateMetadata({ params }) {
   });
 }
 
-export default function UnitGuess({ params }) {
-  const { m, list, i, u } = find(params);
+export default async function UnitGuess({ params }) {
+  const { m, list, i, u } = await find(params);
   if (!u) notFound();
   const prev = list[i - 1];
   const next = list[i + 1];

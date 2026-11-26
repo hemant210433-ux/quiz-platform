@@ -4,29 +4,32 @@ import SiteShell, { PageBand } from '@/components/site/SiteChrome.jsx';
 import JsonLd from '@/components/site/JsonLd.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES, getModule } from '@/content/modules.js';
-import { unitsOf, totalOf, GUESS_UPDATED } from '@/content/guess.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { GUESS_UPDATED } from '@/content/guess.js';
+import { SITE_URL, getUnits } from '@/lib/siteApi.js';
 import { pageMeta, currentYear } from '@/lib/seo.js';
 
-export const dynamicParams = false;
+export const revalidate = 60;
 export const generateStaticParams = () => MODULES.map((m) => ({ module: m.slug }));
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
   const m = getModule(params.module);
   if (!m) return {};
+  const us = await getUnits(m);
+  const total = us.reduce((a, u) => a + u.count, 0);
   return pageMeta({
     title: `${m.short} Guess Paper ${currentYear()} – ${m.shortEn} Important Questions`,
-    description: `${m.short} (${m.shortEn}) के ${totalOf(m)} महत्वपूर्ण one liner प्रश्न-उत्तर, ${unitsOf(m).length} यूनिट में, हिंदी में। revision के लिए मुफ़्त गेस पेपर।`,
+    description: `${m.short} (${m.shortEn}) के ${total} महत्वपूर्ण one liner प्रश्न-उत्तर, ${us.length} यूनिट में, हिंदी में। revision के लिए मुफ़्त गेस पेपर।`,
     path: `/o-level-guess-paper/${m.slug}`,
     noarchive: true,
     keywords: [`${m.short} guess paper`, `${m.short} important questions`, `${m.shortEn} one liner questions`, 'O Level guess paper in Hindi'],
   });
 }
 
-export default function ModuleGuess({ params }) {
+export default async function ModuleGuess({ params }) {
   const m = getModule(params.module);
   if (!m) notFound();
-  const units = unitsOf(m);
+  const units = await getUnits(m);
+  const totalOf = () => units.reduce((a, u) => a + u.count, 0);
   const url = `${SITE_URL}/o-level-guess-paper/${m.slug}`;
   return (
     <SiteShell band={<PageBand title={<T hi={`${m.short} गेस पेपर – यूनिट वाइज़`} en={`${m.short} guess paper – unit wise`} />} sub={<T hi={m.hi} en={m.en} />} />}>

@@ -3,8 +3,8 @@ import SiteShell, { PageBand } from '@/components/site/SiteChrome.jsx';
 import JsonLd from '@/components/site/JsonLd.jsx';
 import { T } from '@/i18n/LangProvider.jsx';
 import { MODULES } from '@/content/modules.js';
-import { unitsOf, totalOf, GUESS_UPDATED } from '@/content/guess.js';
-import { SITE_URL } from '@/lib/siteApi.js';
+import { GUESS_UPDATED } from '@/content/guess.js';
+import { SITE_URL, getAllUnits } from '@/lib/siteApi.js';
 import { pageMeta, currentYear } from '@/lib/seo.js';
 
 const FAQ = [
@@ -21,7 +21,10 @@ export const metadata = pageMeta({
   keywords: ['O Level guess paper', 'O Level important questions in Hindi', 'O Level one liner questions', 'M1-R5 guess paper', 'M2-R5 guess paper', 'M3-R5 Python guess paper', 'M4-R5 IoT guess paper'],
 });
 
-export default function GuessIndex() {
+export const revalidate = 60;
+
+export default async function GuessIndex() {
+  const all = await getAllUnits(MODULES);
   const url = `${SITE_URL}/o-level-guess-paper`;
   return (
     <SiteShell band={<PageBand title={<T hi="O Level गेस पेपर – महत्वपूर्ण प्रश्न" en="O Level guess paper – important questions" />} sub={<T hi="चारों मॉड्यूल के one liner प्रश्न-उत्तर, यूनिट वाइज़" en="One-liner questions and answers for all four modules, unit by unit" />} />}>
@@ -45,7 +48,7 @@ export default function GuessIndex() {
             <Link href={`/o-level-guess-paper/${m.slug}`} className="block h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-ink-200 transition hover:ring-brand-400">
               <div className="text-xs font-bold uppercase tracking-widest text-mark-500">{m.short}</div>
               <h2 className="mt-1 text-[19px] font-bold leading-snug text-ink-900"><T hi={m.hi} en={m.en} /></h2>
-              <p className="mt-2 text-[14px] text-ink-600">{unitsOf(m).length} <T hi="यूनिट" en="units" /> · {totalOf(m)} <T hi="प्रश्न" en="questions" /></p>
+              <p className="mt-2 text-[14px] text-ink-600">{all[m.slug].length} <T hi="यूनिट" en="units" /> · {all[m.slug].reduce((a, u) => a + u.count, 0)} <T hi="प्रश्न" en="questions" /></p>
               <span className="mt-3 inline-block text-sm font-semibold text-brand-700"><T hi="गेस पेपर खोलो" en="Open guess paper" /></span>
             </Link>
           </li>
